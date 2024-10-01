@@ -1,7 +1,4 @@
-package com.example.testsa.dto;
-
-
-import com.example.testsa.entities.Usuario;
+package com.example.testsa.dto.res;
 
 public class MarinheiroDTORes {
     
@@ -13,13 +10,7 @@ public class MarinheiroDTORes {
    
     private String disponibilidade;
 
-    private int anosExperiencia;
-    
-    // @OneToOne
-    // @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-
-    private Usuario usuario;
-        
+    private int anosExperiencia; 
       
     public Long getId_marinheiro() {
         return id_marinheiro;
@@ -60,14 +51,5 @@ public class MarinheiroDTORes {
     public void setAnosExperiencia(int anosExperiencia) {
         this.anosExperiencia = anosExperiencia;
     }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
 
 }

@@ -49,9 +49,6 @@ public class Usuario {
 	@Column(name = "categoria")
 	private String categoriaUsuario;
 
-	// @OneToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "id_usuario")
-	@JsonIgnoreProperties("usuario")
 	@OneToOne(mappedBy = "usuario", optional = true)
 	private Marinheiro marinheiro;
 
@@ -59,8 +56,6 @@ public class Usuario {
 
 	}
 
-
-	
 	public String getNomeCompleto() {
 		return nomeCompleto;
 	}

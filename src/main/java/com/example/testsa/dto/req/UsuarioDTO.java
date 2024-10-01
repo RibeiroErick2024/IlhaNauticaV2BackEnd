@@ -1,4 +1,4 @@
-package com.example.testsa.dto;
+package com.example.testsa.dto.req;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -27,21 +27,7 @@ public class UsuarioDTO {
 	private String categoriaUsuario;
 
 	private Marinheiro marinheiro;
-
-    
-
-    public UsuarioDTO(Usuario usuario) {
-        // this.nomeCompleto = nomeCompleto;
-        // this.cpf = cpf;
-        // this.dataNascimento = dataNascimento;
-        // this.genero = genero;
-        // this.telefone = telefone;
-        // this.email = email;
-        // this.senha = senha;
-        // this.categoriaUsuario = categoriaUsuario;
-    }
-
-  
+ 
 
     public UUID getId() {
         return id;

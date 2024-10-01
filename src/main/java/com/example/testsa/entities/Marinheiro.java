@@ -28,7 +28,7 @@ public class Marinheiro {
     @Column(name = "anosexperiencia")
     private int anosExperiencia;
 
-    // @OneToOne(mappedBy = "marinheiro", fetch = FetchType.LAZY)
+
     @OneToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;

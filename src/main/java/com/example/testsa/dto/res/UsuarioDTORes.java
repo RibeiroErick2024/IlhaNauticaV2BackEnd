@@ -1,4 +1,4 @@
-package com.example.testsa.dto;
+package com.example.testsa.dto.res;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -7,7 +7,7 @@ import com.example.testsa.entities.Marinheiro;
 
 public class UsuarioDTORes {
     
-       private UUID id;
+    private UUID id;
 
 	private String nomeCompleto;
 

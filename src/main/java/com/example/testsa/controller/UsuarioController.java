@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
 
-    @GetMapping("/u")
-    public ResponseEntity<?> getTeam() {
+    @GetMapping("/")
+    public ResponseEntity<?> getallUsers() {
 
         var teams = usuarioService.getAllUsuario();
         return ResponseEntity.ok(teams);

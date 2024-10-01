@@ -1,6 +1,5 @@
 package com.example.testsa.entities;
 
-import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,9 +38,6 @@ public class Endereco {
 
     @Column(name = "estado", length = 2)
     private String estado;
-
-   
-   
    
     public Endereco() {
     }
