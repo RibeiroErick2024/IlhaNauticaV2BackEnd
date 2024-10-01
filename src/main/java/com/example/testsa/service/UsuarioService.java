@@ -26,6 +26,17 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public Usuario getUsuarioById (UUID id){
+        
+        Optional<Usuario> optUsuario = usuarioRepository.findById(id);
+        if (optUsuario.isPresent()) {
+            Usuario usuarioEncontrado = optUsuario.get();
+            return usuarioEncontrado;
+        }
+
+        return null;
+    }
+
     public Usuario updateUsuario(UUID id, Usuario usuario) {
         Optional<Usuario> optionalUserToUpdateData = usuarioRepository.findById(id);
         

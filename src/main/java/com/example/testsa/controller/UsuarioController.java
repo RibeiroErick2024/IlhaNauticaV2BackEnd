@@ -1,5 +1,7 @@
 package com.example.testsa.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +31,11 @@ public class UsuarioController {
         return ResponseEntity.ok(teams);
     }
 
-    @GetMapping("/a")
-    public String getMethodName() {
-        return "new String()";
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<Usuario> getUsuario(@PathVariable (name = "id") UUID id) {
+        Usuario u = usuarioService.getUsuarioById(id);
+
+        return ResponseEntity.ok(u);
     }
 
     @PostMapping("/post")
