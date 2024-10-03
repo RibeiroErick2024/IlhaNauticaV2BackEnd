@@ -27,25 +27,29 @@ public class UsuarioController {
     @GetMapping("/")
     public ResponseEntity<?> getallUsers() {
 
-        var teams = usuarioService.getAllUsuario();
-        return ResponseEntity.ok(teams);
+        var usuarios = usuarioService.getAllUsuario();
+        if(usuarios.isEmpty()){
+            return ResponseEntity.ok("Nenhum usuário");
+        }
+        return ResponseEntity.ok(usuarios);
     }
 
-    @GetMapping("/usuario/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUsuario(@PathVariable (name = "id") UUID id) {
         Usuario u = usuarioService.getUsuarioById(id);
 
         return ResponseEntity.ok(u);
     }
 
-    @PostMapping("/post")
-    public ResponseEntity<Usuario> postMethodName(@RequestBody Usuario entity) {
+    @PostMapping("/criar")
+    public ResponseEntity<Usuario> postCreateUsuario(@RequestBody Usuario entity) {
+
         var response = usuarioService.createUsuario(entity);
         
         return ResponseEntity.ok(response);
     }
     
-    @PutMapping("path/{id}")
+    @PutMapping("editar/{id}")
     public ResponseEntity<Usuario> putMethodName(@PathVariable String id, @RequestBody Usuario entity) {
        
         var response = usuarioService.createUsuario(entity);

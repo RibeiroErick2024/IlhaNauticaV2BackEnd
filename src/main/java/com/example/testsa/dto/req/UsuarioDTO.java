@@ -1,6 +1,7 @@
 package com.example.testsa.dto.req;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import com.example.testsa.entities.Marinheiro;
@@ -14,7 +15,7 @@ public class UsuarioDTO {
 
 	private String cpf;
 
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 
 	private String genero;
 
@@ -53,11 +54,11 @@ public class UsuarioDTO {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

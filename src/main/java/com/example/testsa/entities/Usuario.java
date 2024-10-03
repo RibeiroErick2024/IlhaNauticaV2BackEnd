@@ -1,6 +1,7 @@
 package com.example.testsa.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,7 +23,7 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_usuario", nullable = false)
+	@Column(name = "id_usuario")
 	private UUID id;
 
 	@Column(name = "nomeCompleto", length = 50, nullable = false)
@@ -32,7 +33,7 @@ public class Usuario {
 	private String cpf;
 
 	@Column(name = "dataNascimento")
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 
 	@Column(name = "genero")
 	private String genero;
@@ -72,11 +73,11 @@ public class Usuario {
 		this.cpf = cpf;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
