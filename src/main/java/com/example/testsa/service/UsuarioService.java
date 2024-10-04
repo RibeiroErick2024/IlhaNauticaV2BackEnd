@@ -11,6 +11,8 @@ import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.UsuarioRepository;
 // import com.github.f4b6a3.ulid.Ulid;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UsuarioService {
 
@@ -20,7 +22,8 @@ public class UsuarioService {
     public List<Usuario> getAllUsuario() {
         return usuarioRepository.findAll();
     }
-
+    
+    @Transactional
     public Usuario createUsuario(Usuario usuario) {
 
         return usuarioRepository.save(usuario);
@@ -36,7 +39,8 @@ public class UsuarioService {
 
         return null;
     }
-
+    
+    @Transactional
     public Usuario updateUsuario(UUID id, Usuario usuario) {
         Optional<Usuario> optionalUserToUpdateData = usuarioRepository.findById(id);
         

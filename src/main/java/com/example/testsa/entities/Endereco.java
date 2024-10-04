@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Endereco {
@@ -39,6 +41,10 @@ public class Endereco {
     @Column(name = "estado", length = 2)
     private String estado;
    
+    @OneToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
     public Endereco() {
     }
 

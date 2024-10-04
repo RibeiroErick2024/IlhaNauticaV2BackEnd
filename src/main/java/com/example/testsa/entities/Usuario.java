@@ -1,21 +1,19 @@
 package com.example.testsa.entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 // import com.github.f4b6a3.ulid.Ulid;
 // import com.github.f4b6a3.ulid.UlidCreator;
+// import jakarta.persistence.JoinColumn;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-// import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "usuario")
@@ -29,7 +27,7 @@ public class Usuario {
 	@Column(name = "nomeCompleto", length = 50, nullable = false)
 	private String nomeCompleto;
 
-	@Column(name = "cpf", length = 11, nullable = false)
+	@Column(name = "cpf", length = 11)
 	private String cpf;
 
 	@Column(name = "dataNascimento")
@@ -50,8 +48,11 @@ public class Usuario {
 	@Column(name = "categoria")
 	private String categoriaUsuario;
 
-	@OneToOne(mappedBy = "usuario", optional = true)
-	private Marinheiro marinheiro;
+	@OneToMany(mappedBy = "usuario")
+	private List<Marinheiro> marinheiro;
+
+	@OneToOne(mappedBy = "usuario")
+	private Endereco endereco;
 
 	public Usuario() {
 
@@ -130,12 +131,14 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public Marinheiro getMarinheiro() {
+	public List<Marinheiro> getMarinheiro() {
 		return marinheiro;
 	}
 
-	public void setMarinheiro(Marinheiro marinheiro) {
+	public void setMarinheiro(List<Marinheiro> marinheiro) {
 		this.marinheiro = marinheiro;
 	}
+
+
 
 }

@@ -1,10 +1,8 @@
 package com.example.testsa.dto.res;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
-
-import com.example.testsa.entities.Marinheiro;
 
 public class UsuarioDTORes {
     
@@ -26,7 +24,7 @@ public class UsuarioDTORes {
 
 	private String categoriaUsuario;
 
-	private Marinheiro marinheiro;
+	private List<MarinheiroDTORes> marinheiro;
 
     public UUID getId() {
         return id;
@@ -100,13 +98,15 @@ public class UsuarioDTORes {
         this.categoriaUsuario = categoriaUsuario;
     }
 
-    public Marinheiro getMarinheiro() {
+    public List<MarinheiroDTORes> getMarinheiro() {
         return marinheiro;
     }
 
-    public void setMarinheiro(Marinheiro marinheiro) {
+    public void setMarinheiro(List<MarinheiroDTORes> marinheiro) {
         this.marinheiro = marinheiro;
     }
 
+   
+  
     
 }

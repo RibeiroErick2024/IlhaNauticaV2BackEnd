@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.testsa.entities.Marinheiro;
 import com.example.testsa.repositories.MarinheiroRepository;
 
+import jakarta.transaction.Transactional;
+
 
 
 @Service
@@ -19,6 +21,7 @@ public class MarinheiroService {
 
 
     // Marinheiro recebido do post. Que veio do Controller
+     @Transactional
     public Marinheiro createUsuario(Marinheiro marinheiroPost) {
 
         return marinheiroRepository.save(marinheiroPost);

@@ -1,15 +1,13 @@
 package com.example.testsa.dto.req;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.UUID;
 
 import com.example.testsa.entities.Marinheiro;
-import com.example.testsa.entities.Usuario;
 
 public class UsuarioDTO {
     
-    private UUID id;
+
 
 	private String nomeCompleto;
 
@@ -29,15 +27,6 @@ public class UsuarioDTO {
 
 	private Marinheiro marinheiro;
  
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public String getNomeCompleto() {
         return nomeCompleto;
     }
