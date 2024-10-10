@@ -22,6 +22,7 @@ public class UsuarioService {
     public List<Usuario> getAllUsuario() {
         return usuarioRepository.findAll();
     }
+
     
     @Transactional
     public Usuario createUsuario(Usuario usuario) {
@@ -58,5 +59,25 @@ public class UsuarioService {
 
         return usuarioRepository.saveAndFlush(usuario);
     }
+    
+    // verificação de email
+    public Usuario loginUsuario(String email, String senha) {
+        // Buscar o usuário pelo email
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
 
+        // Se o usuário não existir, retornar null ou lançar uma exceção
+        if (usuarioOpt.isEmpty()) {
+            throw new IllegalArgumentException("Usuário não encontrado!");
+        }
+        // verificação de senha
+        Usuario usuario = usuarioOpt.get();
+
+        // Verificar se a senha fornecida é a mesma que a armazenada
+        if (!usuario.getSenha().equals(senha)) { 
+            throw new IllegalArgumentException("Senha inválida!");
+        }
+
+        return usuario; 
+
+}
 }
