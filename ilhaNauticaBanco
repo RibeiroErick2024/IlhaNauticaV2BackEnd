@@ -1,0 +1,133 @@
+-- Enable the UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Create the Usuario table
+CREATE TABLE Usuario (
+    id_usuario UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    nomeCompleto VARCHAR(50) CHECK (char_length(nomeCompleto) >= 3),
+    cpf_cnpj VARCHAR(14) UNIQUE,
+    dataNascimento DATE,
+    genero VARCHAR(50),
+    telefone VARCHAR(11),
+    email VARCHAR(50) UNIQUE,
+    senha VARCHAR(255), -- Increased size for security (hashed passwords)
+    categoria VARCHAR(50)
+);
+
+-- Create the Endereco table
+CREATE TABLE Endereco (
+    id_endereco serial PRIMARY KEY,
+    cidade VARCHAR(50),
+    latitude DECIMAL,
+    longitude DECIMAL,
+    rua VARCHAR(50),
+    bairro VARCHAR(50),
+    numero INT,
+    complemento VARCHAR(50),
+    estado VARCHAR(2),
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+);
+
+-- Create the Marinheiro table
+CREATE TABLE Marinheiro (
+    id_marinheiro SERIAL PRIMARY KEY,
+    categoria VARCHAR(45),
+    registroMaritimo VARCHAR(50),
+    nome_ VARCHAR(50),
+    disponibilidade VARCHAR(50),
+    anosExperiencia INT,
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+);
+
+-- Create the Embarcacao table
+CREATE TABLE Embarcacao (
+    id_embarcacao serial PRIMARY KEY,
+    nome VARCHAR(50),
+    anoFabricacao DATE,
+    tamanho FLOAT,
+    capacidade INT,
+    categoria VARCHAR(50),
+    enderecoEmbarque VARCHAR(50),
+    disponibilidade BOOLEAN,
+    imagem VARCHAR(255),
+    pet BOOLEAN,
+    quantidadeBanheiro INT,
+    quantidadeCabines INT,
+    inscricao_IMO VARCHAR(50),
+    bandeira VARCHAR(50),
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
+    fk_id_endereco int REFERENCES Endereco(id_endereco) ON DELETE CASCADE
+);
+
+-- Create the Pagamento table
+CREATE TABLE Pagamento (
+    id_pagamento SERIAL PRIMARY KEY,
+    banco VARCHAR(50),
+    numeroCartao VARCHAR(50),
+    metodoPagamento VARCHAR(50),
+    valor DECIMAL,
+    dataPagamento DATE
+);
+
+-- Create the Agendamento table
+CREATE TABLE Agendamento (
+    id_agendamento SERIAL PRIMARY KEY,
+    dataInicio DATE,
+    status VARCHAR(50),
+    dataFinal DATE,
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
+    fk_id_marinheiro INT REFERENCES Marinheiro(id_marinheiro),
+	fk_id_embarcacao int REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
+
+	
+);
+
+-- Create the Avaliacao table
+CREATE TABLE Avaliacao (
+    id_avaliacao SERIAL PRIMARY KEY,
+    comentario VARCHAR(255),
+    notaMarinheiro DECIMAL,
+    notaEmbarcacao DECIMAL,
+    notaAgendamento DECIMAL,
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
+    fk_id_agendamento INT REFERENCES Agendamento(id_agendamento),
+    fk_id_marinheiro INT REFERENCES Marinheiro(id_marinheiro),
+	fk_id_embarcacao int REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
+);
+
+-- Create the Documentos table
+CREATE TABLE Documentos (
+    id_documento SERIAL PRIMARY KEY,
+    status VARCHAR(50),
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
+    documento BYTEA,
+    nome VARCHAR(50)
+);
+
+-- Create the usuario_pagamento table
+CREATE TABLE usuario_pagamento (
+    id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE RESTRICT,
+    id_pagamento INT REFERENCES Pagamento(id_pagamento) ON DELETE SET NULL,
+    PRIMARY KEY (id_usuario, id_pagamento)
+);
+
+
+-- Create the ContaBanco table
+CREATE TABLE ContaBanco (
+    id_conta SERIAL PRIMARY KEY,
+    banco VARCHAR(50) NOT NULL,
+    numeroConta VARCHAR(50) NOT NULL,
+    agencia VARCHAR(20) NOT NULL,
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+);
+
+
+CREATE TABLE AprovacaoDocumento (
+    id_aprovacao SERIAL PRIMARY KEY,
+    fk_id_documento INT REFERENCES Documentos(id_documento) ON DELETE CASCADE,
+    status_aprovacao VARCHAR(50) CHECK (status_aprovacao IN ('Pendente', 'Aprovado', 'Rejeitado')),
+    data_aprovacao DATE,
+    observacoes TEXT,
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+);
+
