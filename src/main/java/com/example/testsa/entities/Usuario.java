@@ -24,13 +24,13 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private UUID id;
 
-	@Column(name = "nomeCompleto", length = 50, nullable = false)
+	@Column(name = "nomecompleto", length = 50, nullable = false)
 	private String nomeCompleto;
 
-	@Column(name = "cpf", length = 11)
+	@Column(name = "cpf_cnpj", length = 11)
 	private String cpf;
 
-	@Column(name = "dataNascimento")
+	@Column(name = "datanascimento")
 	private LocalDate dataNascimento;
 
 	@Column(name = "genero")

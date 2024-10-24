@@ -42,7 +42,7 @@ public class Endereco {
     private String estado;
    
     @OneToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "fk_id_usuario")
     private Usuario usuario;
 
     public Endereco() {
