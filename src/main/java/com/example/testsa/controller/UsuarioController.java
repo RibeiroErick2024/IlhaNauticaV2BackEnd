@@ -74,4 +74,14 @@ public class UsuarioController {
 
     }
 
+    // Endpoint de login 
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
+        
+        Usuario usuarioLogado = usuarioService.loginUsuario(usuario.getEmail(), usuario.getSenha());
+        return ResponseEntity.ok(usuarioLogado);
+    }
+
+
+
 }
