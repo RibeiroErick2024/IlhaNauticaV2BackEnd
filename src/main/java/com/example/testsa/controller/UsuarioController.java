@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.testsa.converter.DtoToUsuario;
 import com.example.testsa.converter.UsuarioConverter;
 import com.example.testsa.dto.req.CadastroUsuarioDTO;
 import com.example.testsa.dto.res.UsuarioDTORes;
@@ -57,9 +56,9 @@ public class UsuarioController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        DtoToUsuario entity = new DtoToUsuario();
-        Usuario a = entity.dtoParaUsuario(criarUsuario);
-        var response = usuarioService.createUsuario(a);
+        Usuario entity = UsuarioConverter.dtoParaUsuario(criarUsuario);
+        
+        var response = usuarioService.createUsuario(entity);
         return ResponseEntity.ok(response);
     }
 

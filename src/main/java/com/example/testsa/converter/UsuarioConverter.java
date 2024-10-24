@@ -2,9 +2,9 @@ package com.example.testsa.converter;
 
 import java.util.List;
 
+import com.example.testsa.dto.req.CadastroUsuarioDTO;
 import com.example.testsa.dto.res.MarinheiroDTORes;
 import com.example.testsa.dto.res.UsuarioDTORes;
-import com.example.testsa.entities.Marinheiro;
 import com.example.testsa.entities.Usuario;
 
 public interface UsuarioConverter {
@@ -18,23 +18,20 @@ public interface UsuarioConverter {
         all.setGenero(entity.getGenero());
 
         List<MarinheiroDTORes> listMarinheiros = entity.getMarinheiro()
-        .stream().map(a -> marinheiroDTORes(a)).toList();
+        .stream().map(a -> MarinheiroConverter.marinheiroDTORes(a)).toList();
 
         all.setMarinheiro(listMarinheiros);
 
         return all;
     }
 
-     public static MarinheiroDTORes marinheiroDTORes(Marinheiro entity){
-        MarinheiroDTORes marinheiro = new MarinheiroDTORes();
-        marinheiro.setId_marinheiro(entity.getId_marinheiro());
-        marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
-        marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
-        marinheiro.setCategoria(entity.getCategoria());
-        marinheiro.setDisponibilidade(entity.getDisponibilidade());
+       public static Usuario dtoParaUsuario(CadastroUsuarioDTO u){
+        Usuario novoUsuario = new Usuario();
+        novoUsuario.setNomeCompleto(u.getNomeCompleto());
+        novoUsuario.setEmail(u.getEmail());
+        novoUsuario.setSenha(u.getSenha());
 
-        return marinheiro;
-
+        return novoUsuario;  
     }
 
    
