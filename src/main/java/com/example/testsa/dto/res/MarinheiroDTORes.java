@@ -11,7 +11,17 @@ public class MarinheiroDTORes {
     private String disponibilidade;
 
     private int anosExperiencia; 
-      
+
+    private String usuarioId;
+
+    public String getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     public Long getId_marinheiro() {
         return id_marinheiro;
     }
