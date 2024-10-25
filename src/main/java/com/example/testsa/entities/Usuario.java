@@ -54,6 +54,9 @@ public class Usuario {
 	@OneToOne(mappedBy = "usuario")
 	private Endereco endereco;
 
+	@OneToMany(mappedBy = "usuario")
+    private List<Embarcacao> embarcacao;
+
 	public Usuario() {
 
 	}

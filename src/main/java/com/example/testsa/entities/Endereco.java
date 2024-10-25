@@ -1,6 +1,5 @@
 package com.example.testsa.entities;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +43,11 @@ public class Endereco {
     @OneToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
+    @OneToOne
+    @JoinColumn(name = "id_embarcacao", referencedColumnName = "id_embarcacao")
+    private Embarcacao embarcacao;
+
 
     public Endereco() {
     }
