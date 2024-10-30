@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.UsuarioRepository;
-// import com.github.f4b6a3.ulid.Ulid;
 
 import jakarta.transaction.Transactional;
 
@@ -60,19 +59,19 @@ public class UsuarioService {
         return usuarioRepository.saveAndFlush(usuario);
     }
     
-    // verificação de email
+    
     public Usuario loginUsuario(String email, String senha) {
-        // Buscar o usuário pelo email
+        
         Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
 
-        // Se o usuário não existir, retornar null ou lançar uma exceção
+        
         if (usuarioOpt.isEmpty()) {
             throw new IllegalArgumentException("Usuário não encontrado!");
         }
-        // verificação de senha
+        
         Usuario usuario = usuarioOpt.get();
 
-        // Verificar se a senha fornecida é a mesma que a armazenada
+        
         if (!usuario.getSenha().equals(senha)) { 
             throw new IllegalArgumentException("Senha inválida!");
         }
