@@ -33,10 +33,10 @@ public List<Embarcacao> getAllEmbarcacaos() {
 //     return null;
 // }
 
-@Transactional
-public Embarcacao updatEmbarcacao(UUID id_embarcacao, Embarcacao embarcacao){
-    Optional<Embarcacao> optionalEmbarcacao
-}
+// @Transactional
+// public Embarcacao updatEmbarcacao(UUID id_embarcacao, Embarcacao embarcacao){
+//     Optional<Embarcacao> optionalEmbarcacao
+// }
 
 
 }
