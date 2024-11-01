@@ -99,9 +99,9 @@ public class Agendamento {
         this.embarcacao = embarcacao;
     }
 
-    public Iterable<Marinheiro> getMarinheiros() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    // public Iterable<Marinheiro> getMarinheiros() {
+    //     throw new UnsupportedOperationException("Não suportado.");
+    // }
 
   
    

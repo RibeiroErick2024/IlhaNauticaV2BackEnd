@@ -1,65 +1,74 @@
 package com.example.testsa.controller;
-
+import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.testsa.converter.AgendamentoConverter;
+import com.example.testsa.dto.res.AgendamentosDTORes;
 import com.example.testsa.entities.Agendamento;
 import com.example.testsa.service.AgendamentoService;
-
-
 
 @RestController
 @RequestMapping("/agendamento")
 public class AgendamentoController {
 
-    @Autowired
-    private AgendamentoService agendamentoService;
+    private final AgendamentoService agendamentoService;
 
-   
-    // @GetMapping("/")
-    // public ResponseEntity<List<Agendamento>> getAllAgendamentos() {
-    //     List<Agendamento> response = agendamentoService.getAllAgendamento();
-    //     return ResponseEntity.ok(response);
-    // }
-
-  
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getAgendamentoById(@PathVariable Long id) {
-        Optional<Agendamento> agendamento = agendamentoService.getAgendamentoById(id);
-        return ResponseEntity.ok(agendamento);
+    public AgendamentoController(AgendamentoService agendamentoService) {
+        this.agendamentoService = agendamentoService;
     }
 
-   
-    // @PostMapping("/post")
-    // public ResponseEntity<Agendamento> createAgendamento(@RequestBody Agendamento entity) {
-    //     Agendamento createdAgendamento = agendamentoService.saveAgendamento(entity);
-    //     return ResponseEntity.status(HttpStatus.CREATED).body(createdAgendamento);
-    // }
+    // Cria um novo agendamento      Xx Está criando, mas não ta salvando os id de marinheiro, usuario e embarcação xX
+    @PostMapping("/criar")
+    public ResponseEntity<Agendamento> createAgendamento(@RequestBody Agendamento agendamento) {
+        Agendamento createdAgendamento = agendamentoService.createAgendamento(agendamento);
+        return ResponseEntity.status(201).body(createdAgendamento);
+    }
 
+
+    // Puxa todos os agendamentos   // Xx Ta puxando faltando os ids de marinheiro  embarcação e usuario  xX
+    @GetMapping
+    public ResponseEntity<List<AgendamentosDTORes>> getAllAgendamentos() {
+        List<AgendamentosDTORes> agendamentosDTO = agendamentoService.getAllAgendamentosDTO();
+        return ResponseEntity.ok(agendamentosDTO);
+    }
+
+    //Puxa o agendamento por usuario 
+    @GetMapping("/{id}")  // Xx Ta puxando faltando os ids de marinheiro  embarcação e usuario  xX
+    public ResponseEntity<AgendamentosDTORes> getAgendamentoById(@PathVariable(name = "id") Long id) {
+        Optional<Agendamento> agendamentoOpt = agendamentoService.buscarAgendamentoPorId(id);
     
-    // @PutMapping("/{id}")
-    // public ResponseEntity<Agendamento> updateAgendamento(@PathVariable Long id, @RequestBody Agendamento entity) {
-    //     Agendamento updatedAgendamento = agendamentoService.updateAgendamento(id, entity);
-    //     return ResponseEntity.ok(updatedAgendamento);
-    // }
-
+        if (agendamentoOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
     
-    // @PatchMapping("/{id}")
-    // public ResponseEntity<Agendamento> partialUpdateAgendamento(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
-    //     Agendamento updatedAgendamento = agendamentoService.partialUpdateAgendamento(id, updates);
-    //     return ResponseEntity.ok(updatedAgendamento);
-    // }
+        Agendamento agendamento = agendamentoOpt.get();
+        AgendamentosDTORes agendamentoDTO = AgendamentoConverter.agendamentoConverterDTO(agendamento); 
+    
+        return ResponseEntity.ok(agendamentoDTO);
+    }
+  
 
-   
-    // @DeleteMapping("/{id}")
-    // public ResponseEntity<Void> deleteAgendamento(@PathVariable Long id) {
-    //     agendamentoService.deleteAgendamento(id);
-    //     return ResponseEntity.noContent().build(); // Retorna 204 No Content
-    // }
+    // Atualizar um agendamento existente           Xx funcionando xX
+    @PutMapping("/{id}")
+    public ResponseEntity<Agendamento> updateAgendamento(@PathVariable Long id, @RequestBody Agendamento agendamento) {
+        Agendamento updatedAgendamento = agendamentoService.updateAgendamento(id, agendamento);
+        return ResponseEntity.ok(updatedAgendamento); 
+    }
+
+    // Deletar um agendamento              Xx funcionando xX
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAgendamento(@PathVariable Long id) {
+        agendamentoService.deleteAgendamento(id);
+        return ResponseEntity.noContent().build(); // Retorna 204 No Content
+    }
 }
