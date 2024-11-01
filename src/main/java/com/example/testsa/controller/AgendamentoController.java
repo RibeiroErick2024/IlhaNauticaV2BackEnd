@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.testsa.dto.res.AgendamentoConverter;
+import com.example.testsa.converter.AgendamentoConverter;
 import com.example.testsa.dto.res.AgendamentosDTORes;
 import com.example.testsa.entities.Agendamento;
 import com.example.testsa.service.AgendamentoService;

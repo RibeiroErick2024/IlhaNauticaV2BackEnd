@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.testsa.dto.res.AgendamentoConverter;
+import com.example.testsa.converter.AgendamentoConverter;
 import com.example.testsa.dto.res.AgendamentosDTORes;
 import com.example.testsa.entities.Agendamento;
 import com.example.testsa.repositories.AgendamentoRepository;

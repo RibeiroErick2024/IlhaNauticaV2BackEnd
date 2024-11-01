@@ -33,7 +33,7 @@ public class UsuarioController {
         var usuarios = usuarioService.getAllUsuario();
 
         List<UsuarioDTORes> dtoRes = usuarios
-                .stream().map(u -> UsuarioConverter.usuarioConverterDTO(u)).toList();
+                .stream().map(u -> UsuarioConverter.usuarioConverterLocador(u)).toList();
 
         if (usuarios.isEmpty()) {
             return ResponseEntity.ok("Nenhum usuário encontrado");
@@ -50,7 +50,7 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
     
-        UsuarioDTORes usuarioDTO = UsuarioConverter.usuarioConverterDTO(u);
+        UsuarioDTORes usuarioDTO = UsuarioConverter.usuarioConverterLocador(u);
         return ResponseEntity.ok(usuarioDTO);
     }
 
@@ -62,7 +62,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        Usuario entity = UsuarioConverter.dtoParaUsuario(criarUsuario);
+        Usuario entity = UsuarioConverter.dtoConverterUsuario(criarUsuario);
         var response = usuarioService.createUsuario(entity);
         return ResponseEntity.ok(response);
     }

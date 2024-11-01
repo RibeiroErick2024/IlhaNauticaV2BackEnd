@@ -7,9 +7,9 @@ public class AgendamentosDTORes {
     private LocalDate dataInicio;
     private String status;
     private LocalDate dataFinal;
-    private UsuarioDTO usuario;
-    private MarinheiroDTO marinheiro;
-    private EmbarcacaoDTO embarcacao;
+    private UsuarioGeralDTORes usuario;
+    private MarinheiroDTORes marinheiro;
+    private EmbarcacaoDTORes embarcacao;
 
  
     public AgendamentosDTORes() {
@@ -48,29 +48,8 @@ public class AgendamentosDTORes {
         this.dataFinal = dataFinal;
     }
 
-    public UsuarioDTO getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
-
-    public MarinheiroDTO getMarinheiro() {
-        return marinheiro;
-    }
-
-    public void setMarinheiro(MarinheiroDTO marinheiro) {
-        this.marinheiro = marinheiro;
-    }
-
-    public EmbarcacaoDTO getEmbarcacao() {
-        return embarcacao;
-    }
-
-    public void setEmbarcacao(EmbarcacaoDTO embarcacao) {
-        this.embarcacao = embarcacao;
-    }
+ 
+   
 
 
     
@@ -99,51 +78,81 @@ public class AgendamentosDTORes {
     }
 
    
-    public static class MarinheiroDTO {
-        private Long idMarinheiro;
-        private String nome;
+    // public static class MarinheiroDTO {
+    //     private Long idMarinheiro;
+    //     private String nome;
         
 
         
-        public Long getIdMarinheiro() {
-            return idMarinheiro;
-        }
+    //     public Long getIdMarinheiro() {
+    //         return idMarinheiro;
+    //     }
 
-        public void setIdMarinheiro(Long idMarinheiro) {
-            this.idMarinheiro = idMarinheiro;
-        }
+    //     public void setIdMarinheiro(Long idMarinheiro) {
+    //         this.idMarinheiro = idMarinheiro;
+    //     }
 
-        public String getNome() {
-            return nome;
-        }
+    //     public String getNome() {
+    //         return nome;
+    //     }
 
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
-    }
+    //     public void setNome(String nome) {
+    //         this.nome = nome;
+    //     }
+    // }
 
     
-    public static class EmbarcacaoDTO {
-        private Long idEmbarcacao;
-        private String nome;
+    // public static class EmbarcacaoDTO {
+    //     private Long idEmbarcacao;
+    //     private String nome;
         
 
         
-        public Long getIdEmbarcacao() {
-            return idEmbarcacao;
-        }
+    //     public Long getIdEmbarcacao() {
+    //         return idEmbarcacao;
+    //     }
 
-        public void setIdEmbarcacao(Long idEmbarcacao) {
-            this.idEmbarcacao = idEmbarcacao;
-        }
+    //     public void setIdEmbarcacao(Long idEmbarcacao) {
+    //         this.idEmbarcacao = idEmbarcacao;
+    //     }
        
 
-        public String getNome() {
-            return nome;
-        }
+    //     public String getNome() {
+    //         return nome;
+    //     }
 
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
+    //     public void setNome(String nome) {
+    //         this.nome = nome;
+    //     }
+    // }
+
+
+    public UsuarioGeralDTORes getUsuario() {
+        return usuario;
+    }
+
+
+    public void setUsuario(UsuarioGeralDTORes usuario) {
+        this.usuario = usuario;
+    }
+
+
+    public MarinheiroDTORes getMarinheiro() {
+        return marinheiro;
+    }
+
+
+    public void setMarinheiro(MarinheiroDTORes marinheiro) {
+        this.marinheiro = marinheiro;
+    }
+
+
+    public EmbarcacaoDTORes getEmbarcacao() {
+        return embarcacao;
+    }
+
+
+    public void setEmbarcacao(EmbarcacaoDTORes embarcacao) {
+        this.embarcacao = embarcacao;
     }
 }
