@@ -42,6 +42,10 @@ public class Agendamento {
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
+    @OneToOne
+    @JoinColumn(name = "fk_id_agendamento", referencedColumnName = "id_agendamento")
+    private Avaliacao avaliacao;
+
 
     public Long getIdAgendamento() {
         return idAgendamento;

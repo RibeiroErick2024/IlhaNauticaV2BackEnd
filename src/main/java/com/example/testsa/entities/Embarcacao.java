@@ -86,6 +86,12 @@ public class Embarcacao {
     @OneToMany(mappedBy = "embarcacao")
     private List<ImagemEmbarcacao> imagem;
 
+    @OneToOne
+    @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
+    private Avaliacao avaliacao;
+
+
+
 
     public Long getId_embarcacao() {
         return id_embarcacao;
