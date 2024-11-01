@@ -19,33 +19,52 @@ public class ImagemEmbarcacaoController {
     @Autowired
     ImagemEmbarcacaoService imagemEmbarcacaoService;
 
-    @GetMapping("path")
-    public String getImagem(@RequestParam String param) {
-        return new String();
-    }
-
     @PostMapping("/upload")
     public ResponseEntity<?> uploadImagens(@ModelAttribute ImagemEmbarcacaoDTOReq imagemDTO) {
 
-        
         List<MultipartFile> arquivos = imagemDTO.getImagens();
-        System.out.println("Number of uploaded files: " + (arquivos != null ? arquivos.size() : "null"));
-    
-    if (arquivos == null || arquivos.isEmpty()) {
-        return ResponseEntity.badRequest().body("No files uploaded");
-    }
+        System.out.println("Número de imagem carregadas: " + (arquivos != null ? arquivos.size() : "null"));
+
+        if (arquivos == null || arquivos.isEmpty()) {
+            return ResponseEntity.badRequest().body("Nenhuma imagem foi carregada.");
+        }
 
         try {
             for (MultipartFile arquivo : arquivos) {
                 ImagemEmbarcacao entity = new ImagemEmbarcacao();
                 entity.setNome(arquivo.getOriginalFilename());
                 entity.setImagem(arquivo.getBytes());
-                imagemEmbarcacaoService.createImagem(entity);
+                entity.setFormato(arquivo.getContentType());
+                imagemEmbarcacaoService.criarImagem(entity);
             }
         } catch (IOException e) {
-            return ResponseEntity.status(500).build(); // Retorna erro em caso de falha no upload
+            return ResponseEntity.status(500).build();
         }
 
         return ResponseEntity.ok("Imagens enviadas com sucesso!");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<byte[]> getImagem(@PathVariable Long id) {
+        ImagemEmbarcacao imagem = imagemEmbarcacaoService.buscarImagemPorId(id);
+
+        if (imagem == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok()
+                .header("Content-Type", imagem.getFormato()) // Ajuste conforme o tipo de imagem
+                .body(imagem.getImagem());
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<ImagemEmbarcacao>> getAllImagens() {
+        List<ImagemEmbarcacao> imagens = imagemEmbarcacaoService.buscarTodasImagens();
+
+        if (imagens.isEmpty()) {
+            return ResponseEntity.noContent().build(); 
+        }
+
+        return ResponseEntity.ok(imagens);
     }
 }

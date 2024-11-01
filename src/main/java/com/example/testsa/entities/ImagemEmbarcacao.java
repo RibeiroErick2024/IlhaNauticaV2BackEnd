@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name= "imagemembarcacao")
 public class ImagemEmbarcacao {
     
     @Id
@@ -27,6 +27,12 @@ public class ImagemEmbarcacao {
     @OneToOne
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
+
+    
+    @Column(name = "formato")
+    private String formato;
+
+    
 
     public Long getId_imagem() {
         return id_imagem;
@@ -58,6 +64,14 @@ public class ImagemEmbarcacao {
 
     public void setEmbarcacao(Embarcacao embarcacao) {
         this.embarcacao = embarcacao;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
+    public void setFormato(String formato) {
+        this.formato = formato;
     }
 
 

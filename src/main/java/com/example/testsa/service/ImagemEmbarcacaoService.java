@@ -16,7 +16,7 @@ public class ImagemEmbarcacaoService {
     ImagemEmbarcacaoRepository imagemEmbarcacaoRepository;
 
     @Transactional
-    public ImagemEmbarcacao createImagem(ImagemEmbarcacao imagemPost) {
+    public ImagemEmbarcacao criarImagem(ImagemEmbarcacao imagemPost) {
         ImagemEmbarcacao imagem = new ImagemEmbarcacao();
         imagem.setNome(imagemPost.getNome());
         imagem.setImagem(imagemPost.getImagem());
@@ -24,9 +24,13 @@ public class ImagemEmbarcacaoService {
         return imagemEmbarcacaoRepository.save(imagemPost);
     }
 
-    public List <ImagemEmbarcacao> getAllimagem (){
+    public List <ImagemEmbarcacao> buscarTodasImagens (){
         return imagemEmbarcacaoRepository.findAll();       
       
+    }
+
+    public ImagemEmbarcacao buscarImagemPorId(Long id) {
+        return imagemEmbarcacaoRepository.findById(id).orElse(null);
     }
 
 }
