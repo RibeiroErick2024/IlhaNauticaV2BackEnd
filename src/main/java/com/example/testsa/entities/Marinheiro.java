@@ -39,6 +39,12 @@ public class Marinheiro {
 	private List<Agendamento> agendamento;
 
 
+    @OneToOne
+    @JoinColumn(name = "fk_id_marinheiro", referencedColumnName = "id_marinheiro")
+    private Avaliacao avaliacao;
+
+
+
     public Long getId_marinheiro() {
         return id_marinheiro;
     }
