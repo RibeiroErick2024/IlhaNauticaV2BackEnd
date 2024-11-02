@@ -15,28 +15,65 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class EmbarcacaoService {
-    
-@Autowired
-EmbarcacaoRepository embarcacaoRepository;
 
-@Transactional
-public List<Embarcacao> getAllEmbarcacaos() {
+    @Autowired
+    EmbarcacaoRepository embarcacaoRepository;
+
+    @Transactional
+    public List<Embarcacao> getAllEmbarcacaos() {
         return embarcacaoRepository.findAll();
     }
 
-// public  Embarcacao getEmbarcacaoById (UUID id_embarcacao){
-//     Optional<Embarcacao> optEmbarcacao = embarcacaoRepository.findById(id_embarcacao);
-//     if (optEmbarcacao.isPresent()){
-//         Embarcacao embarcacaoE = optEmbarcacao.get();
-//         return embarcacaoE;
-//     }
-//     return null;
-// }
+    @Transactional
+    public Embarcacao creatEmbarcacao(Embarcacao embarcacao) {
+        return embarcacaoRepository.save(embarcacao);
+    }
 
-@Transactional
-public Embarcacao updatEmbarcacao(UUID id_embarcacao, Embarcacao embarcacao){
-    Optional<Embarcacao> optionalEmbarcacao
-}
+    public Embarcacao getEmbarcacaoById(UUID id_embarcacao) {
+        Optional<Embarcacao> optEmbarcacao = embarcacaoRepository.findById(id_embarcacao);
+        if (optEmbarcacao.isPresent()) {
+            Embarcacao embarcacaoE = optEmbarcacao.get();
+            return embarcacaoE;
+        }
+        return null;
+    }
 
+    @Transactional
+    public Embarcacao updateEmbarcacao(UUID id_embarcacao, Embarcacao updateEmbarcacao) {
+        Optional<Embarcacao> optionalEmbarcacao  = embarcacaoRepository.findById(id_embarcacao);
+
+        if (optionalEmbarcacao.isPresent()) {
+            Embarcacao embarcacaoToUpdate = optionalEmbarcacao.get();
+
+            embarcacaoToUpdate.setNome(updateEmbarcacao.getNome());
+            embarcacaoToUpdate.setAnoFabricacao(updateEmbarcacao.getAnoFabricacao());
+            embarcacaoToUpdate.setTamanho(updateEmbarcacao.getTamanho());
+            embarcacaoToUpdate.setCapacidade(updateEmbarcacao.getCapacidade());
+            embarcacaoToUpdate.setCategoria(updateEmbarcacao.getCategoria());
+            embarcacaoToUpdate.setEnderecoEmbarque(updateEmbarcacao.getEnderecoEmbarque());
+            embarcacaoToUpdate.setDisponibilidade(updateEmbarcacao.getDisponibilidade());
+            embarcacaoToUpdate.setImagem(updateEmbarcacao.getImagem());
+            embarcacaoToUpdate.setPermitePet(updateEmbarcacao.getPermitePet());
+            embarcacaoToUpdate.setQuantidadeBanheiro(updateEmbarcacao.getQuantidadeBanheiro());
+            embarcacaoToUpdate.setQuantidadeCabines(updateEmbarcacao.getQuantidadeCabines());
+            embarcacaoToUpdate.setInscricaoImo(updateEmbarcacao.getInscricaoImo());
+            embarcacaoToUpdate.setBandeira(updateEmbarcacao.getBandeira());
+            embarcacaoToUpdate.setUsuario(updateEmbarcacao.getUsuario());  
+            embarcacaoToUpdate.setEnderecos(updateEmbarcacao.getEnderecos());  
+
+            // Salvando as atualizações
+
+            return embarcacaoRepository.saveAndFlush(embarcacaoToUpdate);
+        } else {
+            throw new RuntimeException("Embarcação com ID" + id_embarcacao +  "não encontrada.");
+        }
+    }
+        public void deleteEmbarcacao(UUID id_embarcacao) {
+            if (embarcacaoRepository.existsById(id_embarcacao)) {
+                embarcacaoRepository.deleteById(id_embarcacao);
+            } else {
+                throw new RuntimeException("Embarcação com ID " + id_embarcacao + " não encontrada.");
+            }
+    }
 
 }

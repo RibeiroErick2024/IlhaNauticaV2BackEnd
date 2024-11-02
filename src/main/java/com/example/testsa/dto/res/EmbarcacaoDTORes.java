@@ -1,70 +1,43 @@
-package com.example.testsa.entities;
+package com.example.testsa.dto.res;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import com.example.testsa.entities.Endereco;
+import com.example.testsa.entities.Usuario;
 
-@Entity
-public class Embarcacao {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_embarcacao")
+public class EmbarcacaoDTORes {
     private UUID id_embarcacao;
 
-    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "anoFabricacao")
     private LocalDate anofabricacao;
 
-    @Column(name = "tamanho")
     private Float tamanho;
 
-    @Column(name = "capacidade")
     private int capacidade;
 
-    @Column(name = "categoria")
     private String categoria;
 
-    @Column(name = "enderecoEmbarque")
     private String enderecoembarque;
 
-    @Column(name = "disponibilidade")
     private Boolean disponibilidade;
 
-    @Column(name = "imagem")
     private String imagem;
 
-    @Column(name = "pet")
     private Boolean pet;
 
-    @Column(name = "quantidadeBanheiro")
     private int quantidadebanheiro;
 
-    @Column(name = "quantidadeCabines")
     private int quantidadecabines;
 
-    @Column(name = "inscricao_IMO")
     private String inscricao;
 
-    @Column(name = "bandeira")
     private String bandeira;
 
-    @OneToOne
-    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "embarcacao")
     private List<Endereco> enderecos;
 
     public UUID getId_embarcacao() {
@@ -83,11 +56,11 @@ public class Embarcacao {
         this.nome = nome;
     }
 
-    public LocalDate getAnoFabricacao() {
+    public LocalDate getAnofabricacao() {
         return anofabricacao;
     }
 
-    public void setAnoFabricacao(LocalDate anofabricacao) {
+    public void setAnofabricacao(LocalDate anofabricacao) {
         this.anofabricacao = anofabricacao;
     }
 
@@ -114,12 +87,12 @@ public class Embarcacao {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-   
-    public String getEnderecoEmbarque() {
+
+    public String getEnderecoembarque() {
         return enderecoembarque;
     }
 
-    public void setEnderecoEmbarque(String enderecoembarque) {
+    public void setEnderecoembarque(String enderecoembarque) {
         this.enderecoembarque = enderecoembarque;
     }
 
@@ -139,35 +112,35 @@ public class Embarcacao {
         this.imagem = imagem;
     }
 
-    public Boolean getPermitePet() {
+    public Boolean getPet() {
         return pet;
     }
 
-    public void setPermitePet(Boolean pet) {
+    public void setPet(Boolean pet) {
         this.pet = pet;
     }
 
-    public int getQuantidadeBanheiro() {
+    public int getQuantidadebanheiro() {
         return quantidadebanheiro;
     }
 
-    public void setQuantidadeBanheiro(int quantidadebanheiro) {
+    public void setQuantidadebanheiro(int quantidadebanheiro) {
         this.quantidadebanheiro = quantidadebanheiro;
     }
 
-    public int getQuantidadeCabines() {
+    public int getQuantidadecabines() {
         return quantidadecabines;
     }
 
-    public void setQuantidadeCabines(int quantidadecabines) {
+    public void setQuantidadecabines(int quantidadecabines) {
         this.quantidadecabines = quantidadecabines;
     }
 
-    public String getInscricaoImo() {
+    public String getInscricao() {
         return inscricao;
     }
 
-    public void setInscricaoImo(String inscricao) {
+    public void setInscricao(String inscricao) {
         this.inscricao = inscricao;
     }
 
