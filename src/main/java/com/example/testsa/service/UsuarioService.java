@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.UsuarioRepository;
-// import com.github.f4b6a3.ulid.Ulid;
 
 import jakarta.transaction.Transactional;
 
@@ -22,6 +21,7 @@ public class UsuarioService {
     public List<Usuario> getAllUsuario() {
         return usuarioRepository.findAll();
     }
+
     
     @Transactional
     public Usuario createUsuario(Usuario usuario) {
@@ -58,5 +58,25 @@ public class UsuarioService {
 
         return usuarioRepository.saveAndFlush(usuario);
     }
+    
+    
+    public Usuario loginUsuario(String email, String senha) {
+        
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
 
+        
+        if (usuarioOpt.isEmpty()) {
+            throw new IllegalArgumentException("Usuário não encontrado!");
+        }
+        
+        Usuario usuario = usuarioOpt.get();
+
+        
+        if (!usuario.getSenha().equals(senha)) { 
+            throw new IllegalArgumentException("Senha inválida!");
+        }
+
+        return usuario; 
+
+}
 }

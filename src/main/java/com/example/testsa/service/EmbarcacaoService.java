@@ -38,6 +38,9 @@ public class EmbarcacaoService {
         return null;
     }
 
+
+
+
     @Transactional
     public Embarcacao updateEmbarcacao(UUID id_embarcacao, Embarcacao updateEmbarcacao) {
         Optional<Embarcacao> optionalEmbarcacao  = embarcacaoRepository.findById(id_embarcacao);
@@ -53,10 +56,10 @@ public class EmbarcacaoService {
             embarcacaoToUpdate.setEnderecoEmbarque(updateEmbarcacao.getEnderecoEmbarque());
             embarcacaoToUpdate.setDisponibilidade(updateEmbarcacao.getDisponibilidade());
             embarcacaoToUpdate.setImagem(updateEmbarcacao.getImagem());
-            embarcacaoToUpdate.setPermitePet(updateEmbarcacao.getPermitePet());
+            embarcacaoToUpdate.setPet(updateEmbarcacao.getPet());
             embarcacaoToUpdate.setQuantidadeBanheiro(updateEmbarcacao.getQuantidadeBanheiro());
             embarcacaoToUpdate.setQuantidadeCabines(updateEmbarcacao.getQuantidadeCabines());
-            embarcacaoToUpdate.setInscricaoImo(updateEmbarcacao.getInscricaoImo());
+            embarcacaoToUpdate.setInscricao(updateEmbarcacao.getInscricao());
             embarcacaoToUpdate.setBandeira(updateEmbarcacao.getBandeira());
             embarcacaoToUpdate.setUsuario(updateEmbarcacao.getUsuario());  
             embarcacaoToUpdate.setEnderecos(updateEmbarcacao.getEnderecos());  

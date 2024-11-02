@@ -21,7 +21,7 @@ public class MarinheiroService {
 
 
     // Marinheiro recebido do post. Que veio do Controller
-     @Transactional
+    @Transactional
     public Marinheiro createUsuario(Marinheiro marinheiroPost) {
 
         return marinheiroRepository.save(marinheiroPost);

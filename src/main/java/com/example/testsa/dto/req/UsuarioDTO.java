@@ -1,7 +1,6 @@
 package com.example.testsa.dto.req;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 import com.example.testsa.entities.Marinheiro;
 

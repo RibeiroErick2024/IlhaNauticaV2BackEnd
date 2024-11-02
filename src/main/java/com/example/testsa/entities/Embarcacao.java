@@ -1,8 +1,10 @@
 package com.example.testsa.entities;
 
+
 import java.time.LocalDate;
+
 import java.util.List;
-import java.util.UUID;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,19 +15,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
+
 @Entity
 public class Embarcacao {
-
+   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_embarcacao")
-    private UUID id_embarcacao;
+    private Long id_embarcacao;
 
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "anoFabricacao")
-    private LocalDate anofabricacao;
+    @Column(name = "anofabricacao")
+    private LocalDate anoFabricacao;
 
     @Column(name = "tamanho")
     private Float tamanho;
@@ -36,23 +39,24 @@ public class Embarcacao {
     @Column(name = "categoria")
     private String categoria;
 
-    @Column(name = "enderecoEmbarque")
-    private String enderecoembarque;
+    @Column(name = "enderecoembarque")
+    private String enderecoEmbarque;
 
     @Column(name = "disponibilidade")
     private Boolean disponibilidade;
 
-    @Column(name = "imagem")
-    private String imagem;
+
+    // @Column(name = "imagem")
+    // private String imagem;
 
     @Column(name = "pet")
     private Boolean pet;
 
-    @Column(name = "quantidadeBanheiro")
-    private int quantidadebanheiro;
+    @Column(name = "quantidadebanheiro")
+    private int quantidadeBanheiro;
 
-    @Column(name = "quantidadeCabines")
-    private int quantidadecabines;
+    @Column(name = "quantidadecabines")
+    private int quantidadeCabines;
 
     @Column(name = "inscricao_IMO")
     private String inscricao;
@@ -66,133 +70,192 @@ public class Embarcacao {
 
     @OneToMany(mappedBy = "embarcacao")
     private List<Endereco> enderecos;
+   
+    @OneToMany(mappedBy = "embarcacao")
+    private List<ImagemEmbarcacao> imagem;
 
-    public UUID getId_embarcacao() {
+    @OneToOne
+    @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
+    private Avaliacao avaliacao;
+
+
+    public List<ImagemEmbarcacao> getImagem() {
+        return imagem;
+    }
+
+
+    public void setImagem(List<ImagemEmbarcacao> imagem) {
+        this.imagem = imagem;
+    }
+
+
+    public Long getId_embarcacao() {
         return id_embarcacao;
     }
 
-    public void setId_embarcacao(UUID id_embarcacao) {
+
+    public void setId_embarcacao(Long id_embarcacao) {
         this.id_embarcacao = id_embarcacao;
     }
+
 
     public String getNome() {
         return nome;
     }
 
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+
     public LocalDate getAnoFabricacao() {
-        return anofabricacao;
+        return anoFabricacao;
     }
 
-    public void setAnoFabricacao(LocalDate anofabricacao) {
-        this.anofabricacao = anofabricacao;
+
+    public void setAnoFabricacao(LocalDate anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
     }
+
 
     public Float getTamanho() {
         return tamanho;
     }
 
+
     public void setTamanho(Float tamanho) {
         this.tamanho = tamanho;
     }
+
 
     public int getCapacidade() {
         return capacidade;
     }
 
+
     public void setCapacidade(int capacidade) {
         this.capacidade = capacidade;
     }
+
 
     public String getCategoria() {
         return categoria;
     }
 
+
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-   
+
+
     public String getEnderecoEmbarque() {
-        return enderecoembarque;
+        return enderecoEmbarque;
     }
 
-    public void setEnderecoEmbarque(String enderecoembarque) {
-        this.enderecoembarque = enderecoembarque;
+
+    public void setEnderecoEmbarque(String enderecoEmbarque) {
+        this.enderecoEmbarque = enderecoEmbarque;
     }
+
 
     public Boolean getDisponibilidade() {
         return disponibilidade;
     }
 
+
     public void setDisponibilidade(Boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
 
-    public String getImagem() {
-        return imagem;
-    }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
-    public Boolean getPermitePet() {
+    public Boolean getPet() {
         return pet;
     }
 
-    public void setPermitePet(Boolean pet) {
+
+    public void setPet(Boolean pet) {
         this.pet = pet;
     }
 
+
     public int getQuantidadeBanheiro() {
-        return quantidadebanheiro;
+        return quantidadeBanheiro;
     }
 
-    public void setQuantidadeBanheiro(int quantidadebanheiro) {
-        this.quantidadebanheiro = quantidadebanheiro;
+
+    public void setQuantidadeBanheiro(int quantidadeBanheiro) {
+        this.quantidadeBanheiro = quantidadeBanheiro;
     }
+
 
     public int getQuantidadeCabines() {
-        return quantidadecabines;
+        return quantidadeCabines;
     }
 
-    public void setQuantidadeCabines(int quantidadecabines) {
-        this.quantidadecabines = quantidadecabines;
+
+    public void setQuantidadeCabines(int quantidadeCabines) {
+        this.quantidadeCabines = quantidadeCabines;
     }
 
-    public String getInscricaoImo() {
+
+    public String getInscricao() {
         return inscricao;
     }
 
-    public void setInscricaoImo(String inscricao) {
+
+    public void setInscricao(String inscricao) {
         this.inscricao = inscricao;
     }
+
 
     public String getBandeira() {
         return bandeira;
     }
 
+
     public void setBandeira(String bandeira) {
         this.bandeira = bandeira;
     }
+
 
     public Usuario getUsuario() {
         return usuario;
     }
 
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
 
     public List<Endereco> getEnderecos() {
         return enderecos;
     }
 
+
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
     }
 
+
+
+
+
+
+
+
+   
 }
+
+

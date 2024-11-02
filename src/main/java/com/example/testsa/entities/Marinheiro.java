@@ -1,11 +1,14 @@
 package com.example.testsa.entities;
 
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "marinheiro")
@@ -28,14 +31,28 @@ public class Marinheiro {
     @Column(name = "anosexperiencia")
     private int anosExperiencia;
 
+    @OneToOne
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "marinheiro")
+	private List<Agendamento> agendamento;
+
 
     @OneToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    private Usuario usuario;
+    @JoinColumn(name = "fk_id_marinheiro", referencedColumnName = "id_marinheiro")
+    private Avaliacao avaliacao;
+
 
 
     public Long getId_marinheiro() {
         return id_marinheiro;
+    }
+    public List<Agendamento> getAgendamento() {
+        return agendamento;
+    }
+    public void setAgendamento(List<Agendamento> agendamento) {
+        this.agendamento = agendamento;
     }
     public Marinheiro(){
 
