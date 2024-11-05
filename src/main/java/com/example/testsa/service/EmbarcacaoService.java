@@ -29,7 +29,7 @@ public class EmbarcacaoService {
         return embarcacaoRepository.save(embarcacao);
     }
 
-    public Embarcacao getEmbarcacaoById(UUID id_embarcacao) {
+    public Embarcacao getEmbarcacaoById(Long id_embarcacao) {
         Optional<Embarcacao> optEmbarcacao = embarcacaoRepository.findById(id_embarcacao);
         if (optEmbarcacao.isPresent()) {
             Embarcacao embarcacaoE = optEmbarcacao.get();
@@ -42,7 +42,7 @@ public class EmbarcacaoService {
 
 
     @Transactional
-    public Embarcacao updateEmbarcacao(UUID id_embarcacao, Embarcacao updateEmbarcacao) {
+    public Embarcacao updateEmbarcacao(Long id_embarcacao, Embarcacao updateEmbarcacao) {
         Optional<Embarcacao> optionalEmbarcacao  = embarcacaoRepository.findById(id_embarcacao);
 
         if (optionalEmbarcacao.isPresent()) {
@@ -71,7 +71,7 @@ public class EmbarcacaoService {
             throw new RuntimeException("Embarcação com ID" + id_embarcacao +  "não encontrada.");
         }
     }
-        public void deleteEmbarcacao(UUID id_embarcacao) {
+        public void deleteEmbarcacao(Long id_embarcacao) {
             if (embarcacaoRepository.existsById(id_embarcacao)) {
                 embarcacaoRepository.deleteById(id_embarcacao);
             } else {

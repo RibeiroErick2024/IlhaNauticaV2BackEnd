@@ -27,7 +27,7 @@ public class EmbarcacaoController {
 
     // Endpoint para buscar uma embarcação por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Embarcacao> getEmbarcacaoById(@PathVariable UUID id) {
+    public ResponseEntity<Embarcacao> getEmbarcacaoById(@PathVariable Long id) {
         Embarcacao embarcacao = embarcacaoService.getEmbarcacaoById(id);
         if (embarcacao != null) {
             return new ResponseEntity<>(embarcacao, HttpStatus.OK);
@@ -46,7 +46,7 @@ public class EmbarcacaoController {
     // Endpoint para atualizar uma embarcação existente
     @PutMapping("/{id}")
     public ResponseEntity<Embarcacao> updateEmbarcacao(
-            @PathVariable UUID id, 
+            @PathVariable Long id, 
             @RequestBody Embarcacao embarcacao) {
         try {
             Embarcacao updatedEmbarcacao = embarcacaoService.updateEmbarcacao(id, embarcacao);
@@ -58,7 +58,7 @@ public class EmbarcacaoController {
 
     // Endpoint para deletar uma embarcação
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEmbarcacao(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteEmbarcacao(@PathVariable Long id) {
         try {
             embarcacaoService.deleteEmbarcacao(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
