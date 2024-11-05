@@ -62,7 +62,7 @@ public class EmbarcacaoService {
             embarcacaoToUpdate.setInscricao(updateEmbarcacao.getInscricao());
             embarcacaoToUpdate.setBandeira(updateEmbarcacao.getBandeira());
             embarcacaoToUpdate.setUsuario(updateEmbarcacao.getUsuario());  
-            embarcacaoToUpdate.setEnderecos(updateEmbarcacao.getEnderecos());  
+            // embarcacaoToUpdate.setEnderecos(updateEmbarcacao.getEnderecos());  
 
             // Salvando as atualizações
 

@@ -3,16 +3,12 @@ package com.example.testsa.entities;
 
 import java.time.LocalDate;
 
-import java.util.List;
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 
@@ -20,46 +16,58 @@ import jakarta.persistence.OneToOne;
 public class Embarcacao {
    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_embarcacao")
     private Long id_embarcacao;
+
 
     @Column(name = "nome")
     private String nome;
 
+
     @Column(name = "anofabricacao")
     private LocalDate anoFabricacao;
+
 
     @Column(name = "tamanho")
     private Float tamanho;
 
+
     @Column(name = "capacidade")
     private int capacidade;
+
 
     @Column(name = "categoria")
     private String categoria;
 
+
     @Column(name = "enderecoembarque")
     private String enderecoEmbarque;
+
 
     @Column(name = "disponibilidade")
     private Boolean disponibilidade;
 
 
-    // @Column(name = "imagem")
-    // private String imagem;
+    @Column(name = "imagem")
+    private String imagem;
+
 
     @Column(name = "pet")
     private Boolean pet;
 
+
     @Column(name = "quantidadebanheiro")
     private int quantidadeBanheiro;
+
 
     @Column(name = "quantidadecabines")
     private int quantidadeCabines;
 
+
     @Column(name = "inscricao_IMO")
     private String inscricao;
+
 
     @Column(name = "bandeira")
     private String bandeira;
@@ -68,25 +76,9 @@ public class Embarcacao {
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "embarcacao")
-    private List<Endereco> enderecos;
-   
-    @OneToMany(mappedBy = "embarcacao")
-    private List<ImagemEmbarcacao> imagem;
 
-    @OneToOne
-    @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
-    private Avaliacao avaliacao;
-
-
-    public List<ImagemEmbarcacao> getImagem() {
-        return imagem;
-    }
-
-
-    public void setImagem(List<ImagemEmbarcacao> imagem) {
-        this.imagem = imagem;
-    }
+    // @OneToMany(mappedBy = "embarcacao")
+    // private List<Endereco> enderecos;
 
 
     public Long getId_embarcacao() {
@@ -169,6 +161,16 @@ public class Embarcacao {
     }
 
 
+    public String getImagem() {
+        return imagem;
+    }
+
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+
     public Boolean getPet() {
         return pet;
     }
@@ -229,26 +231,14 @@ public class Embarcacao {
     }
 
 
-    public Avaliacao getAvaliacao() {
-        return avaliacao;
-    }
+    // public List<Endereco> getEnderecos() {
+    //     return enderecos;
+    // }
 
 
-    public void setAvaliacao(Avaliacao avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
-
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
-
-
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
-
-
+    // public void setEnderecos(List<Endereco> enderecos) {
+    //     this.enderecos = enderecos;
+    // }
 
 
 
