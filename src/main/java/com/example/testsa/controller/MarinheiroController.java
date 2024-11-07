@@ -36,7 +36,7 @@ public class MarinheiroController {
     }
 
      @GetMapping("/{id}")
-    public ResponseEntity<MarinheiroDTORes> getUsuario(@PathVariable(name = "id") UUID id) {
+    public ResponseEntity<MarinheiroDTORes> buscarMarinheiroPorId(@PathVariable(name = "id") UUID id) {
         Marinheiro m = marinheiroService.buscarPorId(id);
     
         if (m == null) {
