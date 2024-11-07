@@ -2,6 +2,7 @@ package com.example.testsa.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class AgendamentoService {
 
     
 
-
     //Busca todos os agendamentos
     public List<Agendamento> getAllAgendamentos() {
         return agendamentoRepository.findAll();
@@ -42,7 +42,7 @@ public class AgendamentoService {
 
 
     //Busca agendamento por id
-    public Optional<Agendamento> buscarAgendamentoPorId(Long id) {
+    public Optional<Agendamento> buscarAgendamentoPorId(UUID id) {
         return agendamentoRepository.findById(id);
     }
     
@@ -51,7 +51,7 @@ public class AgendamentoService {
    
 
     // Atualizar Agendamento
-    public Agendamento updateAgendamento(Long id, Agendamento agendamentoDetails) {
+    public Agendamento updateAgendamento(UUID id, Agendamento agendamentoDetails) {
         Agendamento agendamento = agendamentoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com id " + id));
 
@@ -66,7 +66,7 @@ public class AgendamentoService {
     }
 
     // Deletar Agendamento
-    public void deleteAgendamento(Long id) {
+    public void deleteAgendamento(UUID id) {
         agendamentoRepository.deleteById(id);
     }
 

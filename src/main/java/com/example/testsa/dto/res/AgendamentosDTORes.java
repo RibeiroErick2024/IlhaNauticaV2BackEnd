@@ -1,9 +1,10 @@
 package com.example.testsa.dto.res;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class AgendamentosDTORes {
-    private Long idAgendamento;
+    private UUID idAgendamento;
     private LocalDate dataInicio;
     private String status;
     private LocalDate dataFinal;
@@ -16,13 +17,7 @@ public class AgendamentosDTORes {
     }
 
     
-    public Long getIdAgendamento() {
-        return idAgendamento;
-    }
-
-    public void setIdAgendamento(Long idAgendamento) {
-        this.idAgendamento = idAgendamento;
-    }
+ 
 
     public LocalDate getDataInicio() {
         return dataInicio;
@@ -154,5 +149,19 @@ public class AgendamentosDTORes {
 
     public void setEmbarcacao(EmbarcacaoDTORes embarcacao) {
         this.embarcacao = embarcacao;
+    }
+
+
+
+
+    public UUID getIdAgendamento() {
+        return idAgendamento;
+    }
+
+
+
+
+    public void setIdAgendamento(UUID idAgendamento) {
+        this.idAgendamento = idAgendamento;
     }
 }

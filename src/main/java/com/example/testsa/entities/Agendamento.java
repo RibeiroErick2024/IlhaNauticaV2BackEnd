@@ -2,6 +2,7 @@ package com.example.testsa.entities;
 
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,10 +17,11 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Agendamento {
+   
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_agendamento")
-    private Long idAgendamento;
+    private UUID idAgendamento;
 
     @Column(name = "datainicio")
     private LocalDate dataInicio;
@@ -42,14 +44,6 @@ public class Agendamento {
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
-
-    public Long getIdAgendamento() {
-        return idAgendamento;
-    }
-
-    public void setIdAgendamento(Long idAgendamento) {
-        this.idAgendamento = idAgendamento;
-    }
 
     public LocalDate getDataInicio() {
         return dataInicio;
@@ -97,6 +91,14 @@ public class Agendamento {
 
     public void setEmbarcacao(Embarcacao embarcacao) {
         this.embarcacao = embarcacao;
+    }
+
+    public UUID getIdAgendamento() {
+        return idAgendamento;
+    }
+
+    public void setIdAgendamento(UUID idAgendamento) {
+        this.idAgendamento = idAgendamento;
     }
 
     // public Iterable<Marinheiro> getMarinheiros() {

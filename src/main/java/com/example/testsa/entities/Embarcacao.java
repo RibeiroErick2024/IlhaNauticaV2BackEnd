@@ -2,6 +2,7 @@ package com.example.testsa.entities;
 
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,9 +17,9 @@ import jakarta.persistence.OneToOne;
 public class Embarcacao {
    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_embarcacao")
-    private Long id_embarcacao;
+    private UUID id_embarcacao;
 
 
     @Column(name = "nome")
@@ -81,15 +82,7 @@ public class Embarcacao {
     // private List<Endereco> enderecos;
 
 
-    public Long getId_embarcacao() {
-        return id_embarcacao;
-    }
-
-
-    public void setId_embarcacao(Long id_embarcacao) {
-        this.id_embarcacao = id_embarcacao;
-    }
-
+ 
 
     public String getNome() {
         return nome;
@@ -228,6 +221,16 @@ public class Embarcacao {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+
+    public UUID getId_embarcacao() {
+        return id_embarcacao;
+    }
+
+
+    public void setId_embarcacao(UUID id_embarcacao) {
+        this.id_embarcacao = id_embarcacao;
     }
 
 
