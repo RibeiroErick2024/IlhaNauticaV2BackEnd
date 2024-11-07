@@ -22,15 +22,14 @@ public class MarinheiroService {
 
     // Marinheiro recebido do post. Que veio do Controller
      @Transactional
-    public Marinheiro createUsuario(Marinheiro marinheiroPost) {
+    public Marinheiro cadastrar(Marinheiro marinheiroPost) {
 
         return marinheiroRepository.save(marinheiroPost);
     }
 
-    public List <Marinheiro> getAllMarinheiro (){
+    public List <Marinheiro> buscarTodos (){
         return marinheiroRepository.findAll();
         // criar MarinheiroDTO
-        
       
     }
 }

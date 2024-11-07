@@ -10,27 +10,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.testsa.converter.MarinheiroConverter;
+import com.example.testsa.dto.res.MarinheiroDTORes;
 import com.example.testsa.entities.Marinheiro;
 import com.example.testsa.service.MarinheiroService;
 
 @RestController
-@RequestMapping("/piloto")
+@RequestMapping("/marinheiro")
 public class MarinheiroController {
 
     @Autowired
     MarinheiroService marinheiroService;
 
     @GetMapping("/")
-    public ResponseEntity <List<Marinheiro>> getMethodName() {
+    public ResponseEntity <List<Marinheiro>> buscarTodos() {
 
-        var response = marinheiroService.getAllMarinheiro();
+        var response = marinheiroService.buscarTodos();
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/post")
-    public ResponseEntity<Marinheiro> postMethodName(@RequestBody Marinheiro entity) {
-
-        return ResponseEntity.ok(entity);
+    @PostMapping("/cadastrar")
+    public ResponseEntity<MarinheiroDTORes> cadastrar(@RequestBody Marinheiro entity) {
+        Marinheiro marinheiro = marinheiroService.cadastrar(entity);
+        MarinheiroDTORes marinheiroDto = MarinheiroConverter.marinheiroDTORes(marinheiro);
+        return ResponseEntity.ok(marinheiroDto);
     }
 
 }
