@@ -1,5 +1,6 @@
 package com.example.testsa.dto.res;
 
+
 public class MarinheiroDTORes {
     
      private Long id_marinheiro;
@@ -12,16 +13,9 @@ public class MarinheiroDTORes {
 
     private int anosExperiencia; 
 
-    private String usuarioId;
+    private UsuarioGeralDTORes usuario;
 
-    public String getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
+  
     public Long getId_marinheiro() {
         return id_marinheiro;
     }
@@ -61,5 +55,15 @@ public class MarinheiroDTORes {
     public void setAnosExperiencia(int anosExperiencia) {
         this.anosExperiencia = anosExperiencia;
     }
+
+    public UsuarioGeralDTORes getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioGeralDTORes usuario) {
+        this.usuario = usuario;
+    }
+
+    
 
 }

@@ -1,10 +1,12 @@
 package com.example.testsa.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,17 +25,33 @@ public class MarinheiroController {
     MarinheiroService marinheiroService;
 
     @GetMapping("/")
-    public ResponseEntity <List<Marinheiro>> buscarTodos() {
+    public ResponseEntity<List<MarinheiroDTORes>> buscarTodos() {
 
-        var response = marinheiroService.buscarTodos();
-        return ResponseEntity.ok(response);
+        List<Marinheiro> marinheiro = marinheiroService.buscarTodos();
+       
+        List<MarinheiroDTORes> dto = marinheiro
+                .stream().map(m -> MarinheiroConverter.marinheiroDTOResponse(m)).toList();
+
+        return ResponseEntity.ok(dto);
+    }
+
+     @GetMapping("/{id}")
+    public ResponseEntity<MarinheiroDTORes> getUsuario(@PathVariable(name = "id") UUID id) {
+        Marinheiro m = marinheiroService.buscarPorId(id);
+    
+        if (m == null) {
+            return ResponseEntity.notFound().build();
+        }
+    
+        MarinheiroDTORes dto = MarinheiroConverter.marinheiroDTOResponse(m);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<MarinheiroDTORes> cadastrar(@RequestBody Marinheiro entity) {
+    public ResponseEntity<MarinheiroDTORes> cadastrarMarinheiro(@RequestBody Marinheiro entity) {
         Marinheiro marinheiro = marinheiroService.cadastrar(entity);
-        MarinheiroDTORes marinheiroDto = MarinheiroConverter.marinheiroDTORes(marinheiro);
-        return ResponseEntity.ok(marinheiroDto);
+        MarinheiroDTORes dto = MarinheiroConverter.marinheiroDTOResponse(marinheiro);
+        return ResponseEntity.ok(dto);
     }
 
 }

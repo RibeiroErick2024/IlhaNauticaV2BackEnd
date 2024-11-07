@@ -1,11 +1,12 @@
 package com.example.testsa.repositories;
+
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.testsa.entities.Marinheiro;
+import com.example.testsa.entities.Avaliacao;
 
 
-public interface MarinheiroRepository extends JpaRepository<Marinheiro, UUID> {
+public interface AvaliacaoRepository  extends JpaRepository<Avaliacao, UUID>{
     
 }

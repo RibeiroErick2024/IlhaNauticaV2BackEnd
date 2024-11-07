@@ -7,7 +7,6 @@ import com.example.testsa.entities.Marinheiro;
 public class UsuarioDTO {
     
 
-
 	private String nomeCompleto;
 
 	private String cpf;

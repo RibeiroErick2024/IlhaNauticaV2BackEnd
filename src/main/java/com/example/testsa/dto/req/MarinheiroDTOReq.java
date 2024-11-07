@@ -1,6 +1,8 @@
 package com.example.testsa.dto.req;
 
 public class MarinheiroDTOReq {
+
+    private String nome;
     
     private String categoria;
 
@@ -10,16 +12,8 @@ public class MarinheiroDTOReq {
 
     private int anosExperiencia; 
 
-    private String usuarioId;
-
-    public String getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
+    private UsuarioDTOReq usuario;
+    
     public String getCategoria() {
         return categoria;
     }
@@ -50,6 +44,22 @@ public class MarinheiroDTOReq {
 
     public void setAnosExperiencia(int anosExperiencia) {
         this.anosExperiencia = anosExperiencia;
+    }
+
+    public UsuarioDTOReq getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTOReq usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 
