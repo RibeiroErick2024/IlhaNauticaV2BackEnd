@@ -1,20 +1,26 @@
 package com.example.testsa.entities;
 
 
+import java.util.List;
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "marinheiro")
 public class Marinheiro {
 
-    @jakarta.persistence.Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_marinheiro")
-    private Long id_marinheiro;
+    private UUID id_marinheiro;
 
     @Column(name = "categoria")
     private String categoria;
@@ -28,23 +34,26 @@ public class Marinheiro {
     @Column(name = "anosexperiencia")
     private int anosExperiencia;
 
-
     @OneToOne
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
+    @OneToMany(mappedBy = "marinheiro")
+	private List<Agendamento> agendamento;
 
-    public Long getId_marinheiro() {
-        return id_marinheiro;
+
+    
+    public List<Agendamento> getAgendamento() {
+        return agendamento;
+    }
+    public void setAgendamento(List<Agendamento> agendamento) {
+        this.agendamento = agendamento;
     }
     public Marinheiro(){
 
     }
 
-    public void setId_marinheiro(Long id_marinheiro) {
-        this.id_marinheiro = id_marinheiro;
-    }
-
+  
     public String getCategoria() {
         return categoria;
     }
@@ -83,6 +92,12 @@ public class Marinheiro {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    public UUID getId_marinheiro() {
+        return id_marinheiro;
+    }
+    public void setId_marinheiro(UUID id_marinheiro) {
+        this.id_marinheiro = id_marinheiro;
     }
 
 }

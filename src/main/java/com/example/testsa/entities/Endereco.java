@@ -1,6 +1,8 @@
 package com.example.testsa.entities;
 
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,11 +13,11 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Endereco {
-
+   
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_endereco")
-    private Long idEndereco;
+    private UUID idEndereco;
 
     @Column(name = "cidade")
     private String cidade;
@@ -48,14 +50,17 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Long getIdEndereco() {
-        return idEndereco;
+
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdEndereco(Long idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
+  
     public String getCidade() {
         return cidade;
     }
@@ -118,6 +123,18 @@ public class Endereco {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+
+
+    public UUID getIdEndereco() {
+        return idEndereco;
+    }
+
+
+
+    public void setIdEndereco(UUID idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     

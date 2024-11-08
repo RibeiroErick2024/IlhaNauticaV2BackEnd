@@ -16,7 +16,7 @@ CREATE TABLE Usuario (
 
 -- Create the Endereco table
 CREATE TABLE Endereco (
-    id_endereco serial PRIMARY KEY,
+    id_endereco UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     cidade VARCHAR(50),
     latitude DECIMAL,
     longitude DECIMAL,
@@ -30,7 +30,7 @@ CREATE TABLE Endereco (
 
 -- Create the Marinheiro table
 CREATE TABLE Marinheiro (
-    id_marinheiro SERIAL PRIMARY KEY,
+    id_marinheiro UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     categoria VARCHAR(45),
     registroMaritimo VARCHAR(50),
     nome_ VARCHAR(50),
@@ -41,7 +41,7 @@ CREATE TABLE Marinheiro (
 
 -- Create the Embarcacao table
 CREATE TABLE Embarcacao (
-    id_embarcacao serial PRIMARY KEY,
+    id_embarcacao UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     nome VARCHAR(50),
     anoFabricacao DATE,
     tamanho FLOAT,
@@ -56,12 +56,12 @@ CREATE TABLE Embarcacao (
     inscricao_IMO VARCHAR(50),
     bandeira VARCHAR(50),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    fk_id_endereco int REFERENCES Endereco(id_endereco) ON DELETE CASCADE
+    fk_id_endereco UUID REFERENCES Endereco(id_endereco) ON DELETE CASCADE
 );
 
 -- Create the Pagamento table
 CREATE TABLE Pagamento (
-    id_pagamento SERIAL PRIMARY KEY,
+    id_pagamento UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     banco VARCHAR(50),
     numeroCartao VARCHAR(50),
     metodoPagamento VARCHAR(50),
@@ -71,13 +71,13 @@ CREATE TABLE Pagamento (
 
 -- Create the Agendamento table
 CREATE TABLE Agendamento (
-    id_agendamento SERIAL PRIMARY KEY,
+    id_agendamento UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     dataInicio DATE,
     status VARCHAR(50),
     dataFinal DATE,
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    fk_id_marinheiro INT REFERENCES Marinheiro(id_marinheiro),
-	fk_id_embarcacao int REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
+    fk_id_marinheiro UUID REFERENCES Marinheiro(id_marinheiro),
+	fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
 
 	
 );
@@ -90,14 +90,14 @@ CREATE TABLE Avaliacao (
     notaEmbarcacao DECIMAL,
     notaAgendamento DECIMAL,
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    fk_id_agendamento INT REFERENCES Agendamento(id_agendamento),
-    fk_id_marinheiro INT REFERENCES Marinheiro(id_marinheiro),
-	fk_id_embarcacao int REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
+    fk_id_agendamento UUID REFERENCES Agendamento(id_agendamento),
+    fk_id_marinheiro UUID REFERENCES Marinheiro(id_marinheiro),
+	fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
 );
 
 -- Create the Documentos table
 CREATE TABLE Documentos (
-    id_documento SERIAL PRIMARY KEY,
+    id_documento UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     status VARCHAR(50),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
     documento BYTEA,
@@ -107,7 +107,7 @@ CREATE TABLE Documentos (
 -- Create the usuario_pagamento table
 CREATE TABLE usuario_pagamento (
     id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE RESTRICT,
-    id_pagamento INT REFERENCES Pagamento(id_pagamento) ON DELETE SET NULL,
+    id_pagamento UUID REFERENCES Pagamento(id_pagamento) ON DELETE SET NULL,
     PRIMARY KEY (id_usuario, id_pagamento)
 );
 
@@ -123,11 +123,17 @@ CREATE TABLE ContaBanco (
 
 
 CREATE TABLE AprovacaoDocumento (
-    id_aprovacao SERIAL PRIMARY KEY,
-    fk_id_documento INT REFERENCES Documentos(id_documento) ON DELETE CASCADE,
+    id_aprovacao UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    fk_id_documento UUID REFERENCES Documentos(id_documento) ON DELETE CASCADE,
     status_aprovacao VARCHAR(50) CHECK (status_aprovacao IN ('Pendente', 'Aprovado', 'Rejeitado')),
     data_aprovacao DATE,
     observacoes TEXT,
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 
+CREATE TABLE ImagemEmbarcacao (
+    id_imagem SERIAL PRIMARY KEY,
+    nome VARCHAR(255),
+    imagem BYTEA NOT NULL,
+    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE
+);

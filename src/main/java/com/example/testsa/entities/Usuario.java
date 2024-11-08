@@ -1,12 +1,12 @@
 package com.example.testsa.entities;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-// import com.github.f4b6a3.ulid.Ulid;
-// import com.github.f4b6a3.ulid.UlidCreator;
-// import jakarta.persistence.JoinColumn;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,11 +48,36 @@ public class Usuario {
 	@Column(name = "categoria")
 	private String categoriaUsuario;
 
+	@Column(name= "role")
+	private String role;
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Marinheiro> marinheiro;
 
+	@OneToMany(mappedBy = "usuario")
+	private List<Agendamento> agendamento;
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Embarcacao> embarcacao;
+
 	@OneToOne(mappedBy = "usuario")
 	private Endereco endereco;
+
+	public List<Agendamento> getAgendamento() {
+		return agendamento;
+	}
+
+	public void setAgendamento(List<Agendamento> agendamento) {
+		this.agendamento = agendamento;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public Usuario() {
 
@@ -139,6 +164,27 @@ public class Usuario {
 		this.marinheiro = marinheiro;
 	}
 
+	public List<Embarcacao> getEmbarcacao() {
+		return embarcacao;
+	}
 
+	public void setEmbarcacao(List<Embarcacao> embarcacao) {
+		this.embarcacao = embarcacao;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of();
+	}
+
+	@Override
+	public String getPassword() {
+		return senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return nomeCompleto;
+	}
 
 }

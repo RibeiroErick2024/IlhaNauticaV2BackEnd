@@ -1,25 +1,19 @@
-package com.example.testsa.dto.res;
+package com.example.testsa.dto.req;
 
-import java.util.UUID;
+public class MarinheiroDTOReq {
 
-public class MarinheiroDTORes {
-
-    private UUID id_marinheiro;
-
+    private String nome;
+    
     private String categoria;
 
     private String registroMaritimo;
-
+   
     private String disponibilidade;
 
-    private int anosExperiencia;
+    private int anosExperiencia; 
 
-    private UsuarioGeralDTORes usuario;
-
-    public UUID getId_marinheiro() {
-        return id_marinheiro;
-    }
-
+    private UsuarioDTOReq usuario;
+    
     public String getCategoria() {
         return categoria;
     }
@@ -52,16 +46,22 @@ public class MarinheiroDTORes {
         this.anosExperiencia = anosExperiencia;
     }
 
-    public UsuarioGeralDTORes getUsuario() {
+    public UsuarioDTOReq getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioGeralDTORes usuario) {
+    public void setUsuario(UsuarioDTOReq usuario) {
         this.usuario = usuario;
     }
 
-    public void setId_marinheiro(UUID id_marinheiro) {
-        this.id_marinheiro = id_marinheiro;
+    public String getNome() {
+        return nome;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
 
 }

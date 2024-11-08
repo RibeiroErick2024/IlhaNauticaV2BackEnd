@@ -1,0 +1,12 @@
+{
+    "configurations":[
+
+
+        {
+        "env":{
+            "security.jwt.secret.key": "abelha",
+            "security.jwt.expiration-time": 10000
+        }
+        }
+    ]
+}

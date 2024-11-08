@@ -1,11 +1,12 @@
-package com.example.testsa.dto.req;
+package com.example.testsa.dto.res;
 
 import java.time.LocalDate;
+// import java.util.List;
+import java.util.UUID;
 
-import com.example.testsa.entities.Marinheiro;
-
-public class UsuarioDTO {
+public class UsuarioGeralDTORes {
     
+    private UUID id;
 
 	private String nomeCompleto;
 
@@ -23,8 +24,14 @@ public class UsuarioDTO {
 
 	private String categoriaUsuario;
 
-	private Marinheiro marinheiro;
- 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getNomeCompleto() {
         return nomeCompleto;
     }
@@ -89,13 +96,6 @@ public class UsuarioDTO {
         this.categoriaUsuario = categoriaUsuario;
     }
 
-    public Marinheiro getMarinheiro() {
-        return marinheiro;
-    }
-
-    public void setMarinheiro(Marinheiro marinheiro) {
-        this.marinheiro = marinheiro;
-    }
-
+ 
     
 }
