@@ -22,6 +22,9 @@ public class Marinheiro {
     @Column(name = "id_marinheiro")
     private UUID id_marinheiro;
 
+    @Column(name = "nome")
+    private String nome;
+
     @Column(name = "categoria")
     private String categoria;
 
@@ -98,6 +101,12 @@ public class Marinheiro {
     }
     public void setId_marinheiro(UUID id_marinheiro) {
         this.id_marinheiro = id_marinheiro;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

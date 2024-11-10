@@ -1,8 +1,8 @@
-package com.example.testsa.dto.req;
+package com.example.testsa.dto.res.Usuario;
 
 import java.util.UUID;
 
-public class UsuarioDTOReq {
+public class UsuarioSimplesDTO {
     
     private UUID id;
 

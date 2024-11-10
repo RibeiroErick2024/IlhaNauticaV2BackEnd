@@ -28,11 +28,9 @@ public class ImagemEmbarcacao {
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
-    
     @Column(name = "formato")
     private String formato;
 
-    
 
     public Long getId_imagem() {
         return id_imagem;

@@ -27,8 +27,6 @@ public class MarinheiroService {
     @Transactional
     public List<Marinheiro> buscarTodos() {
         return marinheiroRepository.findAll();
-        // criar MarinheiroDTO
-
     }
 
     @Transactional
@@ -43,13 +41,30 @@ public class MarinheiroService {
         return null;
 
     }
-    @Transactional
-    public Marinheiro deletarMarinheiro(Marinheiro entity) {
+     @Transactional
+    public Marinheiro atualizarMarinheiro(UUID id, Marinheiro marinheiro) {
+        Optional<Marinheiro> marinheiroExiste = marinheiroRepository.findById(id);
+        
+        if(marinheiroExiste.isPresent()){
+            Marinheiro atualMarinheiro = marinheiroExiste.get();
+            atualMarinheiro.setDisponibilidade(marinheiro.getDisponibilidade());
+            atualMarinheiro.setNome(marinheiro.getNome());
+            atualMarinheiro.setCategoria(marinheiro.getCategoria());
+            atualMarinheiro.setAnosExperiencia(marinheiro.getAnosExperiencia());
+            atualMarinheiro.setDisponibilidade(marinheiro.getDisponibilidade());
+            atualMarinheiro.setRegistroMaritimo(marinheiro.getRegistroMaritimo());
 
-         marinheiroRepository.delete(entity);
+        }
+    
+        return marinheiroRepository.saveAndFlush(marinheiro);
+    }
+    
+    public void deletarMarinheiro(UUID id) {
+
+         marinheiroRepository.deleteById(id);
        
 
-        return null;
+        
 
     }
 }

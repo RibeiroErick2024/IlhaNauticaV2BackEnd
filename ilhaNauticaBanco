@@ -31,9 +31,9 @@ CREATE TABLE Endereco (
 -- Create the Marinheiro table
 CREATE TABLE Marinheiro (
     id_marinheiro UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    nome VARCHAR(50),
     categoria VARCHAR(45),
     registroMaritimo VARCHAR(50),
-    nome_ VARCHAR(50),
     disponibilidade VARCHAR(50),
     anosExperiencia INT,
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE

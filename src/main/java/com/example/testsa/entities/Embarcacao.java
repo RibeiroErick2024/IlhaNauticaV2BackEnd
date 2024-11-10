@@ -2,6 +2,7 @@ package com.example.testsa.entities;
 
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 
@@ -50,10 +52,6 @@ public class Embarcacao {
     private Boolean disponibilidade;
 
 
-    @Column(name = "imagem")
-    private String imagem;
-
-
     @Column(name = "pet")
     private Boolean pet;
 
@@ -77,10 +75,12 @@ public class Embarcacao {
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
+    @OneToOne
+    @JoinColumn(name = "fk_id_endereco", referencedColumnName = "id_endereco")
+    private Endereco endereco;
 
-    // @OneToMany(mappedBy = "embarcacao")
-    // private List<Endereco> enderecos;
-
+    @OneToMany(mappedBy = "embarcacao")
+	private List<ImagemEmbarcacao> imagem;
 
  
 
@@ -154,15 +154,6 @@ public class Embarcacao {
     }
 
 
-    public String getImagem() {
-        return imagem;
-    }
-
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
 
     public Boolean getPet() {
         return pet;
@@ -234,14 +225,25 @@ public class Embarcacao {
     }
 
 
-    // public List<Endereco> getEnderecos() {
-    //     return enderecos;
-    // }
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
 
-    // public void setEnderecos(List<Endereco> enderecos) {
-    //     this.enderecos = enderecos;
-    // }
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+
+    public List<ImagemEmbarcacao> getImagem() {
+        return imagem;
+    }
+
+
+    public void setImagem(List<ImagemEmbarcacao> imagem) {
+        this.imagem = imagem;
+    }
+
 
 
 

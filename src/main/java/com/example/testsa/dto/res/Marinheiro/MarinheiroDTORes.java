@@ -1,4 +1,4 @@
-package com.example.testsa.dto.res;
+package com.example.testsa.dto.res.Marinheiro;
 
 import java.util.UUID;
 
@@ -13,8 +13,6 @@ public class MarinheiroDTORes {
     private String disponibilidade;
 
     private int anosExperiencia;
-
-    private UsuarioGeralDTORes usuario;
 
     public UUID getId_marinheiro() {
         return id_marinheiro;
@@ -52,13 +50,6 @@ public class MarinheiroDTORes {
         this.anosExperiencia = anosExperiencia;
     }
 
-    public UsuarioGeralDTORes getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioGeralDTORes usuario) {
-        this.usuario = usuario;
-    }
 
     public void setId_marinheiro(UUID id_marinheiro) {
         this.id_marinheiro = id_marinheiro;

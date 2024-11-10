@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testsa.converter.UsuarioConverter;
 import com.example.testsa.dto.req.CadastroUsuarioDTO;
-import com.example.testsa.dto.res.UsuarioDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.service.UsuarioService;
 
@@ -32,7 +32,7 @@ public class UsuarioController {
     public ResponseEntity<?> getallUsers() {
         var usuarios = usuarioService.getAllUsuario();
 
-        List<UsuarioDTORes> dtoRes = usuarios
+        List<UsuarioLocadorDTORes> dtoRes = usuarios
                 .stream().map(u -> UsuarioConverter.usuarioConverterLocador(u)).toList();
 
         if (usuarios.isEmpty()) {
@@ -43,14 +43,14 @@ public class UsuarioController {
 
     //Busca o usuario pelo
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTORes> getUsuario(@PathVariable(name = "id") UUID id) {
+    public ResponseEntity<UsuarioLocadorDTORes> getUsuario(@PathVariable(name = "id") UUID id) {
         Usuario u = usuarioService.getUsuarioById(id);
     
         if (u == null) {
             return ResponseEntity.notFound().build();
         }
     
-        UsuarioDTORes usuarioDTO = UsuarioConverter.usuarioConverterLocador(u);
+        UsuarioLocadorDTORes usuarioDTO = UsuarioConverter.usuarioConverterLocador(u);
         return ResponseEntity.ok(usuarioDTO);
     }
 
@@ -62,7 +62,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        Usuario entity = UsuarioConverter.dtoConverterUsuario(criarUsuario);
+        Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
         var response = usuarioService.createUsuario(entity);
         return ResponseEntity.ok(response);
     }

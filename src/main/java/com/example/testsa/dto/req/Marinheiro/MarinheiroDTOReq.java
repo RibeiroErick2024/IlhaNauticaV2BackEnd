@@ -1,4 +1,6 @@
-package com.example.testsa.dto.req;
+package com.example.testsa.dto.req.Marinheiro;
+
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 
 public class MarinheiroDTOReq {
 
@@ -12,7 +14,7 @@ public class MarinheiroDTOReq {
 
     private int anosExperiencia; 
 
-    private UsuarioDTOReq usuario;
+    private UsuarioSimplesDTO usuario;
     
     public String getCategoria() {
         return categoria;
@@ -46,20 +48,20 @@ public class MarinheiroDTOReq {
         this.anosExperiencia = anosExperiencia;
     }
 
-    public UsuarioDTOReq getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioDTOReq usuario) {
-        this.usuario = usuario;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public UsuarioSimplesDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioSimplesDTO usuario) {
+        this.usuario = usuario;
     }
 
 

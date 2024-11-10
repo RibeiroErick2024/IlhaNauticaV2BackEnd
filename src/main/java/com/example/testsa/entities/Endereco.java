@@ -1,6 +1,6 @@
 package com.example.testsa.entities;
 
-
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -9,13 +9,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Endereco {
-   
+
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_endereco")
     private UUID idEndereco;
 
@@ -42,15 +43,16 @@ public class Endereco {
 
     @Column(name = "estado", length = 2)
     private String estado;
-   
+
     @OneToOne
     @JoinColumn(name = "fk_id_usuario")
     private Usuario usuario;
 
+    @OneToMany(mappedBy = "endereco")
+    private List<Embarcacao> embarcacao;
+
     public Endereco() {
     }
-
-
 
     public Usuario getUsuario() {
         return usuario;
@@ -60,7 +62,6 @@ public class Endereco {
         this.usuario = usuario;
     }
 
-  
     public String getCidade() {
         return cidade;
     }
@@ -125,18 +126,20 @@ public class Endereco {
         this.estado = estado;
     }
 
-
-
     public UUID getIdEndereco() {
         return idEndereco;
     }
-
-
 
     public void setIdEndereco(UUID idEndereco) {
         this.idEndereco = idEndereco;
     }
 
-    
+    public List<Embarcacao> getEmbarcacao() {
+        return embarcacao;
+    }
+
+    public void setEmbarcacao(List<Embarcacao> embarcacao) {
+        this.embarcacao = embarcacao;
+    }
 
 }

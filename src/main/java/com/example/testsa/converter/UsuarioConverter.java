@@ -3,15 +3,23 @@ package com.example.testsa.converter;
 import java.util.List;
 
 import com.example.testsa.dto.req.CadastroUsuarioDTO;
-import com.example.testsa.dto.res.MarinheiroDTORes;
-import com.example.testsa.dto.res.UsuarioDTORes;
-import com.example.testsa.dto.res.UsuarioGeralDTORes;
+import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 import com.example.testsa.entities.Usuario;
 
 public interface UsuarioConverter {
-
-    public static UsuarioDTORes usuarioConverterLocador(Usuario entity){
-        UsuarioDTORes all = new UsuarioDTORes();
+    
+    public static UsuarioSimplesDTO usuarioConverterSimples(Usuario entity){
+        UsuarioSimplesDTO dto = new UsuarioSimplesDTO();
+        dto.setId(entity.getId());
+        dto.setNomeCompleto(entity.getNomeCompleto());
+        
+        return dto;
+    }
+    public static UsuarioLocadorDTORes usuarioConverterLocador(Usuario entity){
+        UsuarioLocadorDTORes all = new UsuarioLocadorDTORes();
         all.setId(entity.getId());
         all.setNomeCompleto(entity.getNomeCompleto());
         all.setCpf(entity.getCpf());
@@ -37,7 +45,7 @@ public interface UsuarioConverter {
         return all;
     }
 
-       public static Usuario dtoConverterUsuario(CadastroUsuarioDTO u){
+       public static Usuario cadastroDTOConverterUsuario(CadastroUsuarioDTO u){
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNomeCompleto(u.getNomeCompleto());
         novoUsuario.setEmail(u.getEmail());

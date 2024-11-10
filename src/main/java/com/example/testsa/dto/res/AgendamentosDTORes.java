@@ -3,12 +3,15 @@ package com.example.testsa.dto.res;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
+
 public class AgendamentosDTORes {
     private UUID idAgendamento;
     private LocalDate dataInicio;
     private String status;
     private LocalDate dataFinal;
-    private UsuarioGeralDTORes usuario;
+    private UsuarioSimplesDTO usuario;
     private MarinheiroDTORes marinheiro;
     private EmbarcacaoDTORes embarcacao;
 
@@ -17,8 +20,6 @@ public class AgendamentosDTORes {
     }
 
     
- 
-
     public LocalDate getDataInicio() {
         return dataInicio;
     }
@@ -71,66 +72,7 @@ public class AgendamentosDTORes {
            
         }
     }
-
-   
-    // public static class MarinheiroDTO {
-    //     private Long idMarinheiro;
-    //     private String nome;
-        
-
-        
-    //     public Long getIdMarinheiro() {
-    //         return idMarinheiro;
-    //     }
-
-    //     public void setIdMarinheiro(Long idMarinheiro) {
-    //         this.idMarinheiro = idMarinheiro;
-    //     }
-
-    //     public String getNome() {
-    //         return nome;
-    //     }
-
-    //     public void setNome(String nome) {
-    //         this.nome = nome;
-    //     }
-    // }
-
-    
-    // public static class EmbarcacaoDTO {
-    //     private Long idEmbarcacao;
-    //     private String nome;
-        
-
-        
-    //     public Long getIdEmbarcacao() {
-    //         return idEmbarcacao;
-    //     }
-
-    //     public void setIdEmbarcacao(Long idEmbarcacao) {
-    //         this.idEmbarcacao = idEmbarcacao;
-    //     }
-       
-
-    //     public String getNome() {
-    //         return nome;
-    //     }
-
-    //     public void setNome(String nome) {
-    //         this.nome = nome;
-    //     }
-    // }
-
-
-    public UsuarioGeralDTORes getUsuario() {
-        return usuario;
-    }
-
-
-    public void setUsuario(UsuarioGeralDTORes usuario) {
-        this.usuario = usuario;
-    }
-
+ 
 
     public MarinheiroDTORes getMarinheiro() {
         return marinheiro;
@@ -163,5 +105,19 @@ public class AgendamentosDTORes {
 
     public void setIdAgendamento(UUID idAgendamento) {
         this.idAgendamento = idAgendamento;
+    }
+
+
+
+
+    public UsuarioSimplesDTO getUsuario() {
+        return usuario;
+    }
+
+
+
+
+    public void setUsuario(UsuarioSimplesDTO usuario) {
+        this.usuario = usuario;
     }
 }

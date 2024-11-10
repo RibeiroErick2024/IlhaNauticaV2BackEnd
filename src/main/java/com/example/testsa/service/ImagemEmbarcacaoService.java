@@ -1,6 +1,8 @@
 package com.example.testsa.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +26,41 @@ public class ImagemEmbarcacaoService {
         return imagemEmbarcacaoRepository.save(imagemPost);
     }
 
+    @Transactional
     public List <ImagemEmbarcacao> buscarTodasImagens (){
         return imagemEmbarcacaoRepository.findAll();       
       
     }
 
+    @Transactional
     public ImagemEmbarcacao buscarImagemPorId(Long id) {
         return imagemEmbarcacaoRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public List<ImagemEmbarcacao> buscarImagemPorIdEmbarcacao(UUID id) {
+        return imagemEmbarcacaoRepository.findByFkIdEmbarcacao(id);
+    }
+    @Transactional //Testar
+    public ImagemEmbarcacao atualizarimagemEmbarcacao(Long id, ImagemEmbarcacao imagemEmbarcacao) {
+        Optional<ImagemEmbarcacao> imagemExiste = imagemEmbarcacaoRepository.findById(id);
+        
+        if(imagemExiste.isPresent()){
+            ImagemEmbarcacao atualimagemEmbarcacao = imagemExiste.get();
+            atualimagemEmbarcacao.setImagem(atualimagemEmbarcacao.getImagem());
+            atualimagemEmbarcacao.setNome(imagemEmbarcacao.getNome());
+            atualimagemEmbarcacao.setFormato(imagemEmbarcacao.getFormato());
+            
+
+        }
+    
+        return imagemEmbarcacaoRepository.saveAndFlush(imagemEmbarcacao);
+    }
+   
+
+    @Transactional
+    public void deletarImagemPorId(Long id) {
+        imagemEmbarcacaoRepository.deleteById(id);
     }
 
 }
