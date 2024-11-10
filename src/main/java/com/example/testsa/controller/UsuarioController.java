@@ -66,6 +66,12 @@ public class UsuarioController {
         var response = usuarioService.createUsuario(entity);
         return ResponseEntity.ok(response);
     }
+    @PostMapping("/cadastroLocador") //Arrumar
+    public ResponseEntity<?> cadastrarLocador(@RequestBody CadastroUsuarioDTO criarUsuario) {
+        Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
+        var response = usuarioService.createUsuario(entity);
+        return ResponseEntity.ok(response);
+    }
 
     @PutMapping("editar/{id}")
     public ResponseEntity<Usuario> completarCadastro(@PathVariable UUID id, @RequestBody Usuario entity) {

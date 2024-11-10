@@ -5,22 +5,36 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.testsa.entities.Embarcacao;
 import com.example.testsa.entities.Endereco;
+import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.EnderecoRepository;
 
 import jakarta.transaction.Transactional;
 
 @Service
 public class EnderecoService {
-    
+
     @Autowired
     EnderecoRepository enderecoRepository;
 
-    
     @Transactional
-    public Endereco cadastrar(Endereco endereco) {
+    public Endereco adicionarEndereco(Endereco endereco) {
+
+        // if (endereco.getLatitude() == null || endereco.getLongitude() == null) {
+        //     throw new IllegalArgumentException("Latitude e Longitude são obrigatórios.");
+        // }
+
+        // Usuario usuario = usuarioRepository.findById(endereco.getFk_id_usuario())
+        //         .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+
+        // if (endereco.getFk_id_embarcacao() != null) {
+        //     Embarcacao embarcacao = embarcacaoRepository.findById(endereco.getFk_id_embarcacao())
+        //             .orElseThrow(() -> new NotFoundException("Embarcação não encontrada"));
+        // }
 
         return enderecoRepository.save(endereco);
     }
@@ -31,38 +45,37 @@ public class EnderecoService {
     }
 
     @Transactional
-    public Endereco buscarPorId(UUID id) {
+    public List<Endereco> buscarPorIdEmbarcacao(UUID id) {
 
-        Optional<Endereco> opt = enderecoRepository.findById(id);
-        if (opt.isPresent()) {
-            Endereco endereco = opt.get();
-            return endereco;
-        }
+        List<Endereco> enderecos = enderecoRepository.findByFkIdEmbarcacao(id);
+        
+            return enderecos;
+    }
+    @Transactional
+    public List<Endereco> buscarPorIdUsuario(UUID id) {
 
-        return null;
-
+        List<Endereco> enderecos = enderecoRepository.findByFkIdUsuario(id);
+        
+            return enderecos;
     }
 
-     @Transactional
+    @Transactional
     public Endereco atualizarEndereco(UUID id, Endereco endereco) {
         Optional<Endereco> enderecoExiste = enderecoRepository.findById(id);
-        
-        if(enderecoExiste.isPresent()){
+
+        if (enderecoExiste.isPresent()) {
             Endereco enderecoAtualizado = enderecoExiste.get();
             enderecoAtualizado.setRua(endereco.getRua());
-           
 
         }
-    
+
         return enderecoRepository.saveAndFlush(endereco);
     }
-    
+
     public void deletarendereco(UUID id) {
 
-         enderecoRepository.deleteById(id);
-       
-
-        
+        enderecoRepository.deleteById(id);
 
     }
+
 }

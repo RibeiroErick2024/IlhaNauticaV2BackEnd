@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.testsa.dto.res.EmbarcacaoDTORes;
 import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
 
 public class UsuarioLocadorDTORes {
@@ -27,6 +28,9 @@ public class UsuarioLocadorDTORes {
 	private String categoriaUsuario;
 
 	private List<MarinheiroDTORes> marinheiro;
+
+	private List<EmbarcacaoDTORes> embarcacao;
+    
 
     public UUID getId() {
         return id;
@@ -106,6 +110,14 @@ public class UsuarioLocadorDTORes {
 
     public void setMarinheiro(List<MarinheiroDTORes> marinheiro) {
         this.marinheiro = marinheiro;
+    }
+
+    public List<EmbarcacaoDTORes> getEmbarcacao() {
+        return embarcacao;
+    }
+
+    public void setEmbarcacao(List<EmbarcacaoDTORes> embarcacao) {
+        this.embarcacao = embarcacao;
     }
 
    

@@ -1,6 +1,5 @@
 package com.example.testsa.entities;
 
-import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -9,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -18,16 +16,16 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_endereco")
-    private UUID idEndereco;
+    private UUID id_endereco;
 
     @Column(name = "cidade")
     private String cidade;
 
     @Column(name = "latitude")
-    private float latitude;
+    private Float latitude;
 
     @Column(name = "longitude")
-    private float longitude;
+    private Float longitude;
 
     @Column(name = "rua", length = 50)
     private String rua;
@@ -48,8 +46,9 @@ public class Endereco {
     @JoinColumn(name = "fk_id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "endereco")
-    private List<Embarcacao> embarcacao;
+    @OneToOne
+    @JoinColumn(name = "fk_id_embarcacao")
+    private Embarcacao embarcacao;
 
     public Endereco() {
     }
@@ -126,19 +125,19 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public UUID getIdEndereco() {
-        return idEndereco;
+    public UUID getId_endereco() {
+        return id_endereco;
     }
 
-    public void setIdEndereco(UUID idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setId_endereco(UUID id_endereco) {
+        this.id_endereco = id_endereco;
     }
 
-    public List<Embarcacao> getEmbarcacao() {
+    public Embarcacao getEmbarcacao() {
         return embarcacao;
     }
 
-    public void setEmbarcacao(List<Embarcacao> embarcacao) {
+    public void setEmbarcacao(Embarcacao embarcacao) {
         this.embarcacao = embarcacao;
     }
 

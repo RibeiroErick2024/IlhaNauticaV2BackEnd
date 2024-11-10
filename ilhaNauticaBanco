@@ -26,6 +26,8 @@ CREATE TABLE Endereco (
     complemento VARCHAR(50),
     estado VARCHAR(2),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+        -- fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE  -- Ensures one-to-one relationship with Embarcacao
+
 );
 
 -- Create the Marinheiro table
@@ -56,7 +58,7 @@ CREATE TABLE Embarcacao (
     inscricao_IMO VARCHAR(50),
     bandeira VARCHAR(50),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    fk_id_endereco UUID REFERENCES Endereco(id_endereco) ON DELETE CASCADE
+    fk_id_endereco UUID REFERENCES Endereco(id_endereco)
 );
 
 -- Create the Pagamento table
