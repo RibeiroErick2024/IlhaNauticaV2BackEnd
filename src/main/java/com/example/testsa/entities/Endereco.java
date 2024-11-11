@@ -16,7 +16,7 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_endereco")
-    private UUID id_endereco;
+    private UUID idEndereco;
 
     @Column(name = "cidade")
     private String cidade;
@@ -125,12 +125,12 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public UUID getId_endereco() {
-        return id_endereco;
+    public UUID getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId_endereco(UUID id_endereco) {
-        this.id_endereco = id_endereco;
+    public void setIdEndereco(UUID id_endereco) {
+        this.idEndereco = id_endereco;
     }
 
     public Embarcacao getEmbarcacao() {

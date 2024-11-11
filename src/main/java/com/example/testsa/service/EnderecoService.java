@@ -42,21 +42,22 @@ public class EnderecoService {
         return enderecoRepository.findAll();
     }
 
-    // @Transactional
-    // public List<Endereco> buscarPorIdEmbarcacao(UUID id) {
+    @Transactional
 
-    //     List<Endereco> enderecos = enderecoRepository.findById_Embarcacao(id);
+    public List<Endereco> buscarPorIdEmbarcacao(UUID id) {
 
-    //     return enderecos;
-    // }
+        List<Endereco> enderecos = enderecoRepository.findByEmbarcacaoIdEmbarcacao(id);
 
-    // @Transactional
-    // public List<Endereco> buscarPorIdUsuario(UUID id) {
+        return enderecos;
+    }
 
-    //     List<Endereco> enderecos = enderecoRepository.findById_Usuario(id);
+    @Transactional
+    public List<Endereco> buscarPorIdUsuario(UUID id) {
 
-    //     return enderecos;
-    // }
+        List<Endereco> enderecos = enderecoRepository.findByUsuarioId(id);
+
+        return enderecos;
+    }
 
     @Transactional
     public Endereco atualizarEndereco(UUID id, Endereco endereco) {
@@ -78,3 +79,4 @@ public class EnderecoService {
     }
 
 }
+ // @Transactional

@@ -15,7 +15,7 @@ public class ImagemEmbarcacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_imagem")
-    private Long id_imagem;
+    private Long idImagem;
 
     @Column(name = "nome")
     private String nome;
@@ -32,12 +32,12 @@ public class ImagemEmbarcacao {
     private String formato;
 
 
-    public Long getId_imagem() {
-        return id_imagem;
+    public Long getIdImagem() {
+        return idImagem;
     }
 
-    public void setId_imagem(Long id_imagem) {
-        this.id_imagem = id_imagem;
+    public void setIdImagem(Long id_imagem) {
+        this.idImagem = id_imagem;
     }
 
     public String getNome() {

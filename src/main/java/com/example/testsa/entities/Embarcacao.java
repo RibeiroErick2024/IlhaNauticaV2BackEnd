@@ -21,7 +21,7 @@ public class Embarcacao {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_embarcacao")
-    private UUID id_embarcacao;
+    private UUID idEmbarcacao;
 
 
     @Column(name = "nome")
@@ -215,13 +215,13 @@ public class Embarcacao {
     }
 
 
-    public UUID getId_embarcacao() {
-        return id_embarcacao;
+    public UUID getIdEmbarcacao() {
+        return idEmbarcacao;
     }
 
 
-    public void setId_embarcacao(UUID id_embarcacao) {
-        this.id_embarcacao = id_embarcacao;
+    public void setIdEmbarcacao(UUID id_embarcacao) {
+        this.idEmbarcacao = id_embarcacao;
     }
 
 

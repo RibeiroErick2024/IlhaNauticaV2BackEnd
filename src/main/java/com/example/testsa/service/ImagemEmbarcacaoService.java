@@ -45,10 +45,10 @@ public class ImagemEmbarcacaoService {
         return imagemEmbarcacaoRepository.findById(id).orElse(null);
     }
 
-    // @Transactional
-    // public List<ImagemEmbarcacao> buscarImagemPorIdEmbarcacao(UUID id) {
-    //     return imagemEmbarcacaoRepository.findByFkIdEmbarcacao(id);
-    // }
+    @Transactional
+    public List<ImagemEmbarcacao> buscarImagemPorIdEmbarcacao(UUID id) {
+        return imagemEmbarcacaoRepository.findByEmbarcacaoIdEmbarcacao(id);
+    }
     @Transactional //Testar
     public ImagemEmbarcacao atualizarimagemEmbarcacao(Long id, ImagemEmbarcacao imagemEmbarcacao) {
         Optional<ImagemEmbarcacao> imagemExiste = imagemEmbarcacaoRepository.findById(id);

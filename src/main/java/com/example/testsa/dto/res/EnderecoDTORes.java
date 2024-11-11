@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class EnderecoDTORes {
 
-  private UUID id_endereco;
+  private UUID idEndereco;
 
   private String cidade;
 
@@ -23,12 +23,12 @@ public class EnderecoDTORes {
 
   private String estado;
 
-  public UUID getId_endereco() {
-    return id_endereco;
+  public UUID getIdEndereco() {
+    return idEndereco;
   }
 
-  public void setId_endereco(UUID id_endereco) {
-    this.id_endereco = id_endereco;
+  public void setIdEndereco(UUID id_endereco) {
+    this.idEndereco = id_endereco;
   }
 
   public String getCidade() {

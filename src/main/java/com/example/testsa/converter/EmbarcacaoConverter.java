@@ -11,7 +11,7 @@ import com.example.testsa.entities.Embarcacao;
 public class EmbarcacaoConverter {
      public static EmbarcacaoDTORes embarcacaoConverterDTO(Embarcacao embarcacao) {
         EmbarcacaoDTORes dto = new EmbarcacaoDTORes();
-        dto.setId_embarcacao(embarcacao.getId_embarcacao());
+        dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setAnoFabricacao(embarcacao.getAnoFabricacao());
         dto.setTamanho(embarcacao.getTamanho());
         dto.setCapacidade(embarcacao.getCapacidade());
@@ -33,14 +33,14 @@ public class EmbarcacaoConverter {
     }
     public static EmbarcacaoSimplesDTORes embarcacaoConverterDTOSimples(Embarcacao embarcacao) {
         EmbarcacaoSimplesDTORes dto = new EmbarcacaoSimplesDTORes();
-        dto.setId_embarcacao(embarcacao.getId_embarcacao());
+        dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setNome(embarcacao.getNome());
 
         return dto;
     }
      public static Embarcacao dtoConverterEntidade(EmbarcacaoDTOReq dto) {
         Embarcacao entidade = new Embarcacao();
-        dto.setId_embarcacao(entidade.getId_embarcacao());
+        dto.setIdEmbarcacao(entidade.getIdEmbarcacao());
         dto.setNome(entidade.getNome());
      
         return entidade;
