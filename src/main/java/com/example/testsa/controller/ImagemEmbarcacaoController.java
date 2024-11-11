@@ -45,16 +45,16 @@ public class ImagemEmbarcacaoController {
                 .body(imagem.getImagem());
     }
 
-    @GetMapping("embarcacao/{id}")
-    public ResponseEntity<List<ImagemEmbarcacao>> buscarImagemPorEmbarcacao(@PathVariable UUID id) {
-        List<ImagemEmbarcacao> imagens = imagemEmbarcacaoService.buscarImagemPorIdEmbarcacao(id);
+    // @GetMapping("embarcacao/{id}")
+    // public ResponseEntity<List<ImagemEmbarcacao>> buscarImagemPorEmbarcacao(@PathVariable UUID id) {
+    //     List<ImagemEmbarcacao> imagens = imagemEmbarcacaoService.buscarImagemPorIdEmbarcacao(id);
 
-        if (imagens.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
+    //     if (imagens.isEmpty()) {
+    //         return ResponseEntity.noContent().build();
+    //     }
 
-        return ResponseEntity.ok(imagens);
-    }
+    //     return ResponseEntity.ok(imagens);
+    // }
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadImagens(@ModelAttribute ImagemEmbarcacaoDTOReq imagemDTO) {

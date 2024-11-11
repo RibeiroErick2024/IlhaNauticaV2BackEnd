@@ -25,20 +25,20 @@ public class EnderecoController {
     @Autowired
     EnderecoService enderecoService;
 
-    @GetMapping("/usuario/{id}")
-    public ResponseEntity<List<EnderecoDTORes>> buscarEnderecoPorIdUsuario(@PathVariable(name = "id") UUID id) {
-        List<Endereco> enderecos = enderecoService.buscarPorIdUsuario(id);
+    // @GetMapping("/usuario/{id}")
+    // public ResponseEntity<List<EnderecoDTORes>> buscarEnderecoPorIdUsuario(@PathVariable(name = "id") UUID id) {
+    //     List<Endereco> enderecos = enderecoService.buscarPorIdUsuario(id);
 
-        if (enderecos == null) {
-            return ResponseEntity.notFound().build();
-        }
+    //     if (enderecos == null) {
+    //         return ResponseEntity.notFound().build();
+    //     }
 
-        List<EnderecoDTORes> dto = enderecos
-                .stream()
-                .map(e -> EnderecoConverter.entidadeParaDto(e)).toList();
+    //     List<EnderecoDTORes> dto = enderecos
+    //             .stream()
+    //             .map(e -> EnderecoConverter.entidadeParaDto(e)).toList();
 
-        return ResponseEntity.ok(dto);
-    }
+    //     return ResponseEntity.ok(dto);
+    // }
 
     @PostMapping("/embarcacao")
     public ResponseEntity<?> cadastrarEnderecoEmbarcacao(@RequestBody Endereco entity) {

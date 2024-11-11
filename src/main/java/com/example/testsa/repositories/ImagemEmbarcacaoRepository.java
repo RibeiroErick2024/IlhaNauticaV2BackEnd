@@ -9,6 +9,6 @@ import com.example.testsa.entities.ImagemEmbarcacao;
 
 public interface ImagemEmbarcacaoRepository extends JpaRepository <ImagemEmbarcacao, Long> {
 
-        List<ImagemEmbarcacao> findByFkIdEmbarcacao(UUID id);
+        // List<ImagemEmbarcacao> findByFkIdEmbarcacao(UUID id);
 
 } 
