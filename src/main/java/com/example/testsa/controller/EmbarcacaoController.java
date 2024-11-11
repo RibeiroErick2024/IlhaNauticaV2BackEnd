@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.testsa.converter.EmbarcacaoConverter;
-import com.example.testsa.dto.res.EmbarcacaoDTORes;
+import com.example.testsa.dto.res.Embarcacao.EmbarcacaoDTORes;
 import com.example.testsa.entities.Embarcacao;
 import com.example.testsa.service.EmbarcacaoService;
 

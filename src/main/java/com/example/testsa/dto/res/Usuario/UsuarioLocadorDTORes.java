@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.testsa.dto.res.EmbarcacaoDTORes;
+import com.example.testsa.dto.res.Embarcacao.EmbarcacaoDTORes;
 import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
 
 public class UsuarioLocadorDTORes {

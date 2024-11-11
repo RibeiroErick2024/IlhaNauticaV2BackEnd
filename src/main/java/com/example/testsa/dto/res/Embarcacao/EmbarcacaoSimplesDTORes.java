@@ -1,4 +1,4 @@
-package com.example.testsa.dto.res;
+package com.example.testsa.dto.res.Embarcacao;
 
 import java.util.UUID;
 

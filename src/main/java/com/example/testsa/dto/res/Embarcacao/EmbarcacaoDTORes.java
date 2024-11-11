@@ -1,7 +1,11 @@
-package com.example.testsa.dto.res;
+package com.example.testsa.dto.res.Embarcacao;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
+
+import com.example.testsa.dto.res.EnderecoDTORes;
+import com.example.testsa.dto.res.ImagemEmbarcacaoDTORes;
 
 
 public class EmbarcacaoDTORes {
@@ -22,8 +26,6 @@ public class EmbarcacaoDTORes {
 
     private Boolean disponibilidade;
 
-    private String imagem;
-
     private Boolean pet;
 
     private int quantidadeBanheiro;
@@ -34,7 +36,11 @@ public class EmbarcacaoDTORes {
 
     private String bandeira;
 
+    private EnderecoDTORes endereco;
 
+    private List<ImagemEmbarcacaoDTORes> imagem;
+
+    
     public String getNome() {
         return nome;
     }
@@ -105,16 +111,6 @@ public class EmbarcacaoDTORes {
     }
 
 
-    public String getImagem() {
-        return imagem;
-    }
-
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
-
     public Boolean getPet() {
         return pet;
     }
@@ -172,6 +168,26 @@ public class EmbarcacaoDTORes {
 
     public void setId_embarcacao(UUID id_embarcacao) {
         this.id_embarcacao = id_embarcacao;
+    }
+
+
+    public EnderecoDTORes getEndereco() {
+        return endereco;
+    }
+
+
+    public void setEndereco(EnderecoDTORes endereco) {
+        this.endereco = endereco;
+    }
+
+
+    public List<ImagemEmbarcacaoDTORes> getImagem() {
+        return imagem;
+    }
+
+
+    public void setImagem(List<ImagemEmbarcacaoDTORes> imagem) {
+        this.imagem = imagem;
     }
 
 

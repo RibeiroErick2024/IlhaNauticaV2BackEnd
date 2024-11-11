@@ -2,8 +2,8 @@ package com.example.testsa.converter;
 
 import java.util.List;
 
-import com.example.testsa.dto.req.CadastroUsuarioDTO;
-import com.example.testsa.dto.res.EmbarcacaoDTORes;
+import com.example.testsa.dto.req.Usuario.CadastroUsuarioDTO;
+import com.example.testsa.dto.res.Embarcacao.EmbarcacaoDTORes;
 import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
@@ -28,7 +28,7 @@ public interface UsuarioConverter {
         all.setGenero(entity.getGenero());
 
         List<MarinheiroDTORes> listaMarinheiros = entity.getMarinheiro()
-        .stream().map(a -> MarinheiroConverter.marinheiroDTORes(a)).toList();
+        .stream().map(a -> MarinheiroConverter.entidadeParaMarinheiroDTO(a)).toList();
 
         all.setMarinheiro(listaMarinheiros);
         List<EmbarcacaoDTORes> listaEmbarcacao = entity.getEmbarcacao()

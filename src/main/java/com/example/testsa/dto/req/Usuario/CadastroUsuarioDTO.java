@@ -1,4 +1,4 @@
-package com.example.testsa.dto.req;
+package com.example.testsa.dto.req.Usuario;
 
 
 public class CadastroUsuarioDTO {

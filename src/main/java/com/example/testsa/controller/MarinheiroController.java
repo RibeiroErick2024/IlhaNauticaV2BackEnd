@@ -30,7 +30,7 @@ public class MarinheiroController {
         List<Marinheiro> marinheiro = marinheiroService.buscarTodos();
 
         List<MarinheiroComUsuarioDTO> dto = marinheiro
-                .stream().map(m -> MarinheiroConverter.marinheiroComUsuarioDTOResponse(m)).toList();
+                .stream().map(m -> MarinheiroConverter.entidadeParaMarinheiroComUsuarioDTO(m)).toList();
 
         return ResponseEntity.ok(dto);
     }
@@ -43,14 +43,14 @@ public class MarinheiroController {
             return ResponseEntity.notFound().build();
         }
 
-        MarinheiroComUsuarioDTO dto = MarinheiroConverter.marinheiroComUsuarioDTOResponse(m);
+        MarinheiroComUsuarioDTO dto = MarinheiroConverter.entidadeParaMarinheiroComUsuarioDTO(m);
         return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/cadastrar")
     public ResponseEntity<MarinheiroComUsuarioDTO> cadastrarMarinheiro(@RequestBody Marinheiro entity) {
         Marinheiro marinheiro = marinheiroService.cadastrar(entity);
-        MarinheiroComUsuarioDTO dto = MarinheiroConverter.marinheiroComUsuarioDTOResponse(marinheiro);
+        MarinheiroComUsuarioDTO dto = MarinheiroConverter.entidadeParaMarinheiroComUsuarioDTO(marinheiro);
         return ResponseEntity.ok(dto);
     }
 
@@ -58,7 +58,7 @@ public class MarinheiroController {
     public ResponseEntity<MarinheiroComUsuarioDTO> editarMarinheiro(@PathVariable UUID id,
             @RequestBody Marinheiro entity) {
         Marinheiro marinheiro = marinheiroService.atualizarMarinheiro(id, entity);
-        MarinheiroComUsuarioDTO dto = MarinheiroConverter.marinheiroComUsuarioDTOResponse(marinheiro);
+        MarinheiroComUsuarioDTO dto = MarinheiroConverter.entidadeParaMarinheiroComUsuarioDTO(marinheiro);
         return ResponseEntity.ok(dto);
     }
 

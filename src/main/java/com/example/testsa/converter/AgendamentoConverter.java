@@ -11,8 +11,8 @@ public class AgendamentoConverter {
         dto.setStatus(agendamento.getStatus());
         dto.setDataFinal(agendamento.getDataFinal());
         dto.setUsuario(UsuarioConverter.usuarioConverterSimples(agendamento.getUsuario()));
-        dto.setMarinheiro(MarinheiroConverter.marinheiroDTORes(agendamento.getMarinheiro()));
-        dto.setEmbarcacao(EmbarcacaoConverter.embarcacaoConverterDTO(agendamento.getEmbarcacao()));
+        dto.setMarinheiro(MarinheiroConverter.entidadeParaMarinheiroDTO(agendamento.getMarinheiro()));
+        dto.setEmbarcacao(EmbarcacaoConverter.embarcacaoConverterDTOSimples(agendamento.getEmbarcacao()));
         return dto;
     }
 }

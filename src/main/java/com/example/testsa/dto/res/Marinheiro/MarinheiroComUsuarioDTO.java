@@ -8,6 +8,8 @@ public class MarinheiroComUsuarioDTO{
 
     private UUID id_marinheiro;
 
+    private String nome;
+
     private String categoria;
 
     private String registroMaritimo;
@@ -18,6 +20,8 @@ public class MarinheiroComUsuarioDTO{
 
     private UsuarioSimplesDTO usuario;
 
+
+    
     public UUID getId_marinheiro() {
         return id_marinheiro;
     }
@@ -65,6 +69,14 @@ public class MarinheiroComUsuarioDTO{
 
     public void setUsuario(UsuarioSimplesDTO usuario) {
         this.usuario = usuario;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }

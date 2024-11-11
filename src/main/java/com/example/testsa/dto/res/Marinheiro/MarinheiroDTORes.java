@@ -6,6 +6,8 @@ public class MarinheiroDTORes {
 
     private UUID id_marinheiro;
 
+    private String nome;
+
     private String categoria;
 
     private String registroMaritimo;
@@ -16,6 +18,18 @@ public class MarinheiroDTORes {
 
     public UUID getId_marinheiro() {
         return id_marinheiro;
+    }
+
+    public void setId_marinheiro(UUID id_marinheiro) {
+        this.id_marinheiro = id_marinheiro;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCategoria() {
@@ -48,11 +62,6 @@ public class MarinheiroDTORes {
 
     public void setAnosExperiencia(int anosExperiencia) {
         this.anosExperiencia = anosExperiencia;
-    }
-
-
-    public void setId_marinheiro(UUID id_marinheiro) {
-        this.id_marinheiro = id_marinheiro;
     }
 
 }

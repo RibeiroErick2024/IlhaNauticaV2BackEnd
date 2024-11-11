@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.testsa.dto.req.ImagemEmbarcacaoDTOReq;
+import com.example.testsa.dto.res.ImagemEmbarcacaoDTORes;
 import com.example.testsa.entities.ImagemEmbarcacao;
 
 public interface ImagemEmbarcacaoConverter {
@@ -16,5 +17,12 @@ public interface ImagemEmbarcacaoConverter {
         entity.setFormato(arquivo.getContentType());
         entity.setEmbarcacao(EmbarcacaoConverter.dtoConverterEntidade(dto.getEmbarcacao()));
         return entity;
+    }
+    public static ImagemEmbarcacaoDTORes entidadeParaDto(ImagemEmbarcacao entidade) {
+        ImagemEmbarcacaoDTORes dto = new ImagemEmbarcacaoDTORes();
+        dto.setNome(entidade.getNome());
+        dto.setImagem(entidade.getImagem());
+        dto.setFormato(entidade.getFormato());
+        return dto;
     }
 }

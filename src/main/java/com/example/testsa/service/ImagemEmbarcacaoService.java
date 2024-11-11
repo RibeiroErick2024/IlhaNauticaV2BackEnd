@@ -17,11 +17,19 @@ public class ImagemEmbarcacaoService {
     @Autowired
     ImagemEmbarcacaoRepository imagemEmbarcacaoRepository;
 
+    @Autowired
+    EmbarcacaoService embarcacaoService;
+
     @Transactional
     public ImagemEmbarcacao criarImagem(ImagemEmbarcacao imagemPost) {
+
+        
+
         ImagemEmbarcacao imagem = new ImagemEmbarcacao();
         imagem.setNome(imagemPost.getNome());
         imagem.setImagem(imagemPost.getImagem());
+
+
        
         return imagemEmbarcacaoRepository.save(imagemPost);
     }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testsa.converter.EnderecoConverter;
-import com.example.testsa.converter.MarinheiroConverter;
 import com.example.testsa.dto.res.EnderecoDTORes;
 import com.example.testsa.entities.Endereco;
 import com.example.testsa.service.EnderecoService;
@@ -37,7 +36,7 @@ public class EnderecoController {
         List<EnderecoDTORes> dto = enderecos
                 .stream()
                 .map(e -> EnderecoConverter.entidadeParaDto(e)).toList();
-        
+
         return ResponseEntity.ok(dto);
     }
 
@@ -48,6 +47,7 @@ public class EnderecoController {
 
         return ResponseEntity.ok(dto);
     }
+
     @PostMapping("/usuario")
     public ResponseEntity<?> cadastrarEnderecoUsuario(@RequestBody Endereco entity) {
         Endereco endereco = enderecoService.adicionarEndereco(entity);
@@ -57,7 +57,7 @@ public class EnderecoController {
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<?> editarEndereco(@PathVariable UUID id,@RequestBody Endereco entity) {
+    public ResponseEntity<?> editarEndereco(@PathVariable UUID id, @RequestBody Endereco entity) {
         Endereco endereco = enderecoService.atualizarEndereco(id, entity);
         EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
         return ResponseEntity.ok(dto);

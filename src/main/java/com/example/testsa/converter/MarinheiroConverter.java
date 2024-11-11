@@ -6,9 +6,10 @@ import com.example.testsa.entities.Marinheiro;
 
 public class MarinheiroConverter {
 
-    public static MarinheiroDTORes marinheiroDTORes(Marinheiro entity) {
+    public static MarinheiroDTORes entidadeParaMarinheiroDTO(Marinheiro entity) {
         MarinheiroDTORes marinheiro = new MarinheiroDTORes();
         marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());
@@ -18,9 +19,10 @@ public class MarinheiroConverter {
 
     }
 
-    public static MarinheiroComUsuarioDTO marinheiroComUsuarioDTOResponse(Marinheiro entity) {
+    public static MarinheiroComUsuarioDTO entidadeParaMarinheiroComUsuarioDTO(Marinheiro entity) {
         MarinheiroComUsuarioDTO marinheiro = new MarinheiroComUsuarioDTO();
         marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());
@@ -34,6 +36,7 @@ public class MarinheiroConverter {
     public static Marinheiro dtoParaEntidade(MarinheiroDTORes entity) {
         Marinheiro marinheiro = new Marinheiro();
         marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());
