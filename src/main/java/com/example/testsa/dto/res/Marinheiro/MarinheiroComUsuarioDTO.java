@@ -6,7 +6,7 @@ import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 
 public class MarinheiroComUsuarioDTO{
 
-    private UUID id_marinheiro;
+    private UUID idMarinheiro;
 
     private String nome;
 
@@ -21,10 +21,7 @@ public class MarinheiroComUsuarioDTO{
     private UsuarioSimplesDTO usuario;
 
 
-    
-    public UUID getId_marinheiro() {
-        return id_marinheiro;
-    }
+  
 
     public String getCategoria() {
         return categoria;
@@ -59,9 +56,7 @@ public class MarinheiroComUsuarioDTO{
     }
 
 
-    public void setId_marinheiro(UUID id_marinheiro) {
-        this.id_marinheiro = id_marinheiro;
-    }
+  
 
     public UsuarioSimplesDTO getUsuario() {
         return usuario;
@@ -77,6 +72,14 @@ public class MarinheiroComUsuarioDTO{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public UUID getIdMarinheiro() {
+        return idMarinheiro;
+    }
+
+    public void setIdMarinheiro(UUID idMarinheiro) {
+        this.idMarinheiro = idMarinheiro;
     }
 
 }

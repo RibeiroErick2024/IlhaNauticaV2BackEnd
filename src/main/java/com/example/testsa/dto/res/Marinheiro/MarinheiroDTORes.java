@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class MarinheiroDTORes {
 
-    private UUID id_marinheiro;
+    private UUID idMarinheiro;
 
     private String nome;
 
@@ -16,13 +16,6 @@ public class MarinheiroDTORes {
 
     private int anosExperiencia;
 
-    public UUID getId_marinheiro() {
-        return id_marinheiro;
-    }
-
-    public void setId_marinheiro(UUID id_marinheiro) {
-        this.id_marinheiro = id_marinheiro;
-    }
 
     public String getNome() {
         return nome;
@@ -62,6 +55,14 @@ public class MarinheiroDTORes {
 
     public void setAnosExperiencia(int anosExperiencia) {
         this.anosExperiencia = anosExperiencia;
+    }
+
+    public UUID getIdMarinheiro() {
+        return idMarinheiro;
+    }
+
+    public void setIdMarinheiro(UUID idMarinheiro) {
+        this.idMarinheiro = idMarinheiro;
     }
 
 }

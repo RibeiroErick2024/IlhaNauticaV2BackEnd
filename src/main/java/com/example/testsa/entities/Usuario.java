@@ -57,8 +57,6 @@ public class Usuario {
 	private Endereco endereco;
 
 
-
-
 	public List<Agendamento> getAgendamento() {
 		return agendamento;
 	}

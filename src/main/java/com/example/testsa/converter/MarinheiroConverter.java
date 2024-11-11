@@ -8,7 +8,7 @@ public class MarinheiroConverter {
 
     public static MarinheiroDTORes entidadeParaMarinheiroDTO(Marinheiro entity) {
         MarinheiroDTORes marinheiro = new MarinheiroDTORes();
-        marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
         marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
@@ -21,7 +21,7 @@ public class MarinheiroConverter {
 
     public static MarinheiroComUsuarioDTO entidadeParaMarinheiroComUsuarioDTO(Marinheiro entity) {
         MarinheiroComUsuarioDTO marinheiro = new MarinheiroComUsuarioDTO();
-        marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
         marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
@@ -35,7 +35,7 @@ public class MarinheiroConverter {
 
     public static Marinheiro dtoParaEntidade(MarinheiroDTORes entity) {
         Marinheiro marinheiro = new Marinheiro();
-        marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
         marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
