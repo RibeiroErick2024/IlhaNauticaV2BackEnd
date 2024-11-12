@@ -69,6 +69,7 @@ public class ImagemEmbarcacaoController {
         try {
             for (MultipartFile arquivo : arquivos) {
                 ImagemEmbarcacao entity = ImagemEmbarcacaoConverter.dtoParaEntidade(imagemDTO, arquivo);
+                System.out.println(id);
                 imagemEmbarcacaoService.criarImagem(entity, id);
             }
         } catch (IOException e) {

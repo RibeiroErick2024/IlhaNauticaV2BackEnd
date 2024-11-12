@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity(name= "imagemembarcacao")
@@ -24,8 +25,8 @@ public class ImagemEmbarcacao {
     @Column(name = "imagem")
     private byte[]imagem;
     
-    @OneToOne
-    @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
+    @ManyToOne
+    @JoinColumn(name = "fk_id_embarcacao")
     private Embarcacao embarcacao;
 
     @Column(name = "formato")

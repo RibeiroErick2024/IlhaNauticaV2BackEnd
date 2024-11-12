@@ -29,13 +29,14 @@ public class ImagemEmbarcacaoService {
         ImagemEmbarcacao imagem = new ImagemEmbarcacao();
         imagem.setNome(imagemPost.getNome());
         imagem.setImagem(imagemPost.getImagem());
+
         Embarcacao embarcacaoid = new Embarcacao();
         embarcacaoid.setIdEmbarcacao(id);
         imagem.setEmbarcacao(embarcacaoid);
 
 
        
-        return imagemEmbarcacaoRepository.save(imagemPost);
+        return imagemEmbarcacaoRepository.save(imagem);
     }
 
     @Transactional
