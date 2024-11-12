@@ -35,7 +35,7 @@ public class ImagemEmbarcacaoController {
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> buscarImagem(@PathVariable Long id) {
         ImagemEmbarcacao imagem = imagemEmbarcacaoService.buscarImagemPorId(id);
-
+        System.out.println(imagem.getFormato());
         if (imagem == null) {
             return ResponseEntity.notFound().build();
         }
@@ -70,6 +70,7 @@ public class ImagemEmbarcacaoController {
             for (MultipartFile arquivo : arquivos) {
                 ImagemEmbarcacao entity = ImagemEmbarcacaoConverter.dtoParaEntidade(imagemDTO, arquivo);
                 System.out.println(id);
+                System.out.println(entity.getFormato());
                 imagemEmbarcacaoService.criarImagem(entity, id);
             }
         } catch (IOException e) {

@@ -29,6 +29,7 @@ public class ImagemEmbarcacaoService {
         ImagemEmbarcacao imagem = new ImagemEmbarcacao();
         imagem.setNome(imagemPost.getNome());
         imagem.setImagem(imagemPost.getImagem());
+        imagem.setFormato(imagemPost.getFormato());
 
         Embarcacao embarcacaoid = new Embarcacao();
         embarcacaoid.setIdEmbarcacao(id);

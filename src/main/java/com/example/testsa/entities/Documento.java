@@ -37,6 +37,8 @@ public class Documento {
    	@OneToMany(mappedBy = "documento")
 	private List<AprovacaoDocumento> AprovacaoDocumento;
    
+    @Column(name = "formato")
+    private String formato;
 
     public Long getIdDocumento() {
         return idDocumento;
@@ -78,5 +80,22 @@ public class Documento {
         this.usuario = usuario;
     }
 
+    public List<AprovacaoDocumento> getAprovacaoDocumento() {
+        return AprovacaoDocumento;
+    }
+
+    public void setAprovacaoDocumento(List<AprovacaoDocumento> aprovacaoDocumento) {
+        AprovacaoDocumento = aprovacaoDocumento;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
+
+  
     
 }
