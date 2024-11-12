@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.testsa.entities.Embarcacao;
 import com.example.testsa.entities.ImagemEmbarcacao;
 import com.example.testsa.repositories.ImagemEmbarcacaoRepository;
 
@@ -21,13 +22,16 @@ public class ImagemEmbarcacaoService {
     EmbarcacaoService embarcacaoService;
 
     @Transactional
-    public ImagemEmbarcacao criarImagem(ImagemEmbarcacao imagemPost) {
+    public ImagemEmbarcacao criarImagem(ImagemEmbarcacao imagemPost, UUID id) {
 
         
 
         ImagemEmbarcacao imagem = new ImagemEmbarcacao();
         imagem.setNome(imagemPost.getNome());
         imagem.setImagem(imagemPost.getImagem());
+        Embarcacao embarcacaoid = new Embarcacao();
+        embarcacaoid.setIdEmbarcacao(id);
+        imagem.setEmbarcacao(embarcacaoid);
 
 
        

@@ -15,7 +15,7 @@ public interface ImagemEmbarcacaoConverter {
         entity.setNome(arquivo.getOriginalFilename());
         entity.setImagem(arquivo.getBytes());
         entity.setFormato(arquivo.getContentType());
-        entity.setEmbarcacao(EmbarcacaoConverter.dtoConverterEntidade(dto.getEmbarcacao()));
+        // entity.setEmbarcacao(EmbarcacaoConverter.dtoConverterEntidade(dto.getEmbarcacao()));
         return entity;
     }
     public static ImagemEmbarcacaoDTORes entidadeParaDto(ImagemEmbarcacao entidade) {

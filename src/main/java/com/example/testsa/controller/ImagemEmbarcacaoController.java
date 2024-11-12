@@ -56,8 +56,8 @@ public class ImagemEmbarcacaoController {
         return ResponseEntity.ok(imagens);
     }
 
-    @PostMapping("/upload")
-    public ResponseEntity<?> uploadImagens(@ModelAttribute ImagemEmbarcacaoDTOReq imagemDTO) {
+    @PostMapping("/upload/{id}")
+    public ResponseEntity<?> uploadImagens(@ModelAttribute ImagemEmbarcacaoDTOReq imagemDTO, @PathVariable UUID id) {
 
         List<MultipartFile> arquivos = imagemDTO.getImagens();
         System.out.println("Número de imagem carregadas: " + (arquivos != null ? arquivos.size() : "null"));
@@ -69,7 +69,7 @@ public class ImagemEmbarcacaoController {
         try {
             for (MultipartFile arquivo : arquivos) {
                 ImagemEmbarcacao entity = ImagemEmbarcacaoConverter.dtoParaEntidade(imagemDTO, arquivo);
-                imagemEmbarcacaoService.criarImagem(entity);
+                imagemEmbarcacaoService.criarImagem(entity, id);
             }
         } catch (IOException e) {
             return ResponseEntity.status(500).build();
