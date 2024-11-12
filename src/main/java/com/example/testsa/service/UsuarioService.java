@@ -18,18 +18,18 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<Usuario> getAllUsuario() {
+    public List<Usuario> buscarTodosUsuario() {
         return usuarioRepository.findAll();
     }
 
     
     @Transactional
-    public Usuario createUsuario(Usuario usuario) {
+    public Usuario criarUsuario(Usuario usuario) {
 
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario getUsuarioById (UUID id){
+    public Usuario buscarUsuarioPorId (UUID id){
         
         Optional<Usuario> optUsuario = usuarioRepository.findById(id);
         if (optUsuario.isPresent()) {
@@ -41,7 +41,7 @@ public class UsuarioService {
     }
     
     @Transactional
-    public Usuario updateUsuario(UUID id, Usuario usuario) {
+    public Usuario editarUsuario(UUID id, Usuario usuario) {
         Optional<Usuario> optionalUserToUpdateData = usuarioRepository.findById(id);
         
         if(optionalUserToUpdateData.isPresent()){
@@ -59,6 +59,11 @@ public class UsuarioService {
         return usuarioRepository.saveAndFlush(usuario);
     }
     
+    public void deletarUsuario(UUID id){
+        usuarioRepository.findById(id).orElseThrow();
+
+        usuarioRepository.deleteById(id);
+    }
     
     public Usuario loginUsuario(String email, String senha) {
         

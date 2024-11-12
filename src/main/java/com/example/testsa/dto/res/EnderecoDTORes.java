@@ -95,7 +95,4 @@ public class EnderecoDTORes {
     this.estado = estado;
   }
 
-
-
-
 }
