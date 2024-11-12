@@ -4,10 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-// import com.github.f4b6a3.ulid.Ulid;
-// import com.github.f4b6a3.ulid.UlidCreator;
-// import jakarta.persistence.JoinColumn;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,16 +47,31 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Marinheiro> marinheiro;
 
+	@OneToMany(mappedBy = "usuario")
+	private List<Agendamento> agendamento;
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Embarcacao> embarcacao;
+
 	@OneToOne(mappedBy = "usuario")
 	private Endereco endereco;
 
-	@OneToMany(mappedBy = "usuario")
-	private List<Documento> documento;
-////////////////////
-	@OneToMany(mappedBy = "usuario")
-	private List<AprovacaoDocumento> AprovacaoDocumento;
 
-	
+	public List<Agendamento> getAgendamento() {
+		return agendamento;
+	}
+
+	public void setAgendamento(List<Agendamento> agendamento) {
+		this.agendamento = agendamento;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public Usuario() {
 
@@ -146,6 +157,14 @@ public class Usuario {
 	public void setMarinheiro(List<Marinheiro> marinheiro) {
 		this.marinheiro = marinheiro;
 	}
+
+    public List<Embarcacao> getEmbarcacao() {
+        return embarcacao;
+    }
+
+    public void setEmbarcacao(List<Embarcacao> embarcacao) {
+        this.embarcacao = embarcacao;
+    }
 
 
 
