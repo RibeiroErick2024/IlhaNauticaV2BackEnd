@@ -27,7 +27,7 @@ public class DocumentoController {
             Documento documentos = new Documento();
 
             // Remove espaços em branco da string Base64 antes de decodificá-la
-            String base64String = dto.getDocumento().replaceAll("\\s+", "");
+            byte[] base64String = dto.getDocumento();
             byte[] documentoBytes = Base64.getDecoder().decode(base64String);
             documentos.setDocumento(documentoBytes);
             documentos.setStatus(dto.getStatus());
