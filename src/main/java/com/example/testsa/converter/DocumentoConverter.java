@@ -1,25 +1,30 @@
 package com.example.testsa.converter;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.testsa.dto.req.DocumentoDTOReq;
 import com.example.testsa.dto.res.DocumentosDTORes;
-import com.example.testsa.entities.Documento;
+import com.example.testsa.entities.Documentos;
+import com.example.testsa.entities.Usuario;
 
 public class DocumentoConverter {
     
-public static Documento dtoParaEntidade(DocumentoDTOReq dto, MultipartFile arquivo) {
-    Documento documentos = new Documento();
-    documentos.setStatus("Pendente");
+public static Documentos dtoParaEntidade(DocumentoDTOReq dto, UUID id, MultipartFile arquivo) {
+    Documentos documentos = new Documentos();
+    documentos.setStatus("PENDENTE");
     documentos.setNome(arquivo.getOriginalFilename());
     documentos.setFormato(arquivo.getContentType());
-    // documentos.setUsuario(usuario);
+    Usuario usuarioId = new Usuario();
+    usuarioId.setId(id); 
+    documentos.setUsuario(usuarioId);
    
     try {
         documentos.setDocumento(arquivo.getBytes());
     } catch (IOException e) {
+        System.out.println(e);
         // TODO Auto-generated catch block
         e.printStackTrace();
     }
@@ -29,7 +34,7 @@ public static Documento dtoParaEntidade(DocumentoDTOReq dto, MultipartFile arqui
 }
 
 
-    public static DocumentosDTORes entidadeParaDto(Documento entidade) {
+    public static DocumentosDTORes entidadeParaDto(Documentos entidade) {
         DocumentosDTORes dto = new DocumentosDTORes();
         dto.setNome(entidade.getNome());
         dto.setDocumento(entidade.getDocumento());

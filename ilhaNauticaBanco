@@ -101,6 +101,7 @@ CREATE TABLE Avaliacao (
 CREATE TABLE Documentos (
     id_documento UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     status VARCHAR(50),
+    formato VARCHAR(50),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
     documento BYTEA,
     nome VARCHAR(50)

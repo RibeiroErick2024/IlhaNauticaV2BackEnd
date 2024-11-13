@@ -6,9 +6,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.testsa.entities.Documento;
+import com.example.testsa.entities.Documentos;
 
 @Repository
-public interface DocumentoRepository extends JpaRepository<Documento, Long> {
-    List <Documento> findByUsuarioId(UUID idUsuario);
+public interface DocumentoRepository extends JpaRepository<Documentos, Long> {
+    List <Documentos> findByUsuarioId(UUID idUsuario);
 }

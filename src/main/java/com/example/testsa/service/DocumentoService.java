@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.testsa.entities.Documento;
+import com.example.testsa.entities.Documentos;
 import com.example.testsa.repositories.DocumentoRepository;
 
 import jakarta.transaction.Transactional;
@@ -18,49 +18,47 @@ public class DocumentoService {
     @Autowired
     DocumentoRepository documentoRepository;
 
-    public List<Documento> getAllDocumentos() {
+
+
+    public List<Documentos> getAllDocumentos() {
         return documentoRepository.findAll();
     }
 
     @Transactional
-    public Documento createDocumento(Documento documento) {
-        return documentoRepository.save(documento);
+    public Documentos criarDocumento(Documentos documento, UUID id) {
 
-    }
-
-    @Transactional
-    public Documento criarDocumento(Documento documento, UUID id) {
-
-        Documento doc = new Documento();
+        Documentos doc = new Documentos();
         doc.setNome(documento.getNome());
         doc.setDocumento(documento.getDocumento());
         doc.setFormato(documento.getFormato());
+        doc.setStatus(documento.getStatus());
+        doc.setUsuario(documento.getUsuario());
 
         return documentoRepository.save(doc);
     }
 
     @Transactional
-    public List<Documento> buscarTodasDocumetos() {
+    public List<Documentos> buscarTodasDocumetos() {
         return documentoRepository.findAll();
 
     }
 
     @Transactional
-    public Documento buscarDocumentoPorId(Long id) {
+    public Documentos buscarDocumentoPorId(Long id) {
         return documentoRepository.findById(id).orElse(null);
     }
 
     @Transactional
-    public List<Documento> buscarDocumentoPorIdUsuario(UUID id) {
+    public List<Documentos> buscarDocumentoPorIdUsuario(UUID id) {
         return documentoRepository.findByUsuarioId(id);
     }
 
     @Transactional // Testar
-    public Documento trocarDocumento(Long id, Documento documento) {
-        Optional<Documento> documentoExiste = documentoRepository.findById(id);
+    public Documentos trocarDocumento(Long id, Documentos documento) {
+        Optional<Documentos> documentoExiste = documentoRepository.findById(id);
 
         if (documentoExiste.isPresent()) {
-            Documento atualdocumento = documentoExiste.get();
+            Documentos atualdocumento = documentoExiste.get();
             atualdocumento.setDocumento(atualdocumento.getDocumento());
             atualdocumento.setNome(documento.getNome());
             atualdocumento.setFormato(documento.getFormato());

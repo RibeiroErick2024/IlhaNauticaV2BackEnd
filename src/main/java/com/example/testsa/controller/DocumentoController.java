@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.testsa.converter.AprovacaoDocumentoConverter;
 import com.example.testsa.converter.DocumentoConverter;
 import com.example.testsa.dto.req.DocumentoDTOReq;
 import com.example.testsa.dto.res.DocumentosDTORes;
-import com.example.testsa.entities.Documento;
+import com.example.testsa.entities.Documentos;
+import com.example.testsa.service.AprovacaoDocumentoService;
 import com.example.testsa.service.DocumentoService;
 
 @RestController
@@ -26,38 +28,13 @@ public class DocumentoController {
     @Autowired
     private DocumentoService documentoService;
 
-    // @PostMapping("/criar")
-    // public ResponseEntity<String> criarDocumento(@RequestBody
-    // CadastroDocumentoDTO dto) {
-    // try {
-    // Documento documentos = new Documento();
+    
+    @Autowired
+    private AprovacaoDocumentoService aprovacaoDocumentoService;
 
-    // // Remove espaços em branco da string Base64 antes de decodificá-la
-    // byte[] base64String = dto.getDocumento();
-    // byte[] documentoBytes = Base64.getDecoder().decode(base64String);
-    // documentos.setDocumento(documentoBytes);
-    // documentos.setStatus(dto.getStatus());
-    // documentos.setNome(dto.getNome());
-
-    // // Salvar o documento
-    // documentoService.createDocumento(documentos);
-
-    // return ResponseEntity.status(HttpStatus.CREATED).body("Documento criado com
-    // sucesso!");
-    // } catch (IllegalArgumentException e) {
-    // // Tratamento de erro para string Base64 inválida
-    // return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-    // .body("Erro ao decodificar o documento: " + e.getMessage());
-    // } catch (Exception e) {
-    // // Tratamento de erro genérico
-    // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-    // .body("Erro ao criar o documento: " + e.getMessage());
-    // }
-    // }
-
-    @GetMapping("/") //AJUSTAR
+     @GetMapping("/") //AJUSTAR
     public ResponseEntity<List<?>> buscarTodasImagens() {
-        List<Documento> listaDocumentos = documentoService.buscarTodasDocumetos();
+        List<Documentos> listaDocumentos = documentoService.buscarTodasDocumetos();
         List<DocumentosDTORes> lista = listaDocumentos.stream().map(d -> DocumentoConverter.entidadeParaDto(d))
                 .toList();
         if (listaDocumentos.isEmpty()) {
@@ -71,7 +48,7 @@ public class DocumentoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> buscarImagem(@PathVariable Long id) {
-        Documento doc = documentoService.buscarDocumentoPorId(id);
+        Documentos doc = documentoService.buscarDocumentoPorId(id);
         System.out.println(doc.getFormato());
         if (doc == null) {
             return ResponseEntity.notFound().build();
@@ -83,8 +60,8 @@ public class DocumentoController {
     }
 
     @GetMapping("usuario/{id}")
-    public ResponseEntity<List<Documento>> buscarDocumentoPorIdUsuario(@PathVariable UUID id) {
-        List<Documento> documentos = documentoService.buscarDocumentoPorIdUsuario(id);
+    public ResponseEntity<List<Documentos>> buscarDocumentoPorIdUsuario(@PathVariable UUID id) {
+        List<Documentos> documentos = documentoService.buscarDocumentoPorIdUsuario(id);
 
         if (documentos.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -105,12 +82,14 @@ public class DocumentoController {
         }
 
         for (MultipartFile arquivo : arquivos) {
-            Documento entity = DocumentoConverter.dtoParaEntidade(docDTO, arquivo);
+            Documentos entity = DocumentoConverter.dtoParaEntidade(docDTO, id, arquivo);
             System.out.println(id);
             System.out.println(entity.getFormato());
-            documentoService.criarDocumento(entity, id);
+            Documentos docCriado = documentoService.criarDocumento(entity, id);
+
+            aprovacaoDocumentoService.criarPendencia(AprovacaoDocumentoConverter.docEntidadeParaEntidade(docCriado));
         }
 
-        return ResponseEntity.ok("Imagens enviadas com sucesso!");
+        return ResponseEntity.ok("Documento armazenado com sucesso!");
     }
 }

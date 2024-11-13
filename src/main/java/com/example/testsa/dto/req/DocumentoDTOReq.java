@@ -8,6 +8,7 @@ public class DocumentoDTOReq {
    
    
     private List<MultipartFile> documento;
+ 
 
     public List<MultipartFile> getDocumento() {
         return documento;
@@ -16,6 +17,7 @@ public class DocumentoDTOReq {
     public void setDocumento(List<MultipartFile> documento) {
         this.documento = documento;
     }
-  
+
+
 
 }
