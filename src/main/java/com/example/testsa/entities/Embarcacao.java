@@ -23,10 +23,8 @@ public class Embarcacao {
     @Column(name = "id_embarcacao")
     private UUID idEmbarcacao;
 
-
     @Column(name = "nome")
     private String nome;
-
 
     @Column(name = "anofabricacao")
     private int anoFabricacao;
