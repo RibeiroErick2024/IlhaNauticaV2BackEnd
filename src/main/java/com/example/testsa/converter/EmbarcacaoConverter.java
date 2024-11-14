@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.testsa.dto.req.EmbarcacaoDTOReq;
 import com.example.testsa.dto.res.ImagemEmbarcacaoDTORes;
+import com.example.testsa.dto.res.Embarcacao.EmbarcacaoCardDTO;
 import com.example.testsa.dto.res.Embarcacao.EmbarcacaoDTORes;
 import com.example.testsa.dto.res.Embarcacao.EmbarcacaoSimplesDTORes;
 import com.example.testsa.entities.Embarcacao;
@@ -23,6 +24,26 @@ public class EmbarcacaoConverter {
         dto.setQuantidadeCabines(embarcacao.getQuantidadeCabines());
         dto.setInscricao(embarcacao.getInscricao());
         dto.setBandeira(embarcacao.getBandeira());
+        dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
+        List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
+        .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDto(imagem)).toList();
+
+        dto.setImagem(listaImagens);
+
+        return dto;
+    }
+     public static EmbarcacaoCardDTO embarcacaoConverterCardDTO(Embarcacao embarcacao) {
+        EmbarcacaoCardDTO dto = new EmbarcacaoCardDTO();
+        dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
+        dto.setAnoFabricacao(embarcacao.getAnoFabricacao());
+        dto.setFabricante(embarcacao.getBandeira());
+        dto.setTamanho(embarcacao.getTamanho());
+        dto.setPotencia(embarcacao.getPotencia());
+        dto.setCapacidade(embarcacao.getCapacidade());
+        dto.setCategoria(embarcacao.getCategoria());
+        dto.setPet(embarcacao.getPet());
+        dto.setQuantidadeBanheiro(embarcacao.getQuantidadeBanheiro());
+        dto.setQuantidadeCabines(embarcacao.getQuantidadeCabines());
         dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
         List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
         .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDto(imagem)).toList();

@@ -45,9 +45,12 @@ CREATE TABLE Marinheiro (
 CREATE TABLE Embarcacao (
     id_embarcacao UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     nome VARCHAR(50),
-    anoFabricacao DATE,
+    anoFabricacao int,
+    fabricante VARCHAR(50),
     tamanho FLOAT,
+    preco FLOAT,
     capacidade INT,
+    potencia INT,
     categoria VARCHAR(50),
     enderecoEmbarque VARCHAR(50),
     disponibilidade BOOLEAN,

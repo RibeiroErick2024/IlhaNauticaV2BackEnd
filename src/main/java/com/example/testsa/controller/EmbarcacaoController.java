@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.testsa.converter.EmbarcacaoConverter;
+import com.example.testsa.dto.res.Embarcacao.EmbarcacaoCardDTO;
 import com.example.testsa.dto.res.Embarcacao.EmbarcacaoDTORes;
 import com.example.testsa.entities.Embarcacao;
 import com.example.testsa.service.EmbarcacaoService;
@@ -21,13 +22,13 @@ public class EmbarcacaoController {
     private EmbarcacaoService embarcacaoService;
 
     // Endpoint para listar todas as embarcações
-    @GetMapping
-    public ResponseEntity<List<EmbarcacaoDTORes>> getAllEmbarcacoes() {
+    @GetMapping("/")
+    public ResponseEntity<List<EmbarcacaoCardDTO>> buscarTodasEmbarcacoes() {
         List<Embarcacao> embarcacoes = embarcacaoService.getAllEmbarcacaos();
 
-        List<EmbarcacaoDTORes> dto = embarcacoes
+        List<EmbarcacaoCardDTO> dto = embarcacoes
         .stream()
-        .map(e -> EmbarcacaoConverter.embarcacaoConverterDTO(e))
+        .map(e -> EmbarcacaoConverter.embarcacaoConverterCardDTO(e))
         .toList();
         return ResponseEntity.ok(dto);
     }

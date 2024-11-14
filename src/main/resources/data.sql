@@ -11,9 +11,9 @@ VALUES
 ('c7f34a68-6873-4d79-92fe-dfa67fe2cc1e', 'São Paulo', -23.550520, -46.633308, 'Av. Paulista', 'Bela Vista', 1000, 'Apto 501', 'SP', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b');
 
 -- Inserir dados na tabela Embarcacao
-INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, tamanho, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
+INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
 VALUES 
-('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', '2020-05-01', 15.0, 20, 'Luxo', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'c7f34a68-6873-4d79-92fe-dfa67fe2cc1e');
+('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2020, 'Ecoseas', 300, 900, 15.0, 20, 'Luxo', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'c7f34a68-6873-4d79-92fe-dfa67fe2cc1e');
 
 -- Inserir dados na tabela Marinheiro
 INSERT INTO Marinheiro (id_marinheiro, nome, categoria, registroMaritimo, disponibilidade, anosExperiencia, fk_id_usuario)

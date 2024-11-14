@@ -29,7 +29,16 @@ public class Embarcacao {
 
 
     @Column(name = "anofabricacao")
-    private LocalDate anoFabricacao;
+    private int anoFabricacao;
+
+    @Column(name = "fabricante")
+    private String fabricante;
+
+    @Column(name = "preco")
+    private float preco;
+    
+    @Column(name = "potencia")
+    private int potencia;
 
 
     @Column(name = "tamanho")
@@ -94,17 +103,39 @@ public class Embarcacao {
     }
 
 
-    public LocalDate getAnoFabricacao() {
+
+    public int getAnoFabricacao() {
         return anoFabricacao;
     }
 
 
-    public void setAnoFabricacao(LocalDate anoFabricacao) {
+    public void setAnoFabricacao(int anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
 
 
-    public Float getTamanho() {
+    public String getFabricante() {
+        return fabricante;
+    }
+
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+
+    public float getPreco() {
+        return preco;
+    }
+
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+
+   
+     public Float getTamanho() {
         return tamanho;
     }
 
@@ -242,6 +273,16 @@ public class Embarcacao {
 
     public void setImagem(List<ImagemEmbarcacao> imagem) {
         this.imagem = imagem;
+    }
+
+
+    public int getPotencia() {
+        return potencia;
+    }
+
+
+    public void setPotencia(int potencia) {
+        this.potencia = potencia;
     }
 
 

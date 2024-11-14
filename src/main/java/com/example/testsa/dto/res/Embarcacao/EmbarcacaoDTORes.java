@@ -14,7 +14,7 @@ public class EmbarcacaoDTORes {
 
     private String nome;
 
-    private LocalDate anoFabricacao;
+    private int anoFabricacao;
 
     private Float tamanho;
 
@@ -48,16 +48,6 @@ public class EmbarcacaoDTORes {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-
-    public LocalDate getAnoFabricacao() {
-        return anoFabricacao;
-    }
-
-
-    public void setAnoFabricacao(LocalDate anoFabricacao) {
-        this.anoFabricacao = anoFabricacao;
     }
 
 
@@ -188,6 +178,16 @@ public class EmbarcacaoDTORes {
 
     public void setImagem(List<ImagemEmbarcacaoDTORes> imagem) {
         this.imagem = imagem;
+    }
+
+
+    public int getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
+
+    public void setAnoFabricacao(int anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
     }
 
 
