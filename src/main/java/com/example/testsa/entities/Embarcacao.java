@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -78,11 +79,11 @@ public class Embarcacao {
     @Column(name = "bandeira")
     private String bandeira;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fk_id_endereco", referencedColumnName = "id_endereco")
     private Endereco endereco;
 

@@ -21,7 +21,7 @@ VALUES
 -- Inserir dados na tabela Embarcacao
 INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
 VALUES 
-('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2020, 'Ecoseas', 300, 900, 15.0, 20, 'Luxo', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'c7f34a68-6873-4d79-92fe-dfa67fe2cc1e');
+('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2020, 'Ecoseas', 300, 900, 15.0, 20, 'Luxo', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'c7f34a68-6873-4d79-92fe-dfa67fe2cc1e');
 
 INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
 VALUES 
