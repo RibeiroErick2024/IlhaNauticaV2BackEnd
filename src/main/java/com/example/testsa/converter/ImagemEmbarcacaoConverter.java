@@ -20,6 +20,7 @@ public interface ImagemEmbarcacaoConverter {
     }
     public static ImagemEmbarcacaoDTORes entidadeParaDto(ImagemEmbarcacao entidade) {
         ImagemEmbarcacaoDTORes dto = new ImagemEmbarcacaoDTORes();
+        dto.setId_imagem(entidade.getIdImagem());
         dto.setNome(entidade.getNome());
         dto.setImagem(entidade.getImagem());
         dto.setFormato(entidade.getFormato());
