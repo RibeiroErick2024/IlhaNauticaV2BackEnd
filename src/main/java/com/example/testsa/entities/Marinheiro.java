@@ -20,7 +20,10 @@ public class Marinheiro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_marinheiro")
-    private UUID id_marinheiro;
+    private UUID idMarinheiro;
+
+    @Column(name = "nome")
+    private String nome;
 
     @Column(name = "categoria")
     private String categoria;
@@ -93,11 +96,17 @@ public class Marinheiro {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public UUID getId_marinheiro() {
-        return id_marinheiro;
+     public String getNome() {
+        return nome;
     }
-    public void setId_marinheiro(UUID id_marinheiro) {
-        this.id_marinheiro = id_marinheiro;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public UUID getIdMarinheiro() {
+        return idMarinheiro;
+    }
+    public void setIdMarinheiro(UUID idMarinheiro) {
+        this.idMarinheiro = idMarinheiro;
     }
 
 }

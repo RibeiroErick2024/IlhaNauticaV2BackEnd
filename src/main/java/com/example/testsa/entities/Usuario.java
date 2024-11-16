@@ -10,9 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -48,9 +51,6 @@ public class Usuario implements UserDetails {
 	@Column(name = "categoria")
 	private String categoriaUsuario;
 
-	@Column(name= "role")
-	private String role;
-
 	@OneToMany(mappedBy = "usuario")
 	private List<Marinheiro> marinheiro;
 
@@ -62,6 +62,43 @@ public class Usuario implements UserDetails {
 
 	@OneToOne(mappedBy = "usuario")
 	private Endereco endereco;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id")
+	private Role role;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of();
+	}
+
+	public String getPassword() {
+		return senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
 	public List<Agendamento> getAgendamento() {
 		return agendamento;
@@ -172,19 +209,14 @@ public class Usuario implements UserDetails {
 		this.embarcacao = embarcacao;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of();
+	public Role getRole() {
+		return role;
 	}
 
-	@Override
-	public String getPassword() {
-		return senha;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
-	@Override
-	public String getUsername() {
-		return nomeCompleto;
-	}
+
 
 }

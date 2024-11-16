@@ -26,14 +26,16 @@ CREATE TABLE Endereco (
     complemento VARCHAR(50),
     estado VARCHAR(2),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao)  -- Ensures one-to-one relationship with Embarcacao
+
 );
 
 -- Create the Marinheiro table
 CREATE TABLE Marinheiro (
     id_marinheiro UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    nome VARCHAR(50),
     categoria VARCHAR(45),
     registroMaritimo VARCHAR(50),
-    nome_ VARCHAR(50),
     disponibilidade VARCHAR(50),
     anosExperiencia INT,
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
@@ -43,9 +45,12 @@ CREATE TABLE Marinheiro (
 CREATE TABLE Embarcacao (
     id_embarcacao UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     nome VARCHAR(50),
-    anoFabricacao DATE,
+    anoFabricacao int,
+    fabricante VARCHAR(50),
     tamanho FLOAT,
+    preco FLOAT,
     capacidade INT,
+    potencia INT,
     categoria VARCHAR(50),
     enderecoEmbarque VARCHAR(50),
     disponibilidade BOOLEAN,
@@ -56,7 +61,7 @@ CREATE TABLE Embarcacao (
     inscricao_IMO VARCHAR(50),
     bandeira VARCHAR(50),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    fk_id_endereco UUID REFERENCES Endereco(id_endereco) ON DELETE CASCADE
+    fk_id_endereco UUID REFERENCES Endereco(id_endereco)
 );
 
 -- Create the Pagamento table
@@ -99,6 +104,7 @@ CREATE TABLE Avaliacao (
 CREATE TABLE Documentos (
     id_documento UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     status VARCHAR(50),
+    formato VARCHAR(50),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
     documento BYTEA,
     nome VARCHAR(50)
@@ -135,5 +141,6 @@ CREATE TABLE ImagemEmbarcacao (
     id_imagem SERIAL PRIMARY KEY,
     nome VARCHAR(255),
     imagem BYTEA NOT NULL,
-    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE
+    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE,
+    formato VARCHAR(50)
 );

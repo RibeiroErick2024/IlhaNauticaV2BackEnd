@@ -8,39 +8,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testsa.converter.UsuarioConverter;
-import com.example.testsa.dto.req.CadastroUsuarioDTO;
+import com.example.testsa.dto.req.LoginDTO;
+import com.example.testsa.dto.req.Usuario.CadastroUsuarioDTO;
+import com.example.testsa.dto.res.LoginResponse;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.service.AuthenticationService;
+import com.example.testsa.service.JwtService;
 import com.example.testsa.service.UsuarioService;
-
 
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
+    private final JwtService jwtService;
+
     private final AuthenticationService authenticationService;
 
     @Autowired
     UsuarioService usuarioService;
 
-    public AuthenticationController(AuthenticationService authenticationService) {
+    public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
+        this.jwtService = jwtService;
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("authenticate")
-    public String authenticate() {
-        return authenticationService.authenticate();
-    }
-
     @PostMapping("/login")
-    public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
-        Usuario usuarioLogado = usuarioService.loginUsuario(usuario.getEmail(), usuario.getSenha());
-        return ResponseEntity.ok(usuarioLogado);
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginDTO loginUserDTO) {
+        Usuario  authenticatedUser = authenticationService.authenticate(loginUserDTO);
+
+        String jwtToken = jwtService.generateToken(authenticatedUser);
+
+        LoginResponse response = new LoginResponse();
+        response.setToken(jwtToken);
+        response.setExpiresIn(jwtService.getExpirationTime());
+
+        return ResponseEntity.ok(response);
+        
     }
 
     @PostMapping("/cadastro")
     public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        Usuario entity = UsuarioConverter.dtoConverterUsuario(criarUsuario);
-        var response = usuarioService.createUsuario(entity);
+        Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
+        var response = usuarioService.criarUsuario(entity);
         return ResponseEntity.ok(response);
     }
 }

@@ -3,21 +3,21 @@ package com.example.testsa.dto.res;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import com.example.testsa.dto.res.Embarcacao.EmbarcacaoSimplesDTORes;
+import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
+
 public class AgendamentosDTORes {
     private UUID idAgendamento;
     private LocalDate dataInicio;
     private String status;
     private LocalDate dataFinal;
-    private UsuarioGeralDTORes usuario;
+    private UsuarioSimplesDTO usuario;
     private MarinheiroDTORes marinheiro;
-    private EmbarcacaoDTORes embarcacao;
+    private EmbarcacaoSimplesDTORes embarcacao;
 
- 
     public AgendamentosDTORes() {
     }
-
-    
- 
 
     public LocalDate getDataInicio() {
         return dataInicio;
@@ -43,17 +43,10 @@ public class AgendamentosDTORes {
         this.dataFinal = dataFinal;
     }
 
- 
-   
-
-
-    
     public static class UsuarioDTO {
         private Long idUsuario;
         private String nome;
-        
 
-        
         public Long getIdUsuario() {
             return idUsuario;
         }
@@ -68,100 +61,39 @@ public class AgendamentosDTORes {
 
         public void setNome(String nome) {
             this.nome = nome;
-           
+
         }
     }
-
-   
-    // public static class MarinheiroDTO {
-    //     private Long idMarinheiro;
-    //     private String nome;
-        
-
-        
-    //     public Long getIdMarinheiro() {
-    //         return idMarinheiro;
-    //     }
-
-    //     public void setIdMarinheiro(Long idMarinheiro) {
-    //         this.idMarinheiro = idMarinheiro;
-    //     }
-
-    //     public String getNome() {
-    //         return nome;
-    //     }
-
-    //     public void setNome(String nome) {
-    //         this.nome = nome;
-    //     }
-    // }
-
-    
-    // public static class EmbarcacaoDTO {
-    //     private Long idEmbarcacao;
-    //     private String nome;
-        
-
-        
-    //     public Long getIdEmbarcacao() {
-    //         return idEmbarcacao;
-    //     }
-
-    //     public void setIdEmbarcacao(Long idEmbarcacao) {
-    //         this.idEmbarcacao = idEmbarcacao;
-    //     }
-       
-
-    //     public String getNome() {
-    //         return nome;
-    //     }
-
-    //     public void setNome(String nome) {
-    //         this.nome = nome;
-    //     }
-    // }
-
-
-    public UsuarioGeralDTORes getUsuario() {
-        return usuario;
-    }
-
-
-    public void setUsuario(UsuarioGeralDTORes usuario) {
-        this.usuario = usuario;
-    }
-
 
     public MarinheiroDTORes getMarinheiro() {
         return marinheiro;
     }
 
-
     public void setMarinheiro(MarinheiroDTORes marinheiro) {
         this.marinheiro = marinheiro;
     }
 
-
-    public EmbarcacaoDTORes getEmbarcacao() {
+    public EmbarcacaoSimplesDTORes getEmbarcacao() {
         return embarcacao;
     }
 
-
-    public void setEmbarcacao(EmbarcacaoDTORes embarcacao) {
+    public void setEmbarcacao(EmbarcacaoSimplesDTORes embarcacao) {
         this.embarcacao = embarcacao;
     }
-
-
-
 
     public UUID getIdAgendamento() {
         return idAgendamento;
     }
 
-
-
-
     public void setIdAgendamento(UUID idAgendamento) {
         this.idAgendamento = idAgendamento;
+    }
+
+    public UsuarioSimplesDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioSimplesDTO usuario) {
+        this.usuario = usuario;
     }
 }

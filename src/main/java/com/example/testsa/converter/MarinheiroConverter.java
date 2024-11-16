@@ -1,12 +1,15 @@
 package com.example.testsa.converter;
 
-import com.example.testsa.dto.res.MarinheiroDTORes;
+import com.example.testsa.dto.res.Marinheiro.MarinheiroComUsuarioDTO;
+import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
 import com.example.testsa.entities.Marinheiro;
 
 public class MarinheiroConverter {
-        public static MarinheiroDTORes marinheiroDTORes(Marinheiro entity){
+
+    public static MarinheiroDTORes entidadeParaMarinheiroDTO(Marinheiro entity) {
         MarinheiroDTORes marinheiro = new MarinheiroDTORes();
-        marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
+        marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());
@@ -15,21 +18,25 @@ public class MarinheiroConverter {
         return marinheiro;
 
     }
-        public static MarinheiroDTORes marinheiroDTOResponse(Marinheiro entity){
-        MarinheiroDTORes marinheiro = new MarinheiroDTORes();
-        marinheiro.setId_marinheiro(entity.getId_marinheiro());
+
+    public static MarinheiroComUsuarioDTO entidadeParaMarinheiroComUsuarioDTO(Marinheiro entity) {
+        MarinheiroComUsuarioDTO marinheiro = new MarinheiroComUsuarioDTO();
+        marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
+        marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());
         marinheiro.setDisponibilidade(entity.getDisponibilidade());
-        marinheiro.setUsuario(UsuarioConverter.usuarioConverterGeral(entity.getUsuario()));
+        marinheiro.setUsuario(UsuarioConverter.usuarioConverterSimples(entity.getUsuario()));
 
         return marinheiro;
 
     }
-        public static Marinheiro dtoParaEntidade(MarinheiroDTORes entity){
+
+    public static Marinheiro dtoParaEntidade(MarinheiroDTORes entity) {
         Marinheiro marinheiro = new Marinheiro();
-        marinheiro.setId_marinheiro(entity.getId_marinheiro());
+        marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
+        marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
         marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());

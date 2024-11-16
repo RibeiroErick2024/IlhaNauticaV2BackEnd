@@ -24,33 +24,36 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfiguration(AuthenticationProvider autheticationProvider, JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public SecurityConfiguration(AuthenticationProvider autheticationProvider,
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.autheticationProvider = autheticationProvider;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
-
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-        .csrf().disable()
-        .cors().and()
-        .authorizeHttpRequests()
-        .requestMatchers("/auth/login","/auth/cadastro")
-        .permitAll()
-        .anyRequest()
-        .authenticated()
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authenticationProvider(autheticationProvider)
-        .addFilterBefore(jwtAuthenticationFilter,UsernamePasswordAuthenticationFilter.class);
+                .csrf()
+                .disable()
+                .cors()
+                .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/auth/login", "/auth/cadastro")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(autheticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of("http://localhost:5173"));

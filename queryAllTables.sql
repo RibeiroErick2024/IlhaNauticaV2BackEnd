@@ -63,3 +63,9 @@ INSERT INTO AprovacaoDocumento (fk_id_documento, status_aprovacao, data_aprovaca
 VALUES 
 ((SELECT id_documento FROM Documentos WHERE nome = 'Documentação Barco Azul'), 'Aprovado', '2023-10-15', 'Documentação completa.', (SELECT id_usuario FROM Usuario WHERE nomeCompleto = 'João Silva')),
 ((SELECT id_documento FROM Documentos WHERE nome = 'Documentação Yate Luxo'), 'Pendente', '2023-10-20', 'Aguardando revisão.', (SELECT id_usuario FROM Usuario WHERE nomeCompleto = 'Maria Oliveira'));
+INSERT INTO ImagemEmbarcacao (id_imagem, nome, imagem, fk_id_embarcacao)
+VALUES 
+
+insert into  ImagemEmbarcacao ( imagem) 
+SELECT BulkColumn 
+FROM Openrowset( Bulk '...\Downloads\image.png', Single_Blob) as img
