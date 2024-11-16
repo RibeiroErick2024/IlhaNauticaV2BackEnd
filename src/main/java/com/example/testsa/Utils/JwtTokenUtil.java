@@ -2,18 +2,24 @@ package com.example.testsa.Utils;
 
 import java.util.Date;
 
+import javax.crypto.SecretKey;
+
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtTokenUtil {
 
-    private final String secretKey = "yourSecretKey"; // Substitua com uma chave mais segura
+    private final String secretKey = "5gr9bZH7OZ74bqVfaSjq6jGFLN6z5B3c7zFcFc2aegU="; // Substitua com uma chave mais segura
+
 
     public String generateToken(String username, String role) {
+
+
         return Jwts.builder()
                 .setSubject(username)
                 .claim("role", role)
@@ -24,10 +30,11 @@ public class JwtTokenUtil {
     }
 
     public Claims extractClaims(String token) {
-        return Jwts.parser()
-                .setSigningKey(secretKey)
-                .parseClaimsJws(token)
-                .getBody();
+        return Jwts.parserBuilder()
+        .setSigningKey(secretKey) // Usando a chave de 256 bits
+        .build()
+        .parseClaimsJws(token)
+        .getBody();
     }
 
     public String extractUsername(String token) {

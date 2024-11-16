@@ -1,6 +1,8 @@
 --  http://localhost:8080/h2-console
 
 -- Inserir dados na tabela Usuario
+
+INSERT INTO Role (id, nome) VALUES (1, 'USER');
 INSERT INTO Usuario (id_usuario, nomeCompleto, cpf_cnpj, dataNascimento, genero, telefone, email, senha, categoria)
 VALUES 
 ('a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'João Silva', '12345678901', '1985-03-15', 'Masculino', '11987654321', 'joao.silva@email.com', 'senha123', 'Cliente');

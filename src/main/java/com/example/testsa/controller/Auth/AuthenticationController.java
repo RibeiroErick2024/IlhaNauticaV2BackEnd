@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.testsa.converter.UsuarioConverter;
 import com.example.testsa.dto.req.LoginDTO;
 import com.example.testsa.dto.req.Usuario.CadastroUsuarioDTO;
 import com.example.testsa.dto.res.LoginResponse;
@@ -40,6 +39,7 @@ public class AuthenticationController {
         LoginResponse response = new LoginResponse();
         response.setToken(jwtToken);
         response.setExpiresIn(jwtService.getExpirationTime());
+        response.setIdUsuario(authenticatedUser.getId());
 
         return ResponseEntity.ok(response);
         
@@ -47,8 +47,8 @@ public class AuthenticationController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
-        var response = usuarioService.criarUsuario(entity);
+        var response = authenticationService.signup(criarUsuario);
+        // Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
         return ResponseEntity.ok(response);
     }
 }

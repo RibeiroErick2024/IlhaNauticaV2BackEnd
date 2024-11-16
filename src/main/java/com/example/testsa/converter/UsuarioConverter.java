@@ -8,10 +8,12 @@ import com.example.testsa.dto.res.Marinheiro.MarinheiroDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
+import com.example.testsa.entities.Role;
 import com.example.testsa.entities.Usuario;
 
 public interface UsuarioConverter {
     
+
     public static UsuarioSimplesDTO usuarioConverterSimples(Usuario entity){
         UsuarioSimplesDTO dto = new UsuarioSimplesDTO();
         dto.setId(entity.getId());
@@ -50,14 +52,19 @@ public interface UsuarioConverter {
         return all;
     }
 
-       public static Usuario cadastroDTOConverterUsuario(CadastroUsuarioDTO criarUsuario){
+       public static Usuario cadastroDTOConverterUsuario(CadastroUsuarioDTO criarUsuario, String senha){
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNomeCompleto(criarUsuario.getNomeCompleto());
         novoUsuario.setEmail(criarUsuario.getEmail());
-        novoUsuario.setSenha(criarUsuario.getSenha());
+        novoUsuario.setSenha(senha);
+        Role role = new Role();
+        role.setNome("USER");
+        role.setId(1);
+        novoUsuario.setRole(role);
 
         return novoUsuario;  
     }
+     
 
    
 }

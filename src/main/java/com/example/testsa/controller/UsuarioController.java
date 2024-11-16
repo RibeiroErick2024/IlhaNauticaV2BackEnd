@@ -60,19 +60,18 @@ public class UsuarioController {
     //     return ResponseEntity.ok(response);
     // }
 
-    @PostMapping("/cadastro")
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
-        var response = usuarioService.criarUsuario(entity);
+    @PostMapping("/completarcadastro/{id}")
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario completarUsuario, @PathVariable  UUID id) {
+        var response = usuarioService.editarUsuario(id, completarUsuario);
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/cadastroLocador") // Arrumar
-    public ResponseEntity<?> cadastrarLocador(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
-        var response = usuarioService.criarUsuario(entity);
-        return ResponseEntity.ok(response);
-    }
+    // @PostMapping("/cadastroLocador") // Arrumar
+    // public ResponseEntity<?> cadastrarLocador(@RequestBody CadastroUsuarioDTO criarUsuario) {
+    //     Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
+    //     var response = usuarioService.criarUsuario(entity);
+    //     return ResponseEntity.ok(response);
+    // }
 
     @PutMapping("editar/{id}")
     public ResponseEntity<Usuario> completarCadastro(@PathVariable UUID id, @RequestBody Usuario entity) {

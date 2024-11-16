@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.testsa.converter.UsuarioConverter;
 import com.example.testsa.dto.req.LoginDTO;
 import com.example.testsa.dto.req.Usuario.CadastroUsuarioDTO;
 import com.example.testsa.entities.Usuario;
@@ -25,10 +26,12 @@ public class AuthenticationService {
     }
 
     public Usuario signup(CadastroUsuarioDTO input) {
-        Usuario user = new Usuario();
-        user.setNomeCompleto(input.getNomeCompleto());
-        user.setEmail(input.getEmail());
-        user.setSenha(passwordEncoder.encode(input.getSenha()));
+        Usuario user = UsuarioConverter.cadastroDTOConverterUsuario(input, passwordEncoder.encode(input.getSenha()));
+
+        // user.setNomeCompleto(input.getNomeCompleto());
+        // user.setEmail(input.getEmail());
+        // user.setSenha(passwordEncoder.encode(input.getSenha()));
+        // user.setRole(input.getRole());
 
         return usuarioRepository.save(user);
     }

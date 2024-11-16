@@ -1,5 +1,6 @@
 package com.example.testsa.dto.req.Usuario;
 
+import com.example.testsa.entities.Role;
 
 public class CadastroUsuarioDTO {
 
@@ -8,6 +9,9 @@ public class CadastroUsuarioDTO {
 	private String email;
 
 	private String senha;
+
+	private Role role;
+	
 
 	public String getNomeCompleto() {
 		return nomeCompleto;
@@ -31,6 +35,14 @@ public class CadastroUsuarioDTO {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	
