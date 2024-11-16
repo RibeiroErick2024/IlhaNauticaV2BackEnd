@@ -1,13 +1,10 @@
 package com.example.testsa.dto.res.Embarcacao;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 import com.example.testsa.dto.res.EnderecoDTORes;
 import com.example.testsa.dto.res.ImagemEmbarcacaoDTORes;
-
-import jakarta.persistence.Column;
 
 public class EmbarcacaoCardDTO {
     

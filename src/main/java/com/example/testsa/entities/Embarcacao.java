@@ -1,7 +1,6 @@
 package com.example.testsa.entities;
 
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 
 @Entity

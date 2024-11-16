@@ -141,5 +141,6 @@ CREATE TABLE ImagemEmbarcacao (
     id_imagem SERIAL PRIMARY KEY,
     nome VARCHAR(255),
     imagem BYTEA NOT NULL,
-    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE
+    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE,
+    formato VARCHAR(50)
 );

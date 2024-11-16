@@ -21,12 +21,24 @@ VALUES
 -- Inserir dados na tabela Embarcacao
 INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
 VALUES 
-('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2020, 'Ecoseas', 300, 900, 15.0, 20, 'Luxo', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'c7f34a68-6873-4d79-92fe-dfa67fe2cc1e');
+('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2024, 'Yamaha', 300, 900, 15.0, 20, 'Jet Ski', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'c7f34a68-6873-4d79-92fe-dfa67fe2cc1e');
 
 INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
 VALUES 
-('d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'Embarcação Verde', 2022, 'Navalta', 250, 750, 12.5, 15, 'Conforto', 'Porto 2', TRUE, FALSE, 1, 3, 'IMO67890', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'd72bceff-6489-44d7-b370-bb7b4408cfd6');
+('d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'Embarcação Verde', 2022, 'DeltaYatchs', 12.60, 54, 12.5, 15, 'Conforto', 'Porto 2', TRUE, FALSE, 1, 3, 'IMO67890', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'd72bceff-6489-44d7-b370-bb7b4408cfd6');
 
+INSERT INTO ImagemEmbarcacao(id_imagem, nome, imagem, fk_id_embarcacao, formato)
+VALUES
+('88', 'Delta 41', FILE_READ('src/main/resources/static/veleiro/delta/delta-1.webp'),'d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'image/webp'),
+('87', 'Delta 41', FILE_READ('src/main/resources/static/veleiro/delta/delta-2.webp'),'d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'image/webp'),
+('86', 'Delta 41', FILE_READ('src/main/resources/static/veleiro/delta/delta-3.webp'),'d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'image/webp'),
+('85', 'Delta 41', FILE_READ('src/main/resources/static/veleiro/delta/delta-4.webp'),'d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'image/webp'),
+('84', 'Delta 41', FILE_READ('src/main/resources/static/veleiro/delta/delta-5.webp'),'d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'image/webp'),
+('100', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-1.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg'),
+('101', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-2.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg'),
+('102', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-3.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg'),
+('103', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-4.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg'),
+('104', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-5.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg');
 
 -- Inserir dados na tabela Marinheiro
 INSERT INTO Marinheiro (id_marinheiro, nome, categoria, registroMaritimo, disponibilidade, anosExperiencia, fk_id_usuario)
