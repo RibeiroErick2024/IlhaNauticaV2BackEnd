@@ -59,7 +59,7 @@ public class SecurityConfiguration {
 
         config.setAllowedOrigins(List.of("http://localhost:5173", "https://postman.com", "http://localhost:5000"));
         config.setAllowedMethods(List.of("OPTIONS", "GET", "POST", "PUT", "DELETE"));
-        config.setAllowedHeaders(List.of("Autorization", "Content-type", "Accept", "Origin", "X-Requested-With"));
+        config.setAllowedHeaders(List.of("Authorization", "Content-type", "Accept", "Origin", "X-Requested-With"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

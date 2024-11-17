@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testsa.converter.UsuarioConverter;
 import com.example.testsa.dto.req.Usuario.CadastroUsuarioDTO;
+import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.service.UsuarioService;
@@ -33,8 +34,8 @@ public class UsuarioController {
     public ResponseEntity<?> buscarTodosUsers() {
         var usuarios = usuarioService.buscarTodosUsuario();
 
-        List<UsuarioLocadorDTORes> dtoRes = usuarios
-                .stream().map(u -> UsuarioConverter.usuarioConverterLocador(u)).toList();
+        List<UsuarioGeralDTORes> dtoRes = usuarios
+                .stream().map(u -> UsuarioConverter.usuarioConverterGeral(u)).toList();
 
         if (usuarios.isEmpty()) {
             return ResponseEntity.ok("Nenhum usuário encontrado");
@@ -43,6 +44,17 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
+    public ResponseEntity<UsuarioGeralDTORes> buscarUsuarioGeral(@PathVariable(name = "id") UUID id) {
+        Usuario u = usuarioService.buscarUsuarioPorId(id);
+
+        if (u == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
+        return ResponseEntity.ok(usuarioDTO);
+    }
+    @GetMapping("locador/{id}")
     public ResponseEntity<UsuarioLocadorDTORes> buscarUsuario(@PathVariable(name = "id") UUID id) {
         Usuario u = usuarioService.buscarUsuarioPorId(id);
 

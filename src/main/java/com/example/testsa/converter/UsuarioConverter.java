@@ -48,6 +48,8 @@ public interface UsuarioConverter {
         all.setCpf(entity.getCpf());
         all.setDataNascimento(entity.getDataNascimento());
         all.setGenero(entity.getGenero());
+        all.setEmail(entity.getEmail());
+        all.setSenha(entity.getSenha());
 
         return all;
     }

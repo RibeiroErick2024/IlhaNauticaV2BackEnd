@@ -1,7 +1,6 @@
 package com.example.testsa.dto.res;
 
-
-import com.example.testsa.dto.req.UsuarioDTO;
+import com.example.testsa.dto.req.Usuario.UsuarioDTO;
 
 public class DocumentosDTORes {
 

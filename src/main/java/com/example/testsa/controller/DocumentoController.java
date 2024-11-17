@@ -28,11 +28,10 @@ public class DocumentoController {
     @Autowired
     private DocumentoService documentoService;
 
-    
     @Autowired
     private AprovacaoDocumentoService aprovacaoDocumentoService;
 
-     @GetMapping("/") //AJUSTAR
+    @GetMapping("/") // AJUSTAR
     public ResponseEntity<List<?>> buscarTodasImagens() {
         List<Documentos> listaDocumentos = documentoService.buscarTodasDocumetos();
         List<DocumentosDTORes> lista = listaDocumentos.stream().map(d -> DocumentoConverter.entidadeParaDto(d))
@@ -47,13 +46,9 @@ public class DocumentoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<byte[]> buscarImagem(@PathVariable Long id) {
+    public ResponseEntity<byte[]> buscarDocumeto(@PathVariable Long id) {
         Documentos doc = documentoService.buscarDocumentoPorId(id);
         System.out.println(doc.getFormato());
-        if (doc == null) {
-            return ResponseEntity.notFound().build();
-        }
-
         return ResponseEntity.ok()
                 .header("Content-Type", doc.getFormato()) // Ajuste conforme o tipo de imagem
                 .body(doc.getDocumento());

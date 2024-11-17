@@ -3,13 +3,13 @@
 -- Inserir dados na tabela Usuario
 
 INSERT INTO Role (id, nome) VALUES (1, 'USER');
-INSERT INTO Usuario (id_usuario, nomeCompleto, cpf_cnpj, dataNascimento, genero, telefone, email, senha, categoria)
+INSERT INTO Usuario (id_usuario, nomeCompleto, cpf_cnpj, dataNascimento, genero, telefone, email, senha, categoria, role_id)
 VALUES 
-('a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'João Silva', '12345678901', '1985-03-15', 'Masculino', '11987654321', 'joao.silva@email.com', 'senha123', 'Cliente');
+('a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'João Silva', '12345678901', '1985-03-15', 'Masculino', '11987654321', 'joao.silva@email.com', 'senha123', 'Cliente', 1);
 
 INSERT INTO Usuario (id_usuario, nomeCompleto, cpf_cnpj, dataNascimento, genero, telefone, email, senha, categoria)
 VALUES 
-('b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'Maria Oliveira', '98765432109', '1990-07-25', 'Feminino', '21987654321', 'maria.oliveira@email.com', 'senha456', 'Administrador');
+('b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'Maria Oliveira', '98765432109', '1990-07-25', 'Feminino', '21987654321', 'maria.oliveira@email.com', '$2a$10$Nx1rnokrfOIMMB8rZeCa8eS9MYMz.heshqb.uD6e2436dcPh.GU5S', 'Administrador');
 
 INSERT INTO Endereco (id_endereco, cidade, latitude, longitude, rua, bairro, numero, complemento, estado, fk_id_usuario)
 VALUES 

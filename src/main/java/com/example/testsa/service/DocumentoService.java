@@ -59,7 +59,7 @@ public class DocumentoService {
 
         if (documentoExiste.isPresent()) {
             Documentos atualdocumento = documentoExiste.get();
-            atualdocumento.setDocumento(atualdocumento.getDocumento());
+            atualdocumento.setDocumento(documento.getDocumento());
             atualdocumento.setNome(documento.getNome());
             atualdocumento.setFormato(documento.getFormato());
 

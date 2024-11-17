@@ -1,5 +1,9 @@
 package com.example.testsa.entities;
 
+import java.util.List;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,11 +19,16 @@ public class Role {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", unique = true, nullable = false)
     private String nome;
 
     @OneToOne(mappedBy = "role")
     private Usuario usuario;
+
+
+    public Role() {
+    }
+
 
     public Integer getId() {
         return id;
@@ -34,7 +43,11 @@ public class Role {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (!nome.startsWith("ROLE_")) {
+            this.nome = "ROLE_" + nome;
+        } else {
+            this.nome = nome;
+        }
     }
 
     public Usuario getUsuario() {
@@ -45,8 +58,7 @@ public class Role {
         this.usuario = usuario;
     }
 
-
-
-    
-    
+    public List<SimpleGrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(this.nome));
+    }
 }
