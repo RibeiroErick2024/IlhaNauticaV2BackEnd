@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testsa.converter.UsuarioConverter;
-import com.example.testsa.dto.req.Usuario.CadastroUsuarioDTO;
 import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
 import com.example.testsa.entities.Usuario;

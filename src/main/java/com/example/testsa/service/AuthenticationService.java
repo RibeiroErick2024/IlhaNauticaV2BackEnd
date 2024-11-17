@@ -38,17 +38,22 @@ public class AuthenticationService {
     }
 
     public Usuario authenticate(LoginDTO input) {
-       try {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        input.getEmail(),
-                        input.getSenha()));
+        System.out.println("tbm");
+        Usuario usuario = usuarioRepository.findByEmail(input.getEmail())
+                .orElseThrow(() -> new BadCredentialsException("Email não encontrado"));
 
-        return usuarioRepository.findByEmail(input.getEmail())
-                .orElseThrow();
-    
-       } catch (Exception e) {
-            throw new BadCredentialsException("Credenciais inválidas fornecidas");
-       } 
-}
+        if (!passwordEncoder.matches(input.getSenha(), usuario.getSenha())) {
+            throw new BadCredentialsException("Senha incorreta");
+        }
+
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(input.getEmail(), input.getSenha()));
+        } catch (BadCredentialsException e) {
+            throw new BadCredentialsException("Credenciais inválidas fornecidas.");
+        }
+
+        return usuario;
+    }
+
 }

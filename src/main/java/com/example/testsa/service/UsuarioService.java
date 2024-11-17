@@ -67,7 +67,7 @@ public class UsuarioService {
     
     public Usuario loginUsuario(String email, String senha) {
         
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+        Optional<Usuario> usuarioOpt = Optional.ofNullable(usuarioRepository.findByEmail(email).orElseThrow());
 
         
         if (usuarioOpt.isEmpty()) {

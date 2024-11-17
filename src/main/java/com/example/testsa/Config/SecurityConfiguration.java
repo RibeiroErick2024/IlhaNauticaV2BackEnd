@@ -56,7 +56,6 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-
         config.setAllowedOrigins(List.of("http://localhost:5173", "https://postman.com", "http://localhost:5000"));
         config.setAllowedMethods(List.of("OPTIONS", "GET", "POST", "PUT", "DELETE"));
         config.setAllowedHeaders(List.of("Authorization", "Content-type", "Accept", "Origin", "X-Requested-With"));
