@@ -5,6 +5,7 @@ public class LoginDTO {
 
    
     private String email;
+    private String senha;
 
     public LoginDTO() {
     }
@@ -26,6 +27,6 @@ public class LoginDTO {
     }
 
    
-    private String senha;
+   
 
 }
