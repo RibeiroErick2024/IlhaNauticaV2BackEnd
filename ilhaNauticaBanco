@@ -11,7 +11,8 @@ CREATE TABLE Usuario (
     telefone VARCHAR(11),
     email VARCHAR(50) UNIQUE,
     senha VARCHAR(255), -- Increased size for security (hashed passwords)
-    categoria VARCHAR(50)
+    categoria VARCHAR(50),
+    fk_id_role int REFERENCES Role(id_role)
 );
 
 -- Create the Endereco table

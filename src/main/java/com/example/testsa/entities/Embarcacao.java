@@ -85,6 +85,8 @@ public class Embarcacao {
     @JoinColumn(name = "fk_id_endereco", referencedColumnName = "id_endereco")
     private Endereco endereco;
 
+    
+
     @OneToMany(mappedBy = "embarcacao")
 	private List<ImagemEmbarcacao> imagem;
 

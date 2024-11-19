@@ -63,7 +63,7 @@ public class Usuario implements UserDetails {
 	@OneToOne(mappedBy = "usuario")
 	private Endereco endereco;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id")
+	@JoinColumn(name = "fk_id_role", referencedColumnName = "id_role")
 	private Role role;
 
 	@Override
