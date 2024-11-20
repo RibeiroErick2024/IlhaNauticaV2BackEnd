@@ -36,12 +36,9 @@ public class ImagemEmbarcacaoController {
     public ResponseEntity<byte[]> buscarImagem(@PathVariable Long id) {
         ImagemEmbarcacao imagem = imagemEmbarcacaoService.buscarImagemPorId(id);
         System.out.println(imagem.getFormato());
-        if (imagem == null) {
-            return ResponseEntity.notFound().build();
-        }
-
+    
         return ResponseEntity.ok()
-                .header("Content-Type", imagem.getFormato()) // Ajuste conforme o tipo de imagem
+                .header("Content-Type", imagem.getFormato()) 
                 .body(imagem.getImagem());
     }
 

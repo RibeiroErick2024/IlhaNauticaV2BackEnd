@@ -65,31 +65,28 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioDTO);
     }
 
-    // @PostMapping("/criar")
-    // public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario entity) {
-    //     var response = usuarioService.criarUsuario(entity);
-    //     return ResponseEntity.ok(response);
-    // }
-
     @PostMapping("/completarcadastro/{id}")
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario completarUsuario, @PathVariable  UUID id) {
-        var response = usuarioService.editarUsuario(id, completarUsuario);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<UsuarioGeralDTORes> cadastrarUsuario(@RequestBody Usuario completarUsuario, @PathVariable  UUID id) {
+        Usuario u = usuarioService.completarUsuario(id, completarUsuario);
+        UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
+        return ResponseEntity.ok(usuarioDTO);
     }
-
-    // @PostMapping("/cadastroLocador") // Arrumar
-    // public ResponseEntity<?> cadastrarLocador(@RequestBody CadastroUsuarioDTO criarUsuario) {
-    //     Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
-    //     var response = usuarioService.criarUsuario(entity);
-    //     return ResponseEntity.ok(response);
-    // }
-
+    
     @PutMapping("editar/{id}")
-    public ResponseEntity<Usuario> completarCadastro(@PathVariable UUID id, @RequestBody Usuario entity) {
-        var response = usuarioService.editarUsuario(id, entity);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<UsuarioGeralDTORes> completarCadastro(@PathVariable UUID id, @RequestBody Usuario editarUsuario) {
+        Usuario u = usuarioService.editarUsuario(id, editarUsuario);
+        UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
+        return ResponseEntity.ok(usuarioDTO);
+    
     }
-
+    
+        // @PostMapping("/cadastroLocador") // Arrumar
+        // public ResponseEntity<?> cadastrarLocador(@RequestBody CadastroUsuarioDTO criarUsuario) {
+        //     Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
+        //     var response = usuarioService.criarUsuario(entity);
+        //     return ResponseEntity.ok(response);
+        // }
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarUsuario(@PathVariable UUID id) {
         try {

@@ -1,6 +1,5 @@
 package com.example.testsa.dto.req;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 import com.example.testsa.entities.Agendamento;

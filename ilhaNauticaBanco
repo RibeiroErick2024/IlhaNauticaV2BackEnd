@@ -26,7 +26,7 @@ CREATE TABLE Endereco (
     complemento VARCHAR(50),
     estado VARCHAR(2),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
-    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao)  -- Ensures one-to-one relationship with Embarcacao
+    fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao)  
 
 );
 

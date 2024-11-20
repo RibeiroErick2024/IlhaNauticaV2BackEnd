@@ -1,8 +1,9 @@
 package com.example.testsa.dto.res.Usuario;
 
 import java.time.LocalDate;
-// import java.util.List;
 import java.util.UUID;
+
+import com.example.testsa.dto.res.EnderecoDTORes;
 
 public class UsuarioGeralDTORes {
     
@@ -23,6 +24,8 @@ public class UsuarioGeralDTORes {
 	private String senha;
 
 	private String categoriaUsuario;
+
+    private EnderecoDTORes endereco;
 
     public UUID getId() {
         return id;
@@ -95,6 +98,15 @@ public class UsuarioGeralDTORes {
     public void setCategoriaUsuario(String categoriaUsuario) {
         this.categoriaUsuario = categoriaUsuario;
     }
+
+    public EnderecoDTORes getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoDTORes endereco) {
+        this.endereco = endereco;
+    }
+
 
  
     

@@ -44,17 +44,17 @@ public class EnderecoController {
     @PostMapping("/embarcacao")
     public ResponseEntity<?> cadastrarEnderecoEmbarcacao(@RequestBody Endereco entity) {
         Endereco endereco = enderecoService.adicionarEndereco(entity);
-        EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
+        // EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
 
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(endereco);
     }
 
     @PostMapping("/usuario")
     public ResponseEntity<?> cadastrarEnderecoUsuario(@RequestBody Endereco entity) {
         Endereco endereco = enderecoService.adicionarEndereco(entity);
-        EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
+        // EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
 
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(endereco);
     }
 
     @PutMapping("/editar/{id}")

@@ -27,6 +27,8 @@ public interface UsuarioConverter {
         all.setNomeCompleto(entity.getNomeCompleto());
         all.setCpf(entity.getCpf());
         all.setDataNascimento(entity.getDataNascimento());
+        all.setTelefone(entity.getTelefone());
+        all.setDataNascimento(entity.getDataNascimento());
         all.setGenero(entity.getGenero());
 
         List<MarinheiroDTORes> listaMarinheiros = entity.getMarinheiro()
@@ -47,10 +49,11 @@ public interface UsuarioConverter {
         all.setNomeCompleto(entity.getNomeCompleto());
         all.setCpf(entity.getCpf());
         all.setDataNascimento(entity.getDataNascimento());
+        all.setTelefone(entity.getTelefone());
         all.setGenero(entity.getGenero());
         all.setEmail(entity.getEmail());
         all.setSenha(entity.getSenha());
-
+       
         return all;
     }
 

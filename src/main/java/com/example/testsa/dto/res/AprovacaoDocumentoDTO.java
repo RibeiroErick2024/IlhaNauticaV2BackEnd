@@ -2,8 +2,6 @@ package com.example.testsa.dto.res;
 
 import java.time.LocalDate;
 
-import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
-import com.example.testsa.entities.Documentos;
 import com.example.testsa.entities.StatusAprovacaoEnum;
 
 public class AprovacaoDocumentoDTO {

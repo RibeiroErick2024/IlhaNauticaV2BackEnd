@@ -24,6 +24,7 @@ public class EmbarcacaoController {
     // Endpoint para listar todas as embarcações
     @GetMapping("/")
     public ResponseEntity<List<EmbarcacaoCardDTO>> buscarTodasEmbarcacoes() {
+        System.out.println("Embarcacao controller");
         List<Embarcacao> embarcacoes = embarcacaoService.getAllEmbarcacaos();
 
         List<EmbarcacaoCardDTO> dto = embarcacoes
