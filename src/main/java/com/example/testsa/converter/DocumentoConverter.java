@@ -25,7 +25,6 @@ public static Documentos dtoParaEntidade(DocumentoDTOReq dto, UUID id, Multipart
         documentos.setDocumento(arquivo.getBytes());
     } catch (IOException e) {
         System.out.println(e);
-        // TODO Auto-generated catch block
         e.printStackTrace();
     }
     documentos.setFormato(arquivo.getContentType());

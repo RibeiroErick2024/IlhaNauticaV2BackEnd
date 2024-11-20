@@ -14,6 +14,8 @@ public class EmbarcacaoConverter {
         EmbarcacaoDTORes dto = new EmbarcacaoDTORes();
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setNome(embarcacao.getNome());
+        dto.setFabricante(embarcacao.getFabricante());
+        dto.setPotencia(embarcacao.getPotencia());
         dto.setAnoFabricacao(embarcacao.getAnoFabricacao());
         dto.setTamanho(embarcacao.getTamanho());
         dto.setCapacidade(embarcacao.getCapacidade());
@@ -38,7 +40,7 @@ public class EmbarcacaoConverter {
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setAnoFabricacao(embarcacao.getAnoFabricacao());
         dto.setNome(embarcacao.getNome());
-        dto.setFabricante(embarcacao.getBandeira());
+        dto.setFabricante(embarcacao.getFabricante());
         dto.setTamanho(embarcacao.getTamanho());
         dto.setPotencia(embarcacao.getPotencia());
         dto.setCapacidade(embarcacao.getCapacidade());
