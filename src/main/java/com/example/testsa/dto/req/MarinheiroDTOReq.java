@@ -1,5 +1,7 @@
 package com.example.testsa.dto.req;
 
+import com.example.testsa.dto.req.Usuario.UsuarioDTOReq;
+
 public class MarinheiroDTOReq {
 
     private String nome;
