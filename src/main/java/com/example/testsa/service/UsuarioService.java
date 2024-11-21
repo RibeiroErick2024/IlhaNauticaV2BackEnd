@@ -66,22 +66,23 @@ public class UsuarioService {
     }
     
     public Usuario loginUsuario(String email, String senha) {
-        
-        Optional<Usuario> usuarioOpt = Optional.ofNullable(usuarioRepository.findByEmail(email).orElseThrow());
-
-        
+        // Tenta encontrar o usuário pelo email
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+    
+        // Verifica se o usuário não foi encontrado
         if (usuarioOpt.isEmpty()) {
             throw new IllegalArgumentException("Usuário não encontrado!");
         }
-        
+    
+        // Se o usuário foi encontrado, obtemos o objeto
         Usuario usuario = usuarioOpt.get();
-
-        
-        if (!usuario.getSenha().equals(senha)) { 
+    
+        // Verifica se a senha está correta
+        if (!usuario.getSenha().equals(senha)) {
             throw new IllegalArgumentException("Senha inválida!");
         }
-
-        return usuario; 
-
-}
+    
+        return usuario;
+    }
+    
 }
