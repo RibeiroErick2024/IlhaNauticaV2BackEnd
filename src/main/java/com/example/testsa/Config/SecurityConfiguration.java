@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/login", "/auth/cadastro", "imagem/{id}", "imagem/", "/embarcacao/{id}", "/embarcacao/", "usuario/completarcadastro/{id}", "usuario/editar/{id}")
+                .requestMatchers("/auth/login", "/auth/cadastro", "imagem/{id}", "imagem/", "/embarcacao/{id}", "/embarcacao/", "usuario/completarcadastro/{id}", "usuario/editar/{id}", "/endereco/", "/endereco/editar/{id}",  "/endereco/usuario")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

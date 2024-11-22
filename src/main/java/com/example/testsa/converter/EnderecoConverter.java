@@ -7,7 +7,7 @@ public interface EnderecoConverter {
     
        public static Endereco dtoParaEntidade(EnderecoDTORes dto) {
         Endereco endereco = new Endereco();
-        // endereco.setIdEndereco(dto.getIdEndereco());
+        endereco.setIdEndereco(dto.getIdEndereco());
         endereco.setBairro(dto.getBairro());
         endereco.setRua(dto.getRua());
         endereco.setCidade(dto.getCidade());
@@ -24,7 +24,7 @@ public interface EnderecoConverter {
     public static EnderecoDTORes entidadeParaDto(Endereco endereco) {
         EnderecoDTORes dto = new EnderecoDTORes();
     
-        // dto.setIdEndereco(endereco.getIdEndereco());
+        dto.setIdEndereco(endereco.getIdEndereco());
         dto.setRua(endereco.getRua());
         dto.setBairro(endereco.getBairro());
         dto.setCidade(endereco.getCidade());

@@ -7,8 +7,12 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.testsa.entities.Embarcacao;
 import com.example.testsa.entities.Endereco;
+import com.example.testsa.entities.Usuario;
+import com.example.testsa.repositories.EmbarcacaoRepository;
 import com.example.testsa.repositories.EnderecoRepository;
+import com.example.testsa.repositories.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -18,23 +22,56 @@ public class EnderecoService {
     @Autowired
     EnderecoRepository enderecoRepository;
 
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
+    @Autowired
+    EmbarcacaoRepository embarcacaoRepository;
+
     @Transactional
     public Endereco adicionarEndereco(Endereco endereco) {
 
-        // if (endereco.getLatitude() == null || endereco.getLongitude() == null) {
-        // throw new IllegalArgumentException("Latitude e Longitude são obrigatórios.");
-        // }
+        return enderecoRepository.saveAndFlush(endereco);
+    }
 
-        // Usuario usuario = usuarioRepository.findById(endereco.getFk_id_usuario())
-        // .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+    @Transactional
+    public Endereco adicionarEnderecoUsuario(Endereco endereco) {
 
-        // if (endereco.getFk_id_embarcacao() != null) {
-        // Embarcacao embarcacao =
-        // embarcacaoRepository.findById(endereco.getFk_id_embarcacao())
-        // .orElseThrow(() -> new NotFoundException("Embarcação não encontrada"));
-        // }
+        if (endereco.getLatitude() == 0f || endereco.getLongitude() == 0f) {
+            endereco.setLatitude(0f);
+            endereco.setLongitude(0f);
+        }
 
-        return enderecoRepository.save(endereco);
+        if (endereco.getUsuario() == null || endereco.getUsuario().getId() == null) {
+            throw new IllegalArgumentException("Por favor, forneça um Usuário ID para ao endereço.");
+        }
+
+        Usuario usuario = usuarioRepository.findById(endereco.getUsuario().getId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+
+        endereco.setUsuario(usuario);
+
+        return enderecoRepository.saveAndFlush(endereco);
+    }
+
+    @Transactional
+    public Endereco adicionarEnderecoEmbarcacao(Endereco endereco) {
+
+        if (endereco.getLatitude() == 0f || endereco.getLongitude() == 0f) {
+            endereco.setLatitude(0f);
+            endereco.setLongitude(0f);
+        }
+
+        if (endereco.getEmbarcacao() == null || endereco.getEmbarcacao().getIdEmbarcacao() == null) {
+            throw new IllegalArgumentException("Por favor, forneça o ID da Embarcacao para associar ao endereço.");
+        }
+
+        Embarcacao embarcacao = embarcacaoRepository.findById(endereco.getEmbarcacao().getIdEmbarcacao())
+                .orElseThrow(() -> new RuntimeException("Embarcação não encontrada no banco de dados."));
+
+        endereco.setEmbarcacao(embarcacao);
+
+        return enderecoRepository.saveAndFlush(endereco);
     }
 
     @Transactional
@@ -66,6 +103,13 @@ public class EnderecoService {
         if (enderecoExiste.isPresent()) {
             Endereco enderecoAtualizado = enderecoExiste.get();
             enderecoAtualizado.setRua(endereco.getRua());
+            enderecoAtualizado.setCidade(endereco.getCidade());
+            enderecoAtualizado.setBairro(endereco.getBairro());
+            enderecoAtualizado.setComplemento(endereco.getComplemento());
+            enderecoAtualizado.setEstado(endereco.getEstado());
+            enderecoAtualizado.setLatitude(endereco.getLatitude());
+            enderecoAtualizado.setLongitude(endereco.getLongitude());
+            enderecoAtualizado.setNumero(endereco.getNumero());
 
         }
 
@@ -79,4 +123,4 @@ public class EnderecoService {
     }
 
 }
- // @Transactional
+// @Transactional

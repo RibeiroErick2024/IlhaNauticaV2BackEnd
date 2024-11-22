@@ -63,7 +63,7 @@ public class UsuarioService {
 
     @Transactional
     public Usuario completarUsuario(UUID id, Usuario usuario) {
-       System.out.println(usuario.getEndereco().getBairro());
+    //    System.out.println(usuario.getEndereco().getBairro());
         Usuario userToUpdateData = buscarUsuarioPorId(id);
         userToUpdateData.setCpf(usuario.getCpf());
         userToUpdateData.setDataNascimento(usuario.getDataNascimento());
@@ -93,7 +93,6 @@ public class UsuarioService {
     }
 
     public Usuario loginUsuario(String email, String senha) {
-<<<<<<< HEAD
         // Tenta encontrar o usuário pelo email
         Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
     
@@ -113,22 +112,4 @@ public class UsuarioService {
         return usuario;
     }
     
-=======
-
-        Optional<Usuario> usuarioOpt = Optional.ofNullable(usuarioRepository.findByEmail(email).orElseThrow());
-
-        if (usuarioOpt.isEmpty()) {
-            throw new IllegalArgumentException("Usuário não encontrado!");
-        }
-
-        Usuario usuario = usuarioOpt.get();
-
-        if (!usuario.getSenha().equals(senha)) {
-            throw new IllegalArgumentException("Senha inválida!");
-        }
-
-        return usuario;
-
-    }
->>>>>>> 2e2e6ab3afd9d027d69c9feda4d337efac1e83c3
 }

@@ -108,13 +108,13 @@ public class Usuario implements UserDetails {
 		this.agendamento = agendamento;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+	// public Endereco getEndereco() {
+	// 	return endereco;
+	// }
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+	// public void setEndereco(Endereco endereco) {
+	// 	this.endereco = endereco;
+	// }
 
 	public Usuario() {
 
