@@ -2,6 +2,7 @@ package com.example.testsa.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -30,11 +31,11 @@ public class AprovacaoDocumento {
     @Column(name = "status_aprovacao", nullable = false)
     private StatusAprovacaoEnum statusAprovacao;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_documento", referencedColumnName = "id_documento")
     private Documentos documento;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 

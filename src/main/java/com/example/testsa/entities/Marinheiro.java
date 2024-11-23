@@ -4,6 +4,7 @@ package com.example.testsa.entities;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Marinheiro {
     @Column(name = "anosexperiencia")
     private int anosExperiencia;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 

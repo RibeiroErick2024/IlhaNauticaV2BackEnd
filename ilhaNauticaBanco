@@ -91,9 +91,9 @@ CREATE TABLE Agendamento (
 CREATE TABLE Avaliacao (
     id_avaliacao SERIAL PRIMARY KEY,
     comentario VARCHAR(255),
-    notaMarinheiro DECIMAL,
-    notaEmbarcacao DECIMAL,
-    notaAgendamento DECIMAL,
+    notaMarinheiro INT,
+    notaEmbarcacao INT,
+    notaAgendamento INT,
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
     fk_id_agendamento UUID REFERENCES Agendamento(id_agendamento),
     fk_id_marinheiro UUID REFERENCES Marinheiro(id_marinheiro),

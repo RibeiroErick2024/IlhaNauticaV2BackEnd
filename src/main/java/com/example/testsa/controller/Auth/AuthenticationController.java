@@ -33,7 +33,6 @@ public class AuthenticationController {
 
    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginUserDTO) {
-        System.out.println("aui");
             Usuario authenticatedUser = authenticationService.authenticate(loginUserDTO);
 
             String jwtToken = jwtService.generateToken(authenticatedUser);
@@ -48,10 +47,10 @@ public class AuthenticationController {
     }
 
     @PostMapping("/cadastro")
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
+    public ResponseEntity<String> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
         try {
-            Usuario novoUsuario = authenticationService.signup(criarUsuario);
-            return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
+            authenticationService.signup(criarUsuario);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Usuário cadastrado");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Erro ao cadastrar usuário: " + e.getMessage());

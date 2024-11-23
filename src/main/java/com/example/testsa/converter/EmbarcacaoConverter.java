@@ -27,9 +27,12 @@ public class EmbarcacaoConverter {
         dto.setQuantidadeCabines(embarcacao.getQuantidadeCabines());
         dto.setInscricao(embarcacao.getInscricao());
         dto.setBandeira(embarcacao.getBandeira());
-        dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
+        if (embarcacao.getEndereco() != null) {
+            dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
+            
+        }
         List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
-        .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDto(imagem)).toList();
+        .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDtoSemImagem(imagem)).toList();
 
         dto.setImagem(listaImagens);
 
@@ -48,7 +51,10 @@ public class EmbarcacaoConverter {
         dto.setPet(embarcacao.getPet());
         dto.setQuantidadeBanheiro(embarcacao.getQuantidadeBanheiro());
         dto.setQuantidadeCabines(embarcacao.getQuantidadeCabines());
-        dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
+        if (embarcacao.getEndereco() != null) {
+            dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
+            
+        }
         List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
         .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDto(imagem)).toList();
 

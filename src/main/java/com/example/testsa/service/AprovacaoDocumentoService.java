@@ -18,9 +18,10 @@ public class AprovacaoDocumentoService {
     AprovacaoDocumentoRepository aprovacaoDocumentoRepository;
 
     public String criarPendencia(AprovacaoDocumento doc) {
-        AprovacaoDocumento pendencia = aprovacaoDocumentoRepository.save(doc);
+       aprovacaoDocumentoRepository.save(doc);
+        // AprovacaoDocumento pendencia = aprovacaoDocumentoRepository.save(doc);
 
-        return "OI";
+        return "Pendência criada";
     }
 
     public List<AprovacaoDocumento> buscarTodas() {

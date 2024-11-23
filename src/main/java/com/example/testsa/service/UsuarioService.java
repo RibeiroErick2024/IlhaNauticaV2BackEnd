@@ -5,9 +5,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import com.example.testsa.entities.Usuario;
+import com.example.testsa.repositories.AgendamentoRepository;
+import com.example.testsa.repositories.EnderecoRepository;
 import com.example.testsa.repositories.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
@@ -19,7 +22,10 @@ public class UsuarioService {
     UsuarioRepository usuarioRepository;
 
     @Autowired
-    EnderecoService enderecoService;
+    private AgendamentoRepository agendamentoRepository;
+    
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     public List<Usuario> buscarTodosUsuario() {
         return usuarioRepository.findAll();
@@ -39,9 +45,7 @@ public class UsuarioService {
             Usuario usuarioEncontrado = optUsuario.get();
             return usuarioEncontrado;
         }
-
         throw new IllegalArgumentException("Usuário não encontrado com esse" + id);
-
     }
 
     @Transactional
@@ -63,7 +67,6 @@ public class UsuarioService {
 
     @Transactional
     public Usuario completarUsuario(UUID id, Usuario usuario) {
-    //    System.out.println(usuario.getEndereco().getBairro());
         Usuario userToUpdateData = buscarUsuarioPorId(id);
         userToUpdateData.setCpf(usuario.getCpf());
         userToUpdateData.setDataNascimento(usuario.getDataNascimento());
@@ -74,9 +77,10 @@ public class UsuarioService {
         Usuario usuarioAtualizado = usuarioRepository.saveAndFlush(userToUpdateData);
         return usuarioAtualizado;
     }
+
     @Transactional
     public Usuario cadastroLocador(UUID id, Usuario usuario) {
-       
+
         Usuario userToUpdateData = buscarUsuarioPorId(id);
         userToUpdateData.setCpf(usuario.getCpf());
         userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
@@ -85,31 +89,16 @@ public class UsuarioService {
         userToUpdateData.setTelefone(usuario.getTelefone());
         return usuarioRepository.saveAndFlush(userToUpdateData);
     }
-
+    @Transactional
     public void deletarUsuario(UUID id) {
-        usuarioRepository.findById(id).orElseThrow();
+        
+        usuarioRepository.findById(id)
+                .orElseThrow(() -> new BadCredentialsException("Usuario não encontrado com id " + id));
+
+        // agendamentoRepository.deleteByUsuarioId(id);
 
         usuarioRepository.deleteById(id);
+
     }
 
-    public Usuario loginUsuario(String email, String senha) {
-        // Tenta encontrar o usuário pelo email
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
-    
-        // Verifica se o usuário não foi encontrado
-        if (usuarioOpt.isEmpty()) {
-            throw new IllegalArgumentException("Usuário não encontrado!");
-        }
-    
-        // Se o usuário foi encontrado, obtemos o objeto
-        Usuario usuario = usuarioOpt.get();
-    
-        // Verifica se a senha está correta
-        if (!usuario.getSenha().equals(senha)) {
-            throw new IllegalArgumentException("Senha inválida!");
-        }
-    
-        return usuario;
-    }
-    
 }

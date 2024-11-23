@@ -2,6 +2,7 @@ package com.example.testsa.entities;
 
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,11 +43,11 @@ public class Endereco {
     @Column(name = "estado", length = 2)
     private String estado;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_usuario")
     private Usuario usuario;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_embarcacao")
     private Embarcacao embarcacao;
 

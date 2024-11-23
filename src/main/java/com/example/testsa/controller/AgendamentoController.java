@@ -28,24 +28,21 @@ public class AgendamentoController {
         this.agendamentoService = agendamentoService;
     }
 
-    // Cria um novo agendamento      Xx Está criando, mas não ta salvando os id de marinheiro, usuario e embarcação xX
     @PostMapping("/criar")
-    public ResponseEntity<Agendamento> createAgendamento(@RequestBody Agendamento agendamento) {
+    public ResponseEntity<Agendamento> criarAgendamento(@RequestBody Agendamento agendamento) {
         Agendamento createdAgendamento = agendamentoService.createAgendamento(agendamento);
         return ResponseEntity.status(201).body(createdAgendamento);
     }
 
 
-    // Puxa todos os agendamentos   // Xx Ta puxando faltando os ids de marinheiro  embarcação e usuario  xX
     @GetMapping
-    public ResponseEntity<List<AgendamentosDTORes>> getAllAgendamentos() {
-        List<AgendamentosDTORes> agendamentosDTO = agendamentoService.getAllAgendamentosDTO();
+    public ResponseEntity<List<AgendamentosDTORes>> buscarTodosAgendamentos() {
+        List<AgendamentosDTORes> agendamentosDTO = agendamentoService.buscarTodosAgendamentos();
         return ResponseEntity.ok(agendamentosDTO);
     }
 
-    //Puxa o agendamento por usuario 
-    @GetMapping("/{id}")  // Xx Ta puxando faltando os ids de marinheiro  embarcação e usuario  xX
-    public ResponseEntity<AgendamentosDTORes> getAgendamentoById(@PathVariable(name = "id") UUID id) {
+    @GetMapping("/{id}")  
+    public ResponseEntity<AgendamentosDTORes> buscarAgendamentoPorId(@PathVariable(name = "id") UUID id) {
         Optional<Agendamento> agendamentoOpt = agendamentoService.buscarAgendamentoPorId(id);
     
         if (agendamentoOpt.isEmpty()) {
@@ -58,15 +55,12 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamentoDTO);
     }
   
-
-    // Atualizar um agendamento existente           Xx funcionando xX
     @PutMapping("/{id}")
     public ResponseEntity<Agendamento> updateAgendamento(@PathVariable UUID id, @RequestBody Agendamento agendamento) {
         Agendamento updatedAgendamento = agendamentoService.updateAgendamento(id, agendamento);
         return ResponseEntity.ok(updatedAgendamento); 
     }
 
-    // Deletar um agendamento              Xx funcionando xX
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAgendamento(@PathVariable UUID id) {
         agendamentoService.deleteAgendamento(id);

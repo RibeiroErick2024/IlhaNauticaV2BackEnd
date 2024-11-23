@@ -27,12 +27,14 @@ public class AuthenticationService {
     }
 
     public Usuario signup(CadastroUsuarioDTO input) {
+
+        if (usuarioRepository.findByEmail(input.getEmail()) != null) {
+            throw new BadCredentialsException("Email já cadastrado");
+        }
+    
         Usuario user = UsuarioConverter.cadastroDTOConverterUsuario(input, passwordEncoder.encode(input.getSenha()));
 
-        // user.setNomeCompleto(input.getNomeCompleto());
-        // user.setEmail(input.getEmail());
-        // user.setSenha(passwordEncoder.encode(input.getSenha()));
-        // user.setRole(input.getRole());
+      
 
         return usuarioRepository.save(user);
     }

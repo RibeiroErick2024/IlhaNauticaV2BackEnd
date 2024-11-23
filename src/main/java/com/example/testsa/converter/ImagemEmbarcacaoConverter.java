@@ -26,4 +26,11 @@ public interface ImagemEmbarcacaoConverter {
         dto.setFormato(entidade.getFormato());
         return dto;
     }
+    public static ImagemEmbarcacaoDTORes entidadeParaDtoSemImagem(ImagemEmbarcacao entidade) {
+        ImagemEmbarcacaoDTORes dto = new ImagemEmbarcacaoDTORes();
+        dto.setId_imagem(entidade.getIdImagem());
+        dto.setNome(entidade.getNome());
+        dto.setFormato(entidade.getFormato());
+        return dto;
+    }
 }
