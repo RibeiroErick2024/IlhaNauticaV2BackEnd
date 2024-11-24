@@ -9,8 +9,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import com.example.testsa.entities.Usuario;
-import com.example.testsa.repositories.AgendamentoRepository;
-import com.example.testsa.repositories.EnderecoRepository;
 import com.example.testsa.repositories.UsuarioRepository;
 
 import jakarta.transaction.Transactional;
@@ -21,12 +19,7 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private AgendamentoRepository agendamentoRepository;
-    
-    @Autowired
-    private EnderecoRepository enderecoRepository;
-
+  
     public List<Usuario> buscarTodosUsuario() {
         return usuarioRepository.findAll();
     }

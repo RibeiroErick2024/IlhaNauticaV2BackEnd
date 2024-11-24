@@ -35,6 +35,7 @@ public class Marinheiro {
     @Column(name = "disponibilidade")
     private String disponibilidade;
 
+    //data Nascimento //cpf //genero //email //telefone
     @Column(name = "anosexperiencia")
     private int anosExperiencia;
 
