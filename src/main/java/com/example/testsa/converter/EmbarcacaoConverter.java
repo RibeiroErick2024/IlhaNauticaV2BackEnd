@@ -27,6 +27,7 @@ public class EmbarcacaoConverter {
         dto.setQuantidadeCabines(embarcacao.getQuantidadeCabines());
         dto.setInscricao(embarcacao.getInscricao());
         dto.setBandeira(embarcacao.getBandeira());
+        dto.setPreco(embarcacao.getPreco());
         if (embarcacao.getEndereco() != null) {
             dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
             

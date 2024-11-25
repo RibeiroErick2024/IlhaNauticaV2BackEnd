@@ -11,12 +11,15 @@ public class MarinheiroConverter {
         marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
         marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
-        marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());
         marinheiro.setDisponibilidade(entity.getDisponibilidade());
+        marinheiro.setCpf(entity.getCpf());
+        marinheiro.setDataNascimento(entity.getDataNascimento());
+        marinheiro.setGenero(entity.getGenero());
+        marinheiro.setTelefone(entity.getTelefone());
+        marinheiro.setEmail(entity.getEmail());
 
         return marinheiro;
-
     }
 
     public static MarinheiroComUsuarioDTO entidadeParaMarinheiroComUsuarioDTO(Marinheiro entity) {
@@ -24,26 +27,32 @@ public class MarinheiroConverter {
         marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
         marinheiro.setNome(entity.getNome());
         marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
-        marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
         marinheiro.setCategoria(entity.getCategoria());
         marinheiro.setDisponibilidade(entity.getDisponibilidade());
+        marinheiro.setCpf(entity.getCpf());
+        marinheiro.setDataNascimento(entity.getDataNascimento());
+        marinheiro.setGenero(entity.getGenero());
+        marinheiro.setTelefone(entity.getTelefone());
+        marinheiro.setEmail(entity.getEmail());
         marinheiro.setUsuario(UsuarioConverter.usuarioConverterSimples(entity.getUsuario()));
 
         return marinheiro;
-
     }
 
-    public static Marinheiro dtoParaEntidade(MarinheiroDTORes entity) {
+    public static Marinheiro dtoParaEntidade(MarinheiroDTORes dto) {
         Marinheiro marinheiro = new Marinheiro();
-        marinheiro.setIdMarinheiro(entity.getIdMarinheiro());
-        marinheiro.setNome(entity.getNome());
-        marinheiro.setRegistroMaritimo(entity.getRegistroMaritimo());
-        marinheiro.setAnosExperiencia(entity.getAnosExperiencia());
-        marinheiro.setCategoria(entity.getCategoria());
-        marinheiro.setDisponibilidade(entity.getDisponibilidade());
-        // marinheiro.setUsuario(UsuarioConverter.dtoConverterUsuario(entity.getUsuario()));
+        marinheiro.setIdMarinheiro(dto.getIdMarinheiro());
+        marinheiro.setNome(dto.getNome());
+        marinheiro.setRegistroMaritimo(dto.getRegistroMaritimo());
+        marinheiro.setCategoria(dto.getCategoria());
+        marinheiro.setDisponibilidade(dto.getDisponibilidade());
+        marinheiro.setCpf(dto.getCpf());
+        marinheiro.setDataNascimento(dto.getDataNascimento());
+        marinheiro.setGenero(dto.getGenero());
+        marinheiro.setTelefone(dto.getTelefone());
+        marinheiro.setEmail(dto.getEmail());
+        // marinheiro.setUsuario(UsuarioConverter.dtoConverterUsuario(dto.getUsuario()));
 
         return marinheiro;
-
     }
 }

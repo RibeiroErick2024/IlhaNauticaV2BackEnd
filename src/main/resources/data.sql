@@ -21,9 +21,9 @@ VALUES
 ('c7f34a68-6873-4d79-92fe-dfa67fe2cc1e', 'São Paulo', -23.550520, -46.633308, 'Av. Paulista', 'Bela Vista', 1000, 'Apto 501', 'SP', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b');
 
 -- Inserir dados na tabela Embarcacao
-INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario)
+INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
 VALUES 
-('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2024, 'Yamaha', 300, 900, 15.0, 20, 'Jet Ski', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab');
+('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2024, 'Yamaha', 300, 900, 15.0, 20, 'Jet Ski', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab','c7f34a68-6873-4d79-92fe-dfa67fe2cc1e');
 
 INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco)
 VALUES 
@@ -43,9 +43,9 @@ VALUES
 ('104', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-5.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg');
 
 -- Inserir dados na tabela Marinheiro
-INSERT INTO Marinheiro (id_marinheiro, nome, categoria, registroMaritimo, disponibilidade, anosExperiencia, fk_id_usuario)
-VALUES 
-('fc83bcb0-ea6c-4f7d-bf01-d8b23d4ff2c5', 'Carlos Alberto', 'Capitão', '123456', 'Disponível', 5, 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b');
+INSERT INTO Marinheiro (id_marinheiro, nome, categoria, registroMaritimo, disponibilidade, cpf_cnpj, datanascimento, genero, telefone, email, fk_id_usuario) 
+VALUES
+('fc83bcb0-ea6c-4f7d-bf01-d8b23d4ff2c5', 'Carlos Alberto', 'Capitão', '123456', 'Disponível', '12345678901', '1980-06-15', 'Masculino', '11987654321', 'carlos@example.com', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b');
 
 -- Inserir dados na tabela Agendamento
 INSERT INTO Agendamento (id_agendamento, dataInicio, status, dataFinal, fk_id_usuario, fk_id_marinheiro, fk_id_embarcacao)

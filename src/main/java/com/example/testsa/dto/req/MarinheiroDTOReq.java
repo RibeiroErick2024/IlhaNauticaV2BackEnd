@@ -1,69 +1,61 @@
-package com.example.testsa.dto.req;
+// package com.example.testsa.dto.req;
 
-import com.example.testsa.dto.req.Usuario.UsuarioDTOReq;
+// import com.example.testsa.dto.req.Usuario.UsuarioDTOReq;
 
-public class MarinheiroDTOReq {
+// public class MarinheiroDTOReq {
 
-    private String nome;
+//     private String nome;
     
-    private String categoria;
+//     private String categoria;
 
-    private String registroMaritimo;
+//     private String registroMaritimo;
    
-    private String disponibilidade;
+//     private String disponibilidade;
 
-    private int anosExperiencia; 
 
-    private UsuarioDTOReq usuario;
+//     private UsuarioDTOReq usuario;
     
-    public String getCategoria() {
-        return categoria;
-    }
+//     public String getCategoria() {
+//         return categoria;
+//     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+//     public void setCategoria(String categoria) {
+//         this.categoria = categoria;
+//     }
 
-    public String getRegistroMaritimo() {
-        return registroMaritimo;
-    }
+//     public String getRegistroMaritimo() {
+//         return registroMaritimo;
+//     }
 
-    public void setRegistroMaritimo(String registroMaritimo) {
-        this.registroMaritimo = registroMaritimo;
-    }
+//     public void setRegistroMaritimo(String registroMaritimo) {
+//         this.registroMaritimo = registroMaritimo;
+//     }
 
-    public String getDisponibilidade() {
-        return disponibilidade;
-    }
+//     public String getDisponibilidade() {
+//         return disponibilidade;
+//     }
 
-    public void setDisponibilidade(String disponibilidade) {
-        this.disponibilidade = disponibilidade;
-    }
+//     public void setDisponibilidade(String disponibilidade) {
+//         this.disponibilidade = disponibilidade;
+//     }
 
-    public int getAnosExperiencia() {
-        return anosExperiencia;
-    }
 
-    public void setAnosExperiencia(int anosExperiencia) {
-        this.anosExperiencia = anosExperiencia;
-    }
+//     public UsuarioDTOReq getUsuario() {
+//         return usuario;
+//     }
 
-    public UsuarioDTOReq getUsuario() {
-        return usuario;
-    }
+//     public void setUsuario(UsuarioDTOReq usuario) {
+//         this.usuario = usuario;
+//     }
 
-    public void setUsuario(UsuarioDTOReq usuario) {
-        this.usuario = usuario;
-    }
+//     public String getNome() {
+//         return nome;
+//     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+//     public void setNome(String nome) {
+//         this.nome = nome;
+//     }
 
 
 
-}
+// }

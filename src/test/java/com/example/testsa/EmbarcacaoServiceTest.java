@@ -77,7 +77,7 @@ public class EmbarcacaoServiceTest {
 
         
         assertNull(result);
-    }
+    } //atualizar com um id que não existe
 
     @Test
     public void testAtualizarEmbarcacao_Successo() {

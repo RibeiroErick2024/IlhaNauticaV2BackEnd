@@ -57,7 +57,7 @@ public class LoginServiceTest {
     }
 
     @Test
-    void testCriarUsuario_Success() {
+    void testCriarUsuario_Success() { //adicionar cenário de falha/ usuario já existe
 
         CadastroUsuarioDTO cadastro = new CadastroUsuarioDTO();
         cadastro.setEmail(usuario.getEmail());

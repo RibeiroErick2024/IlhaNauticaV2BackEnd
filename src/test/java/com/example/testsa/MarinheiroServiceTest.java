@@ -36,7 +36,6 @@ class MarinheiroServiceTest {
         marinheiro.setIdMarinheiro(marinheiroId);
         marinheiro.setNome("João Silva");
         marinheiro.setCategoria("Cabo");
-        marinheiro.setAnosExperiencia(5);
         marinheiro.setDisponibilidade("Disponível");
         marinheiro.setRegistroMaritimo("12345");
     }
@@ -53,7 +52,6 @@ class MarinheiroServiceTest {
         assertNotNull(result);
         assertEquals(marinheiro.getNome(), result.getNome());
         assertEquals(marinheiro.getCategoria(), result.getCategoria());
-        assertEquals(marinheiro.getAnosExperiencia(), result.getAnosExperiencia());
         assertEquals(marinheiro.getDisponibilidade(), result.getDisponibilidade());
         assertEquals(marinheiro.getRegistroMaritimo(), result.getRegistroMaritimo());
     }
