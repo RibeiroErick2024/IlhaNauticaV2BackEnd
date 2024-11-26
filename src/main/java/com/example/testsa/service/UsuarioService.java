@@ -91,29 +91,10 @@ public class UsuarioService {
 
         usuarioRepository.deleteById(id);
     }
+    
 
     public Usuario loginUsuario(String email, String senha) {
-<<<<<<< HEAD
-        // Tenta encontrar o usuário pelo email
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
-    
-        // Verifica se o usuário não foi encontrado
-        if (usuarioOpt.isEmpty()) {
-            throw new IllegalArgumentException("Usuário não encontrado!");
-        }
-    
-        // Se o usuário foi encontrado, obtemos o objeto
-        Usuario usuario = usuarioOpt.get();
-    
-        // Verifica se a senha está correta
-        if (!usuario.getSenha().equals(senha)) {
-            throw new IllegalArgumentException("Senha inválida!");
-        }
-    
-        return usuario;
-    }
-    
-=======
+
 
         Optional<Usuario> usuarioOpt = Optional.ofNullable(usuarioRepository.findByEmail(email).orElseThrow());
 
@@ -130,5 +111,5 @@ public class UsuarioService {
         return usuario;
 
     }
->>>>>>> 2e2e6ab3afd9d027d69c9feda4d337efac1e83c3
+
 }
