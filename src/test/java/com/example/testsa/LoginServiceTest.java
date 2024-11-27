@@ -1,8 +1,6 @@
 package com.example.testsa;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -57,7 +55,7 @@ public class LoginServiceTest {
     }
 
     @Test
-    void testCriarUsuario_Success() { //adicionar cenário de falha/ usuario já existe
+    void testCriarUsuario_Success() { 
 
         CadastroUsuarioDTO cadastro = new CadastroUsuarioDTO();
         cadastro.setEmail(usuario.getEmail());
@@ -77,6 +75,23 @@ public class LoginServiceTest {
         assertEquals(cadastro.getNomeCompleto(), result.getNomeCompleto()); 
 
     }
+    
+//adicionar cenário de falha/ usuario já existe
+    @Test
+    void testCriarUsuario_Failure_UsuarioJaExiste() {
+        
+        CadastroUsuarioDTO cadastro = new CadastroUsuarioDTO();
+        cadastro.setEmail(usuario.getEmail());
+        cadastro.setSenha(usuario.getSenha());
+        cadastro.setNomeCompleto(usuario.getNomeCompleto());
+    
+        
+        when(usuarioRepository.findByEmail(cadastro.getEmail())).thenReturn(Optional.of(usuario));
+    
+        
+        assertThrows(BadCredentialsException.class, () -> authenticationService.signup(cadastro));
+    }
+    
 
     @Test
     void testLoginUsuario_Success() {

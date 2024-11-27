@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.testsa.entities.Endereco;
+import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.EnderecoRepository;
 import com.example.testsa.service.EnderecoService;
 
@@ -30,32 +31,32 @@ public class EnderecoServiceTest {
 
     @Test
     public void testAdicionarEndereco_Success() {
-        
         Endereco endereco = new Endereco();
         endereco.setCidade("São Paulo");
         endereco.setRua("Rua Teste");
         endereco.setBairro("Bairro Teste");
         endereco.setNumero(123);
         endereco.setEstado("SP");
-        endereco.setLatitude(23.5505f);
-        endereco.setLongitude(-46.6333f);
-//limitar latitude e longitude //e estado
        
-        when(enderecoRepository.save(any(Endereco.class))).thenReturn(endereco);
-
-       
+    
+        // Mock do repositório para retornar o endereço quando salvar
+        when(enderecoRepository.saveAndFlush(any(Endereco.class))).thenReturn(endereco);
+    
+        // Chama o método do serviço
         Endereco result = enderecoService.adicionarEndereco(endereco);
-
-        
+    
+        // Verificação dos valores
         assertNotNull(result);
         assertEquals("São Paulo", result.getCidade());
         assertEquals("Rua Teste", result.getRua());
         assertEquals("Bairro Teste", result.getBairro());
         assertEquals(123, result.getNumero());
         assertEquals("SP", result.getEstado());
-        assertEquals(23.5505f, result.getLatitude(), 0.01);
-        assertEquals(-46.6333f, result.getLongitude(), 0.01);
+    
+        // Verifica se o método saveAndFlush foi chamado uma vez
+        verify(enderecoRepository, times(1)).saveAndFlush(any(Endereco.class));
     }
+    
 
     @Test
     public void testBuscarTodosEnderecos_Success() {
@@ -112,4 +113,18 @@ public class EnderecoServiceTest {
     }
 
     //adicionar um falha
+    @Test
+    public void testarFalhaAdicionarEnderecoUsuario() {
+        
+        Endereco endereco = new Endereco();
+        endereco.setLatitude(0f);
+        endereco.setLongitude(0f);
+        
+        
+        endereco.setUsuario(new Usuario());
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+            enderecoService.adicionarEnderecoUsuario(endereco);
+        });
+    }
 }

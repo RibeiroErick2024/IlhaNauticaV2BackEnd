@@ -107,8 +107,7 @@ public class EnderecoService {
             enderecoAtualizado.setBairro(endereco.getBairro());
             enderecoAtualizado.setComplemento(endereco.getComplemento());
             enderecoAtualizado.setEstado(endereco.getEstado());
-            enderecoAtualizado.setLatitude(endereco.getLatitude());
-            enderecoAtualizado.setLongitude(endereco.getLongitude());
+        
             enderecoAtualizado.setNumero(endereco.getNumero());
 
         }
@@ -121,6 +120,7 @@ public class EnderecoService {
         enderecoRepository.deleteById(id);
 
     }
+    
 
 }
 // @Transactional

@@ -17,7 +17,7 @@ import com.example.testsa.entities.Embarcacao;
 import com.example.testsa.repositories.EmbarcacaoRepository;
 import com.example.testsa.service.EmbarcacaoService;
 
-@ExtendWith(MockitoExtension.class) 
+@ExtendWith(MockitoExtension.class)
 public class EmbarcacaoServiceTest {
 
     @Mock
@@ -28,19 +28,15 @@ public class EmbarcacaoServiceTest {
 
     @Test
     public void testCriarEmbarcacao_Successo() {
-        
         Embarcacao embarcacao = new Embarcacao();
         embarcacao.setNome("Hornet 500");
         embarcacao.setAnoFabricacao(2024);
         embarcacao.setPreco(50000);
 
-        
         when(embarcacaoRepository.save(any(Embarcacao.class))).thenReturn(embarcacao);
 
-        
         Embarcacao result = embarcacaoService.creatEmbarcacao(embarcacao);
 
-        
         assertNotNull(result);
         assertEquals("Hornet 500", result.getNome());
         assertEquals(2024, result.getAnoFabricacao());
@@ -49,7 +45,6 @@ public class EmbarcacaoServiceTest {
 
     @Test
     public void testBuscarEmbarcacaoPorId_Success() {
-        
         UUID id = UUID.randomUUID();
         Embarcacao embarcacao = new Embarcacao();
         embarcacao.setIdEmbarcacao(id);
@@ -57,10 +52,8 @@ public class EmbarcacaoServiceTest {
 
         when(embarcacaoRepository.findById(id)).thenReturn(Optional.of(embarcacao));
 
-       
         Embarcacao result = embarcacaoService.getEmbarcacaoById(id);
 
-        
         assertNotNull(result);
         assertEquals(id, result.getIdEmbarcacao());
         assertEquals("Hornet 500", result.getNome());
@@ -68,20 +61,18 @@ public class EmbarcacaoServiceTest {
 
     @Test
     public void testBuscarEmbarcacaoPorId_NaoEncontrado() {
-        
         UUID id = UUID.randomUUID();
         when(embarcacaoRepository.findById(id)).thenReturn(Optional.empty());
 
-        // Act
-        Embarcacao result = embarcacaoService.getEmbarcacaoById(id);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            embarcacaoService.getEmbarcacaoById(id);
+        });
 
-        
-        assertNull(result);
-    } //atualizar com um id que não existe
+        assertEquals("Embarcação com ID " + id + " não encontrada.", exception.getMessage());
+    }
 
     @Test
     public void testAtualizarEmbarcacao_Successo() {
-        
         UUID id = UUID.randomUUID();
         Embarcacao embarcacaoExistente = new Embarcacao();
         embarcacaoExistente.setIdEmbarcacao(id);
@@ -94,12 +85,41 @@ public class EmbarcacaoServiceTest {
         when(embarcacaoRepository.findById(id)).thenReturn(Optional.of(embarcacaoExistente));
         when(embarcacaoRepository.saveAndFlush(any(Embarcacao.class))).thenReturn(embarcacaoAtualizada);
 
-        
         Embarcacao result = embarcacaoService.updateEmbarcacao(id, embarcacaoAtualizada);
 
-        
         assertNotNull(result);
         assertEquals("Embarcação Atualizada", result.getNome());
         assertEquals(2025, result.getAnoFabricacao());
+    }
+
+    @Test
+    public void testAtualizarEmbarcacao_IdNaoExistente() {
+        UUID idInexistente = UUID.randomUUID();
+        Embarcacao embarcacaoAtualizada = new Embarcacao();
+        embarcacaoAtualizada.setNome("Embarcação Atualizada");
+        embarcacaoAtualizada.setAnoFabricacao(2025);
+
+        when(embarcacaoRepository.findById(idInexistente)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            embarcacaoService.updateEmbarcacao(idInexistente, embarcacaoAtualizada);
+        });
+
+        assertEquals("Embarcação com ID " + idInexistente + " não encontrada.", exception.getMessage());
+        verify(embarcacaoRepository, never()).saveAndFlush(any(Embarcacao.class));
+    }
+
+    @Test
+    public void testDeletarEmbarcacao_IdNaoExistente() {
+        UUID idInexistente = UUID.randomUUID();
+
+        when(embarcacaoRepository.existsById(idInexistente)).thenReturn(false);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            embarcacaoService.deleteEmbarcacao(idInexistente);
+        });
+
+        assertEquals("Embarcação com ID " + idInexistente + " não encontrada.", exception.getMessage());
+        verify(embarcacaoRepository, never()).deleteById(any(UUID.class));
     }
 }
