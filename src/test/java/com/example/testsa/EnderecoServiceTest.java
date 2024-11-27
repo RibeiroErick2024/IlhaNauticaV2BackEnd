@@ -39,7 +39,7 @@ public class EnderecoServiceTest {
         endereco.setEstado("SP");
         endereco.setLatitude(23.5505f);
         endereco.setLongitude(-46.6333f);
-
+//limitar latitude e longitude //e estado
        
         when(enderecoRepository.save(any(Endereco.class))).thenReturn(endereco);
 
@@ -110,4 +110,6 @@ public class EnderecoServiceTest {
         
         verify(enderecoRepository, times(1)).deleteById(id); 
     }
+
+    //adicionar um falha
 }

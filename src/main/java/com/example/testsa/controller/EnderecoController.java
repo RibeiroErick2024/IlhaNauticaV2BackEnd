@@ -26,6 +26,20 @@ public class EnderecoController {
     @Autowired
     EnderecoService enderecoService;
 
+    @GetMapping("/")
+    public ResponseEntity<List<?>> buscarEndereco() {
+        List<Endereco> enderecos = enderecoService.buscarTodos();
+
+        if (enderecos == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<EnderecoDTORes> dto = enderecos
+                .stream()
+                .map(e -> EnderecoConverter.entidadeParaDto(e)).toList();
+
+        return ResponseEntity.ok(dto);
+    }
     @GetMapping("/usuario/{id}")
     public ResponseEntity<List<EnderecoDTORes>> buscarEnderecoPorIdUsuario(@PathVariable(name = "id") UUID id) {
         List<Endereco> enderecos = enderecoService.buscarPorIdUsuario(id);
@@ -43,18 +57,17 @@ public class EnderecoController {
 
     @PostMapping("/embarcacao")
     public ResponseEntity<?> cadastrarEnderecoEmbarcacao(@RequestBody Endereco entity) {
-        Endereco endereco = enderecoService.adicionarEndereco(entity);
-        // EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
+        Endereco endereco = enderecoService.adicionarEnderecoEmbarcacao(entity);
+        EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
 
-        return ResponseEntity.ok(endereco);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/usuario")
     public ResponseEntity<?> cadastrarEnderecoUsuario(@RequestBody Endereco entity) {
-        Endereco endereco = enderecoService.adicionarEndereco(entity);
-        // EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
-
-        return ResponseEntity.ok(endereco);
+        Endereco endereco = enderecoService.adicionarEnderecoUsuario(entity);
+        EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
+        return ResponseEntity.ok(dto);
     }
 
     @PutMapping("/editar/{id}")

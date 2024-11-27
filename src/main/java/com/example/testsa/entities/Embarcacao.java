@@ -4,6 +4,7 @@ package com.example.testsa.entities;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -85,7 +86,7 @@ public class Embarcacao {
     @JoinColumn(name = "fk_id_endereco", referencedColumnName = "id_endereco")
     private Endereco endereco;
 
-    @OneToMany(mappedBy = "embarcacao")
+    @OneToMany(mappedBy = "embarcacao", cascade = CascadeType.REMOVE)
 	private List<ImagemEmbarcacao> imagem;
 
  

@@ -1,6 +1,5 @@
 // package com.example.testsa.entities;
 
-// import java.math.BigDecimal;
 // import java.util.List;
 // import java.util.UUID;
 
@@ -20,18 +19,17 @@
 //     @Column(name = "id_avaliacao")
 //     private UUID id_avaliacao;
 
-//     @Column(name = "comentario ")
+//     @Column(name = "comentario")
 //     private String comentario ;
 
-//     @Column(name = "notaMarinheiro  ")
-//     private BigDecimal  notaMarinheiro  ;
+//     @Column(name = "notaMarinheiro")
+//     private int notaMarinheiro  ;
 
-//     @Column(name = "notaEmbarcacao   ")
-//     private BigDecimal  notaEmbarcacao   ;
+//     @Column(name = "notaEmbarcacao")
+//     private int notaEmbarcacao   ;
 
-//     @Column(name = "notaAgendamento    ")
-//     private BigDecimal  notaAgendamento    ;
-
+//     @Column(name = "notaAgendamento")
+//     private int notaAgendamento    ;
 
 //     @OneToMany(mappedBy = "avaliacao")
 //     private List<Usuario> usuario;
@@ -61,27 +59,27 @@
 //         this.comentario = comentario;
 //     }
 
-//     public BigDecimal getNotaMarinheiro() {
+//     public int getNotaMarinheiro() {
 //         return notaMarinheiro;
 //     }
 
-//     public void setNotaMarinheiro(BigDecimal notaMarinheiro) {
+//     public void setNotaMarinheiro(int notaMarinheiro) {
 //         this.notaMarinheiro = notaMarinheiro;
 //     }
 
-//     public BigDecimal getNotaEmbarcacao() {
+//     public int getNotaEmbarcacao() {
 //         return notaEmbarcacao;
 //     }
 
-//     public void setNotaEmbarcacao(BigDecimal notaEmbarcacao) {
+//     public void setNotaEmbarcacao(int notaEmbarcacao) {
 //         this.notaEmbarcacao = notaEmbarcacao;
 //     }
 
-//     public BigDecimal getNotaAgendamento() {
+//     public int getNotaAgendamento() {
 //         return notaAgendamento;
 //     }
 
-//     public void setNotaAgendamento(BigDecimal notaAgendamento) {
+//     public void setNotaAgendamento(int notaAgendamento) {
 //         this.notaAgendamento = notaAgendamento;
 //     }
 

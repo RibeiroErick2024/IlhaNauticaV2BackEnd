@@ -1,12 +1,13 @@
 package com.example.testsa.dto.res.Marinheiro;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 
 public class MarinheiroComUsuarioDTO{
 
-    private UUID idMarinheiro;
+     private UUID idMarinheiro;
 
     private String nome;
 
@@ -16,12 +17,58 @@ public class MarinheiroComUsuarioDTO{
 
     private String disponibilidade;
 
-    private int anosExperiencia;
+    private String cpf;
+
+    private LocalDate dataNascimento;
+
+    private String genero;
+
+    private String telefone;
+
+    private String email;
 
     private UsuarioSimplesDTO usuario;
 
 
-  
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getCategoria() {
         return categoria;
@@ -47,16 +94,7 @@ public class MarinheiroComUsuarioDTO{
         this.disponibilidade = disponibilidade;
     }
 
-    public int getAnosExperiencia() {
-        return anosExperiencia;
-    }
-
-    public void setAnosExperiencia(int anosExperiencia) {
-        this.anosExperiencia = anosExperiencia;
-    }
-
-
-  
+   
 
     public UsuarioSimplesDTO getUsuario() {
         return usuario;

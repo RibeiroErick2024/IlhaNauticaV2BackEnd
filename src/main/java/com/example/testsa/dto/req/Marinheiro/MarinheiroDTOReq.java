@@ -1,21 +1,71 @@
 package com.example.testsa.dto.req.Marinheiro;
 
+import java.time.LocalDate;
+
 import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 
 public class MarinheiroDTOReq {
 
     private String nome;
-    
+
     private String categoria;
 
     private String registroMaritimo;
-   
+
     private String disponibilidade;
 
-    private int anosExperiencia; 
+    private String cpf;
+
+    private LocalDate dataNascimento;
+
+    private String genero;
+
+    private String telefone;
+
+    private String email;
 
     private UsuarioSimplesDTO usuario;
-    
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getCategoria() {
         return categoria;
     }
@@ -40,14 +90,6 @@ public class MarinheiroDTOReq {
         this.disponibilidade = disponibilidade;
     }
 
-    public int getAnosExperiencia() {
-        return anosExperiencia;
-    }
-
-    public void setAnosExperiencia(int anosExperiencia) {
-        this.anosExperiencia = anosExperiencia;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -63,7 +105,5 @@ public class MarinheiroDTOReq {
     public void setUsuario(UsuarioSimplesDTO usuario) {
         this.usuario = usuario;
     }
-
-
 
 }

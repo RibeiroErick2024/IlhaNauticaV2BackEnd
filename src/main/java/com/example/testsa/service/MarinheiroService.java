@@ -42,21 +42,24 @@ public class MarinheiroService {
 
     }
      @Transactional
-    public Marinheiro atualizarMarinheiro(UUID id, Marinheiro marinheiro) {
+     public Marinheiro atualizarMarinheiro(UUID id, Marinheiro marinheiro) {
         Optional<Marinheiro> marinheiroExiste = marinheiroRepository.findById(id);
-        
-        if(marinheiroExiste.isPresent()){
+    
+        if (marinheiroExiste.isPresent()) {
             Marinheiro atualMarinheiro = marinheiroExiste.get();
+            
             atualMarinheiro.setDisponibilidade(marinheiro.getDisponibilidade());
             atualMarinheiro.setNome(marinheiro.getNome());
             atualMarinheiro.setCategoria(marinheiro.getCategoria());
-            atualMarinheiro.setAnosExperiencia(marinheiro.getAnosExperiencia());
-            atualMarinheiro.setDisponibilidade(marinheiro.getDisponibilidade());
             atualMarinheiro.setRegistroMaritimo(marinheiro.getRegistroMaritimo());
-
+            atualMarinheiro.setCpf(marinheiro.getCpf());
+            atualMarinheiro.setDataNascimento(marinheiro.getDataNascimento());
+            atualMarinheiro.setGenero(marinheiro.getGenero());
+            atualMarinheiro.setTelefone(marinheiro.getTelefone());
+            atualMarinheiro.setEmail(marinheiro.getEmail());
         }
     
-        return marinheiroRepository.saveAndFlush(marinheiro);
+        return marinheiroRepository.saveAndFlush(marinheiroExiste.get());
     }
     
     public void deletarMarinheiro(UUID id) {

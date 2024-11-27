@@ -38,6 +38,8 @@ public class EmbarcacaoDTORes {
 
     private String bandeira;
 
+    private float preco;
+    
     private EnderecoDTORes endereco;
 
     private List<ImagemEmbarcacaoDTORes> imagem;
@@ -49,7 +51,7 @@ public class EmbarcacaoDTORes {
     public void setIdEmbarcacao(UUID idEmbarcacao) {
         this.idEmbarcacao = idEmbarcacao;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -176,6 +178,14 @@ public class EmbarcacaoDTORes {
 
     public void setImagem(List<ImagemEmbarcacaoDTORes> imagem) {
         this.imagem = imagem;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
     }
 
    

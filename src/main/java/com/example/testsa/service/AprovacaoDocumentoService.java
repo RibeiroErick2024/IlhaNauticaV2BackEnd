@@ -1,7 +1,6 @@
 package com.example.testsa.service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,9 +18,10 @@ public class AprovacaoDocumentoService {
     AprovacaoDocumentoRepository aprovacaoDocumentoRepository;
 
     public String criarPendencia(AprovacaoDocumento doc) {
-        AprovacaoDocumento pendencia = aprovacaoDocumentoRepository.save(doc);
+       aprovacaoDocumentoRepository.save(doc);
+        // AprovacaoDocumento pendencia = aprovacaoDocumentoRepository.save(doc);
 
-        return "OI";
+        return "Pendência criada";
     }
 
     public List<AprovacaoDocumento> buscarTodas() {

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +26,9 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    AgendamentoController agendamentoController;
 
     // Busca todos os usuarios
     @GetMapping("/")
@@ -89,23 +91,13 @@ public class UsuarioController {
     
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarUsuario(@PathVariable UUID id) {
+        System.out.println(id);
         try {
             usuarioService.deletarUsuario(id);
             return ResponseEntity.ok("Usuário deletado");
-
         } catch (Exception e) {
-
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body("Usuario não encontrado");
+            return ResponseEntity.ok(e.getMessage());
         }
-
     }
 
-    // Endpoint de login
-    @PostMapping("/login")
-    public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
-        Usuario usuarioLogado = usuarioService.loginUsuario(usuario.getEmail(), usuario.getSenha());
-        return ResponseEntity.ok(usuarioLogado);
-    }
 }

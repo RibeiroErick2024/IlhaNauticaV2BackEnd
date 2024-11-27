@@ -1,6 +1,9 @@
 package com.example.testsa.dto.res.Marinheiro;
 
+import java.time.LocalDate;
 import java.util.UUID;
+
+import jakarta.persistence.Column;
 
 public class MarinheiroDTORes {
 
@@ -14,8 +17,25 @@ public class MarinheiroDTORes {
 
     private String disponibilidade;
 
-    private int anosExperiencia;
+    private String cpf;
 
+    private LocalDate dataNascimento;
+
+    private String genero;
+
+    private String telefone;
+
+    private String email;
+
+    
+
+    public UUID getIdMarinheiro() {
+        return idMarinheiro;
+    }
+
+    public void setIdMarinheiro(UUID id_marinheiro) {
+        this.idMarinheiro = id_marinheiro;
+    }
 
     public String getNome() {
         return nome;
@@ -23,6 +43,46 @@ public class MarinheiroDTORes {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCategoria() {
@@ -47,22 +107,6 @@ public class MarinheiroDTORes {
 
     public void setDisponibilidade(String disponibilidade) {
         this.disponibilidade = disponibilidade;
-    }
-
-    public int getAnosExperiencia() {
-        return anosExperiencia;
-    }
-
-    public void setAnosExperiencia(int anosExperiencia) {
-        this.anosExperiencia = anosExperiencia;
-    }
-
-    public UUID getIdMarinheiro() {
-        return idMarinheiro;
-    }
-
-    public void setIdMarinheiro(UUID idMarinheiro) {
-        this.idMarinheiro = idMarinheiro;
     }
 
 }
