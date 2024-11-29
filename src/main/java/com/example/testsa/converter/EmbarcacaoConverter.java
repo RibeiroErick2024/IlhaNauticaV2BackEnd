@@ -28,10 +28,11 @@ public class EmbarcacaoConverter {
         dto.setInscricao(embarcacao.getInscricao());
         dto.setBandeira(embarcacao.getBandeira());
         dto.setPreco(embarcacao.getPreco());
-        if (embarcacao.getEndereco() != null) {
-            dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
+        dto.setRegras(embarcacao.getRegras());
+        dto.setDescricao(embarcacao.getDescricao());
+     
+      dto.setEndereco(embarcacao.getEndereco() != null? EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()) : null);
             
-        }
         List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
         .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDtoSemImagem(imagem)).toList();
 
@@ -72,8 +73,18 @@ public class EmbarcacaoConverter {
     }
      public static Embarcacao dtoConverterEntidade(EmbarcacaoDTOReq dto) {
         Embarcacao entidade = new Embarcacao();
-        dto.setIdEmbarcacao(entidade.getIdEmbarcacao());
-        dto.setNome(entidade.getNome());
+        entidade.setIdEmbarcacao(dto.getIdEmbarcacao());
+        entidade.setNome(dto.getNome());
+        entidade.setIdEmbarcacao(dto.getIdEmbarcacao());
+        entidade.setAnoFabricacao(dto.getAnoFabricacao());
+        entidade.setNome(dto.getNome());
+        entidade.setFabricante(dto.getFabricante());
+        entidade.setTamanho(dto.getTamanho());
+        entidade.setPotencia(dto.getPotencia());
+        entidade.setCapacidade(dto.getCapacidade());
+        entidade.setCategoria(dto.getCategoria());
+        entidade.setQuantidadeBanheiro(dto.getQuantidadeBanheiro());
+        entidade.setQuantidadeCabines(dto.getQuantidadeCabines());
      
         return entidade;
     }

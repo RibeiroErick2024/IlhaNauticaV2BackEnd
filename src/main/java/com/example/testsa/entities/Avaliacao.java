@@ -1,119 +1,121 @@
-// package com.example.testsa.entities;
+package com.example.testsa.entities;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-// import java.util.List;
-// import java.util.UUID;
-
-// import jakarta.persistence.Column;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.OneToMany;
-
-// @Entity
-// public class Avaliacao {
+@Entity(name = "avaliacao")
+public class Avaliacao {
     
+     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_avaliacao")
+    private Long idAvaliacao;
 
-//      @Id
-//     @GeneratedValue(strategy = GenerationType.AUTO)
-//     @Column(name = "id_avaliacao")
-//     private UUID id_avaliacao;
+    @Column(name = "comentario")
+    private String comentario;
 
-//     @Column(name = "comentario")
-//     private String comentario ;
+    @Column(name = "notamarinheiro")
+    private int notaMarinheiro;
 
-//     @Column(name = "notaMarinheiro")
-//     private int notaMarinheiro  ;
+    @Column(name = "notaembarcacao")
+    private int notaEmbarcacao;
 
-//     @Column(name = "notaEmbarcacao")
-//     private int notaEmbarcacao   ;
+    @Column(name = "notaagendamento")
+    private int notaAgendamento;
 
-//     @Column(name = "notaAgendamento")
-//     private int notaAgendamento    ;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_usuario")
+    private Usuario usuario;
 
-//     @OneToMany(mappedBy = "avaliacao")
-//     private List<Usuario> usuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_marinheiro")
+    private Marinheiro marinheiro;
 
-//     @OneToMany(mappedBy = "avaliacao")
-//     private List<Agendamento> agendamento;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_embarcacao")
+    private Embarcacao embarcacao;
 
-//     @OneToMany(mappedBy = "avaliacao")
-//     private List<Marinheiro> marinheiro;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_id_agendamento")
+    private Agendamento agendamento;
 
-//     @OneToMany(mappedBy = "avaliacao")
-//     private List<Embarcacao> embarcacao;
+    public Long getIdAvaliacao() {
+        return idAvaliacao;
+    }
 
-//     public UUID getId_avaliacao() {
-//         return id_avaliacao;
-//     }
+    public void setIdAvaliacao(Long idAvaliacao) {
+        this.idAvaliacao = idAvaliacao;
+    }
 
-//     public void setId_avaliacao(UUID id_avaliacao) {
-//         this.id_avaliacao = id_avaliacao;
-//     }
+    public String getComentario() {
+        return comentario;
+    }
 
-//     public String getComentario() {
-//         return comentario;
-//     }
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
 
-//     public void setComentario(String comentario) {
-//         this.comentario = comentario;
-//     }
+    public int getNotaMarinheiro() {
+        return notaMarinheiro;
+    }
 
-//     public int getNotaMarinheiro() {
-//         return notaMarinheiro;
-//     }
+    public void setNotaMarinheiro(int notaMarinheiro) {
+        this.notaMarinheiro = notaMarinheiro;
+    }
 
-//     public void setNotaMarinheiro(int notaMarinheiro) {
-//         this.notaMarinheiro = notaMarinheiro;
-//     }
+    public int getNotaEmbarcacao() {
+        return notaEmbarcacao;
+    }
 
-//     public int getNotaEmbarcacao() {
-//         return notaEmbarcacao;
-//     }
+    public void setNotaEmbarcacao(int notaEmbarcacao) {
+        this.notaEmbarcacao = notaEmbarcacao;
+    }
 
-//     public void setNotaEmbarcacao(int notaEmbarcacao) {
-//         this.notaEmbarcacao = notaEmbarcacao;
-//     }
+    public int getNotaAgendamento() {
+        return notaAgendamento;
+    }
 
-//     public int getNotaAgendamento() {
-//         return notaAgendamento;
-//     }
+    public void setNotaAgendamento(int notaAgendamento) {
+        this.notaAgendamento = notaAgendamento;
+    }
 
-//     public void setNotaAgendamento(int notaAgendamento) {
-//         this.notaAgendamento = notaAgendamento;
-//     }
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-//     public List<Usuario> getUsuario() {
-//         return usuario;
-//     }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-//     public void setUsuario(List<Usuario> usuario) {
-//         this.usuario = usuario;
-//     }
+    public Marinheiro getMarinheiro() {
+        return marinheiro;
+    }
 
-//     public List<Agendamento> getAgendamento() {
-//         return agendamento;
-//     }
+    public void setMarinheiro(Marinheiro marinheiro) {
+        this.marinheiro = marinheiro;
+    }
 
-//     public void setAgendamento(List<Agendamento> agendamento) {
-//         this.agendamento = agendamento;
-//     }
+    public Embarcacao getEmbarcacao() {
+        return embarcacao;
+    }
 
-//     public List<Marinheiro> getMarinheiro() {
-//         return marinheiro;
-//     }
+    public void setEmbarcacao(Embarcacao embarcacao) {
+        this.embarcacao = embarcacao;
+    }
 
-//     public void setMarinheiro(List<Marinheiro> marinheiro) {
-//         this.marinheiro = marinheiro;
-//     }
+    public Agendamento getAgendamento() {
+        return agendamento;
+    }
 
-//     public List<Embarcacao> getEmbarcacao() {
-//         return embarcacao;
-//     }
+    public void setAgendamento(Agendamento agendamento) {
+        this.agendamento = agendamento;
+    }
 
-//     public void setEmbarcacao(List<Embarcacao> embarcacao) {
-//         this.embarcacao = embarcacao;
-//     }
+   
 
-
-// }
+}

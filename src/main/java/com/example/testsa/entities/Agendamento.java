@@ -1,7 +1,7 @@
 package com.example.testsa.entities;
 
-
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
@@ -11,13 +11,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Agendamento {
-   
+
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_agendamento")
     private UUID idAgendamento;
 
@@ -42,6 +43,16 @@ public class Agendamento {
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
+    @OneToMany(mappedBy = "agendamento")
+    private List<Avaliacao> avaliacao;
+
+    public UUID getIdAgendamento() {
+        return idAgendamento;
+    }
+
+    public void setIdAgendamento(UUID idAgendamento) {
+        this.idAgendamento = idAgendamento;
+    }
 
     public LocalDate getDataInicio() {
         return dataInicio;
@@ -91,24 +102,13 @@ public class Agendamento {
         this.embarcacao = embarcacao;
     }
 
-    public UUID getIdAgendamento() {
-        return idAgendamento;
+    public List<Avaliacao> getAvaliacao() {
+        return avaliacao;
     }
 
-    public void setIdAgendamento(UUID idAgendamento) {
-        this.idAgendamento = idAgendamento;
+    public void setAvaliacao(List<Avaliacao> avaliacao) {
+        this.avaliacao = avaliacao;
     }
-
-    // public Iterable<Marinheiro> getMarinheiros() {
-    //     throw new UnsupportedOperationException("Não suportado.");
-    // }
-
-  
-   
-
-
 
     
-
-
 }

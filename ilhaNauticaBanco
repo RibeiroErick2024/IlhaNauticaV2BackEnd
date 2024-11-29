@@ -1,20 +1,25 @@
 -- Enable the UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- Create the Usuario table
-CREATE TABLE Usuario (
-    id_usuario UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    nomeCompleto VARCHAR(50) CHECK (char_length(nomeCompleto) >= 3),
-    cpf_cnpj VARCHAR(14) UNIQUE,
-    dataNascimento DATE,
-    genero VARCHAR(50),
-    telefone VARCHAR(11),
-    email VARCHAR(50) UNIQUE,
-    senha VARCHAR(255), -- Increased size for security (hashed passwords)
-    categoria VARCHAR(50)
+CREATE TABLE Role (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL UNIQUE,
 );
 
--- Create the Endereco table
+CREATE TABLE Usuario (
+    id_usuario UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    nomeCompleto VARCHAR(100) NOT NULL,
+    cpf_cnpj VARCHAR(14) NOT NULL UNIQUE,
+    dataNascimento DATE NOT NULL,
+    genero VARCHAR(20),
+    telefone VARCHAR(15),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    categoria VARCHAR(50),
+    fk_id_role INT,
+    CONSTRAINT fk_role FOREIGN KEY (fk_id_role) REFERENCES Role(id) ON DELETE SET NULL
+);
+
 CREATE TABLE Endereco (
     id_endereco UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     cidade VARCHAR(50),
@@ -30,41 +35,45 @@ CREATE TABLE Endereco (
 
 );
 
--- Create the Marinheiro table
 CREATE TABLE Marinheiro (
     id_marinheiro UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    nome VARCHAR(50),
-    categoria VARCHAR(45),
-    registroMaritimo VARCHAR(50),
-    disponibilidade VARCHAR(50),
-    anosExperiencia INT,
-    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    nome VARCHAR(100) NOT NULL,
+    categoria VARCHAR(45) NOT NULL,
+    registromaritimo VARCHAR(50) NOT NULL UNIQUE,
+    disponibilidade BOOLEAN NOT NULL,
+    cpf_cnpj VARCHAR(11) NOT NULL UNIQUE,
+    datanascimento DATE NOT NULL,
+    genero VARCHAR(20) NOT NULL,
+    telefone VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    fk_id_usuario UUID,
+    CONSTRAINT fk_usuario FOREIGN KEY (fk_id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
-
--- Create the Embarcacao table
 CREATE TABLE Embarcacao (
-    id_embarcacao UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    nome VARCHAR(50),
-    anoFabricacao int,
-    fabricante VARCHAR(50),
-    tamanho FLOAT,
-    preco FLOAT,
-    capacidade INT,
-    potencia INT,
-    categoria VARCHAR(50),
-    enderecoEmbarque VARCHAR(50),
-    disponibilidade BOOLEAN,
-    imagem VARCHAR(255),
-    pet BOOLEAN,
-    quantidadeBanheiro INT,
-    quantidadeCabines INT,
-    inscricao_IMO VARCHAR(50),
-    bandeira VARCHAR(50),
-    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    fk_id_endereco UUID REFERENCES Endereco(id_endereco)
+    id_embarcacao UUID PRIMARY KEY, 
+    nome VARCHAR(255) NOT NULL,
+    anofabricacao INT NOT NULL,
+    fabricante VARCHAR(255) NOT NULL, 
+    preco FLOAT NOT NULL, 
+    potencia INT NOT NULL, 
+    tamanho FLOAT, 
+    capacidade INT NOT NULL, 
+    categoria VARCHAR(255) NOT NULL, 
+    regras VARCHAR(400),
+    descricao VARCHAR(400), 
+    enderecoembarque VARCHAR(255) NOT NULL, 
+    disponibilidade BOOLEAN NOT NULL, 
+    pet BOOLEAN, 
+    quantidadebanheiro INT NOT NULL, 
+    quantidadecabines INT NOT NULL, 
+    inscricao_IMO VARCHAR(255) NOT NULL, 
+    bandeira VARCHAR(255) NOT NULL,
+    fk_id_usuario UUID,
+    fk_id_endereco UUID, 
+    CONSTRAINT fk_usuario FOREIGN KEY (fk_id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    CONSTRAINT fk_endereco FOREIGN KEY (fk_id_endereco) REFERENCES Endereco(id_endereco) ON DELETE SET NULL
 );
 
--- Create the Pagamento table
 CREATE TABLE Pagamento (
     id_pagamento UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     banco VARCHAR(50),
@@ -133,7 +142,7 @@ CREATE TABLE AprovacaoDocumento (
     fk_id_documento UUID REFERENCES Documentos(id_documento) ON DELETE CASCADE,
     status_aprovacao VARCHAR(50) CHECK (status_aprovacao IN ('Pendente', 'Aprovado', 'Rejeitado')),
     data_aprovacao DATE,
-    observacoes TEXT,
+    observacoes VARCHAR(50),
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
 

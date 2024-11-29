@@ -24,6 +24,10 @@ public class EmbarcacaoDTORes {
 
     private String categoria;
 
+    private String regras;
+
+    private String descricao;
+
     private String enderecoEmbarque;
 
     private Boolean disponibilidade;
@@ -106,6 +110,22 @@ public class EmbarcacaoDTORes {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getRegras() {
+        return regras;
+    }
+
+    public void setRegras(String regras) {
+        this.regras = regras;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getEnderecoEmbarque() {

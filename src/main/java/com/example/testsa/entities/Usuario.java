@@ -63,8 +63,14 @@ public class Usuario implements UserDetails {
 	@OneToOne(mappedBy = "usuario")
 	private Endereco endereco;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id")
+	
+	@JoinColumn(name = "fk_id_role")
 	private Role role;
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Avaliacao> avaliacao;
+	
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -184,7 +190,6 @@ public class Usuario implements UserDetails {
 		this.categoriaUsuario = categoriaUsuario;
 	}
 
-	// Getters and setters
 	public UUID getId() {
 		return id;
 	}

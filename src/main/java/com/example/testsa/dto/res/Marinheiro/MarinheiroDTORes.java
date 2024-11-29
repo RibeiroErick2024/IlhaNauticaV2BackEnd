@@ -3,7 +3,6 @@ package com.example.testsa.dto.res.Marinheiro;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
 
 public class MarinheiroDTORes {
 

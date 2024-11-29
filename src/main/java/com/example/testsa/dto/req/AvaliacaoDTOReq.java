@@ -1,30 +1,19 @@
-package com.example.testsa.dto.res;
+package com.example.testsa.dto.req;
 
 import java.util.UUID;
 
-import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
+public class AvaliacaoDTOReq {
 
-public class AvaliacaoDTORes {
-    
-
-    private Long idAvaliacao;
     private String comentario;
     private int notaMarinheiro;
     private int notaEmbarcacao;
     private int notaAgendamento;
-    private UsuarioSimplesDTO usuario;
+    private UUID idUsuario;
     private UUID idMarinheiro;
     private UUID idEmbarcacao;
     private UUID idAgendamento;
 
-    public Long getIdAvaliacao() {
-        return idAvaliacao;
-    }
-
-    public void setIdAvaliacao(Long idAvaliacao) {
-        this.idAvaliacao = idAvaliacao;
-    }
-
+    // Getters and Setters
     public String getComentario() {
         return comentario;
     }
@@ -57,12 +46,12 @@ public class AvaliacaoDTORes {
         this.notaAgendamento = notaAgendamento;
     }
 
-    public UsuarioSimplesDTO getUsuario() {
-        return usuario;
+    public UUID getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(UsuarioSimplesDTO usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(UUID idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public UUID getIdMarinheiro() {
@@ -88,7 +77,4 @@ public class AvaliacaoDTORes {
     public void setIdAgendamento(UUID idAgendamento) {
         this.idAgendamento = idAgendamento;
     }
-
-
-    
 }
