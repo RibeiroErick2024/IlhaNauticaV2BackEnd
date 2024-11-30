@@ -1,0 +1,27 @@
+
+// Agendamento to front request
+//     {
+//         "dataInicio": "2024-12-01",
+//         "status": "Confirmado",
+//         "dataFinal": "2024-12-10",
+//         "usuario": {
+//             "id": "69a2f19b-9d59-4852-8f88-161bd94ccecb",
+//             "nomeCompleto": "João Silva"
+//         },
+//         "marinheiro": {
+//             "idMarinheiro": "8f62cba1-14f7-471f-b4e9-6f762283e1c6"
+//         }
+//     }
+
+// Avaliacao to front request
+//     {
+//        "comentario": "Ótima experiência, marinheiro muito experiente e embarcação excelente!",
+//         "notaMarinheiro": 5,
+//         "notaEmbarcacao": 5,
+//         "notaAgendamento": 5,
+//         "usuario": {
+//             "id": "a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b" },
+//         "embarcacao":{
+//             "id_embarcacao": "d62f3c72-8b23-4d35-94f1-6451e1b18d19"
+//         }
+//     }
