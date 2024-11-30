@@ -1,7 +1,6 @@
 package com.example.testsa.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
@@ -11,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -43,8 +41,8 @@ public class Agendamento {
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
-    @OneToMany(mappedBy = "agendamento")
-    private List<Avaliacao> avaliacao;
+    // @OneToMany(mappedBy = "agendamento")
+    // private List<Avaliacao> avaliacao;
 
     public UUID getIdAgendamento() {
         return idAgendamento;
@@ -102,13 +100,6 @@ public class Agendamento {
         this.embarcacao = embarcacao;
     }
 
-    public List<Avaliacao> getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(List<Avaliacao> avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
+  
     
 }

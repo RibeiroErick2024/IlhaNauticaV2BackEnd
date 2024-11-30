@@ -28,21 +28,21 @@ public class Avaliacao {
     @Column(name = "notaagendamento")
     private int notaAgendamento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_usuario")
+    @ManyToOne
+    @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_marinheiro")
-    private Marinheiro marinheiro;
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "fk_id_marinheiro")
+    // private Marinheiro marinheiro;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_embarcacao")
+    @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_agendamento")
-    private Agendamento agendamento;
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "fk_id_agendamento")
+    // private Agendamento agendamento;
 
     public Long getIdAvaliacao() {
         return idAvaliacao;
@@ -92,30 +92,12 @@ public class Avaliacao {
         this.usuario = usuario;
     }
 
-    public Marinheiro getMarinheiro() {
-        return marinheiro;
-    }
-
-    public void setMarinheiro(Marinheiro marinheiro) {
-        this.marinheiro = marinheiro;
-    }
-
     public Embarcacao getEmbarcacao() {
         return embarcacao;
     }
 
     public void setEmbarcacao(Embarcacao embarcacao) {
         this.embarcacao = embarcacao;
-    }
-
-    public Agendamento getAgendamento() {
-        return agendamento;
-    }
-
-    public void setAgendamento(Agendamento agendamento) {
-        this.agendamento = agendamento;
-    }
-
-   
+    }  
 
 }

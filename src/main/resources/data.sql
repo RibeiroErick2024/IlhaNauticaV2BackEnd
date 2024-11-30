@@ -37,15 +37,16 @@ VALUES
 -- Inserir dados na tabela Marinheiro
 INSERT INTO Marinheiro (id_marinheiro, nome, categoria, registroMaritimo, disponibilidade, cpf_cnpj, datanascimento, genero, telefone, email, fk_id_usuario) 
 VALUES
-('fc83bcb0-ea6c-4f7d-bf01-d8b23d4ff2c5', 'Carlos Alberto', 'Capitão', '123456', 'Disponível', '12345678901', '1980-06-15', 'Masculino', '11987654321', 'carlos@example.com', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b');
+('fc83bcb0-ea6c-4f7d-bf01-d8b23d4ff2c5', 'Carlos Alberto', 'Jet Ski', '123456', 'Disponível', '12345678901', '1980-06-15', 'Masculino', '11987654321', 'carlos@example.com', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b'),
+('8f62cba1-14f7-471f-b4e9-6f762283e1c6', 'João Pedro', 'Iate', '654321', 'Indisponível', '98765432109', '1992-11-20', 'Masculino', '11912345678', 'joao@example.com', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab');
 
 -- Inserir dados na tabela Agendamento
 INSERT INTO Agendamento (id_agendamento, dataInicio, status, dataFinal, fk_id_usuario, fk_id_marinheiro, fk_id_embarcacao)
 VALUES 
 ('a728f3e1-9c67-46f0-a3b2-9d0dcd8043c5', '2024-12-01', 'Confirmado', '2024-12-10', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'fc83bcb0-ea6c-4f7d-bf01-d8b23d4ff2c5', 'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb');
 
-INSERT INTO Avaliacao (id_avaliacao, comentario, notamarinheiro, notaembarcacao, notaagendamento, fk_id_usuario, fk_id_marinheiro, fk_id_embarcacao, fk_id_agendamento)
+INSERT INTO Avaliacao (id_avaliacao, comentario, notamarinheiro, notaembarcacao, notaagendamento, fk_id_usuario, fk_id_embarcacao)
 VALUES 
-(1, 'Ótima experiência, marinheiro muito experiente e embarcação excelente!', 5, 5, 5, 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'fc83bcb0-ea6c-4f7d-bf01-d8b23d4ff2c5', 'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'a728f3e1-9c67-46f0-a3b2-9d0dcd8043c5');
+(1, 'Ótima experiência, marinheiro muito experiente e embarcação excelente!', 5, 5, 5, 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb');
 
 

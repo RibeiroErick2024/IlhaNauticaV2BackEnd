@@ -58,8 +58,8 @@ public class Marinheiro {
     @OneToMany(mappedBy = "marinheiro")
 	private List<Agendamento> agendamento;
     
-    @OneToMany(mappedBy = "marinheiro")
-    private List<Avaliacao> avaliacao;
+    // @OneToMany(mappedBy = "marinheiro")
+    // private List<Avaliacao> avaliacao;
 
     public UUID getIdMarinheiro() {
         return idMarinheiro;
@@ -157,13 +157,13 @@ public class Marinheiro {
         this.agendamento = agendamento;
     }
 
-    public List<Avaliacao> getAvaliacao() {
-        return avaliacao;
-    }
+    // public List<Avaliacao> getAvaliacao() {
+    //     return avaliacao;
+    // }
 
-    public void setAvaliacao(List<Avaliacao> avaliacao) {
-        this.avaliacao = avaliacao;
-    }   
+    // public void setAvaliacao(List<Avaliacao> avaliacao) {
+    //     this.avaliacao = avaliacao;
+    // }   
 
    
 }

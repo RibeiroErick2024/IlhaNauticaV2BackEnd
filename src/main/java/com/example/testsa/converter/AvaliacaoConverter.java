@@ -1,19 +1,17 @@
 package com.example.testsa.converter;
 
+import org.springframework.stereotype.Component;
+
 import com.example.testsa.dto.req.AvaliacaoDTOReq;
 import com.example.testsa.dto.res.AvaliacaoDTORes;
 import com.example.testsa.entities.Avaliacao;
-import com.example.testsa.entities.Embarcacao;
-import com.example.testsa.entities.Marinheiro;
 import com.example.testsa.entities.Usuario;
-
-import org.springframework.stereotype.Component;
 
 @Component
 public interface AvaliacaoConverter {
 
 
-    public static AvaliacaoDTORes entidadetoDTO(Avaliacao avaliacao) {
+    public static AvaliacaoDTORes entidadeConverterDTO(Avaliacao avaliacao) {
         AvaliacaoDTORes dto = new AvaliacaoDTORes();
         dto.setIdAvaliacao(avaliacao.getIdAvaliacao());
         dto.setComentario(avaliacao.getComentario());
@@ -21,9 +19,9 @@ public interface AvaliacaoConverter {
         dto.setNotaEmbarcacao(avaliacao.getNotaEmbarcacao());
         dto.setNotaAgendamento(avaliacao.getNotaAgendamento());
         dto.setUsuario(avaliacao.getUsuario() != null ? UsuarioConverter.usuarioConverterSimples(avaliacao.getUsuario()) : null);
-        dto.setIdMarinheiro(avaliacao.getMarinheiro() != null ? avaliacao.getMarinheiro().getIdMarinheiro() : null);
+        // dto.setIdMarinheiro(avaliacao.getMarinheiro() != null ? avaliacao.getMarinheiro().getIdMarinheiro() : null);
         dto.setIdEmbarcacao(avaliacao.getEmbarcacao() != null ? avaliacao.getEmbarcacao().getIdEmbarcacao() : null);
-        dto.setIdAgendamento(avaliacao.getAgendamento() != null ? avaliacao.getAgendamento().getIdAgendamento() : null);
+        // dto.setIdAgendamento(avaliacao.getAgendamento() != null ? avaliacao.getAgendamento().getIdAgendamento() : null);
         return dto;
     }
 
@@ -35,7 +33,7 @@ public interface AvaliacaoConverter {
         avaliacao.setNotaAgendamento(dto.getNotaAgendamento());
      
         Usuario usuario = new Usuario();
-        usuario.setId(dto.getIdUsuario() != null ? dto.getIdUsuario() : null);
+        usuario.setId(dto.getIdUsuario());
     
         // Marinheiro marinheiro = new Marinheiro();
         // marinheiro.setIdMarinheiro(dto.getIdMarinheiro() != null ? dto.getIdMarinheiro() : null);
