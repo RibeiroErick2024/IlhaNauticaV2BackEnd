@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testsa.converter.UsuarioConverter;
-import com.example.testsa.dto.req.CadastroUsuarioDTO;
-import com.example.testsa.dto.res.UsuarioDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.service.UsuarioService;
 
@@ -26,14 +27,16 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
+    @Autowired
+    AgendamentoController agendamentoController;
 
-    //Busca todos os usuarios
+    // Busca todos os usuarios
     @GetMapping("/")
-    public ResponseEntity<?> getallUsers() {
-        var usuarios = usuarioService.getAllUsuario();
+    public ResponseEntity<?> buscarTodosUsers() {
+        var usuarios = usuarioService.buscarTodosUsuario();
 
-        List<UsuarioDTORes> dtoRes = usuarios
-                .stream().map(u -> UsuarioConverter.usuarioConverterLocador(u)).toList();
+        List<UsuarioGeralDTORes> dtoRes = usuarios
+                .stream().map(u -> UsuarioConverter.usuarioConverterGeral(u)).toList();
 
         if (usuarios.isEmpty()) {
             return ResponseEntity.ok("Nenhum usuário encontrado");
@@ -41,42 +44,60 @@ public class UsuarioController {
         return ResponseEntity.ok(dtoRes);
     }
 
-    //Busca o usuario pelo
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTORes> getUsuario(@PathVariable(name = "id") UUID id) {
-        Usuario u = usuarioService.getUsuarioById(id);
-    
+    public ResponseEntity<UsuarioGeralDTORes> buscarUsuarioGeral(@PathVariable(name = "id") UUID id) {
+        Usuario u = usuarioService.buscarUsuarioPorId(id);
+
         if (u == null) {
             return ResponseEntity.notFound().build();
         }
-    
-        UsuarioDTORes usuarioDTO = UsuarioConverter.usuarioConverterLocador(u);
+
+        UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
+        return ResponseEntity.ok(usuarioDTO);
+    }
+    @GetMapping("locador/{id}")
+    public ResponseEntity<UsuarioLocadorDTORes> buscarUsuario(@PathVariable(name = "id") UUID id) {
+        Usuario u = usuarioService.buscarUsuarioPorId(id);
+
+        if (u == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        UsuarioLocadorDTORes usuarioDTO = UsuarioConverter.usuarioConverterLocador(u);
         return ResponseEntity.ok(usuarioDTO);
     }
 
-    @PostMapping("/criar")
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario entity) {
-        var response = usuarioService.createUsuario(entity);
-        return ResponseEntity.ok(response);
+    @PostMapping("/completarcadastro/{id}")
+    public ResponseEntity<UsuarioGeralDTORes> cadastrarUsuario(@RequestBody Usuario completarUsuario, @PathVariable  UUID id) {
+        Usuario u = usuarioService.completarUsuario(id, completarUsuario);
+        UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
+        return ResponseEntity.ok(usuarioDTO);
     }
-
-    @PostMapping("/cadastro")
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody CadastroUsuarioDTO criarUsuario) {
-        Usuario entity = UsuarioConverter.dtoConverterUsuario(criarUsuario);
-        var response = usuarioService.createUsuario(entity);
-        return ResponseEntity.ok(response);
-    }
-
+    
     @PutMapping("editar/{id}")
-    public ResponseEntity<Usuario> completarCadastro(@PathVariable UUID id, @RequestBody Usuario entity) {
-        var response = usuarioService.updateUsuario(id, entity);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<UsuarioGeralDTORes> completarCadastro(@PathVariable UUID id, @RequestBody Usuario editarUsuario) {
+        Usuario u = usuarioService.editarUsuario(id, editarUsuario);
+        UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
+        return ResponseEntity.ok(usuarioDTO);
+    
+    }
+    
+        // @PostMapping("/cadastroLocador") // Arrumar
+        // public ResponseEntity<?> cadastrarLocador(@RequestBody CadastroUsuarioDTO criarUsuario) {
+        //     Usuario entity = UsuarioConverter.cadastroDTOConverterUsuario(criarUsuario);
+        //     var response = usuarioService.criarUsuario(entity);
+        //     return ResponseEntity.ok(response);
+        // }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletarUsuario(@PathVariable UUID id) {
+        System.out.println(id);
+        try {
+            usuarioService.deletarUsuario(id);
+            return ResponseEntity.ok("Usuário deletado");
+        } catch (Exception e) {
+            return ResponseEntity.ok(e.getMessage());
+        }
     }
 
-    // Endpoint de login 
-    @PostMapping("/login")
-    public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
-        Usuario usuarioLogado = usuarioService.loginUsuario(usuario.getEmail(), usuario.getSenha());
-        return ResponseEntity.ok(usuarioLogado);
-    }
 }

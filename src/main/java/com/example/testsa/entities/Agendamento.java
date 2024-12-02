@@ -2,7 +2,9 @@ package com.example.testsa.entities;
 
 
 import java.time.LocalDate;
+import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,15 +13,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-
-
-
 @Entity
 public class Agendamento {
+   
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_agendamento")
-    private Long idAgendamento;
+    private UUID idAgendamento;
 
     @Column(name = "datainicio")
     private LocalDate dataInicio;
@@ -30,26 +30,18 @@ public class Agendamento {
     @Column(name = "datafinal")
     private LocalDate dataFinal;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_marinheiro", referencedColumnName = "id_marinheiro")
     private Marinheiro marinheiro;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
-
-    public Long getIdAgendamento() {
-        return idAgendamento;
-    }
-
-    public void setIdAgendamento(Long idAgendamento) {
-        this.idAgendamento = idAgendamento;
-    }
 
     public LocalDate getDataInicio() {
         return dataInicio;
@@ -97,6 +89,14 @@ public class Agendamento {
 
     public void setEmbarcacao(Embarcacao embarcacao) {
         this.embarcacao = embarcacao;
+    }
+
+    public UUID getIdAgendamento() {
+        return idAgendamento;
+    }
+
+    public void setIdAgendamento(UUID idAgendamento) {
+        this.idAgendamento = idAgendamento;
     }
 
     // public Iterable<Marinheiro> getMarinheiros() {

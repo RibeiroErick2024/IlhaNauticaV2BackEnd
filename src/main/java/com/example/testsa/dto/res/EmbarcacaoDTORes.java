@@ -1,11 +1,12 @@
 package com.example.testsa.dto.res;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 public class EmbarcacaoDTORes {
     
-    private Long id_embarcacao;
+    private UUID id_embarcacao;
 
     private String nome;
 
@@ -32,15 +33,6 @@ public class EmbarcacaoDTORes {
     private String inscricao;
 
     private String bandeira;
-
-    public Long getId_embarcacao() {
-        return id_embarcacao;
-    }
-
-
-    public void setId_embarcacao(Long id_embarcacao) {
-        this.id_embarcacao = id_embarcacao;
-    }
 
 
     public String getNome() {
@@ -170,6 +162,16 @@ public class EmbarcacaoDTORes {
 
     public void setBandeira(String bandeira) {
         this.bandeira = bandeira;
+    }
+
+
+    public UUID getId_embarcacao() {
+        return id_embarcacao;
+    }
+
+
+    public void setId_embarcacao(UUID id_embarcacao) {
+        this.id_embarcacao = id_embarcacao;
     }
 
 

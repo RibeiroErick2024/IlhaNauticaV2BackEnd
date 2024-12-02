@@ -1,12 +1,16 @@
 package com.example.testsa.entities;
 
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -14,10 +18,14 @@ import jakarta.persistence.OneToOne;
 @Entity(name = "marinheiro")
 public class Marinheiro {
 
-    @jakarta.persistence.Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_marinheiro")
-    private Long id_marinheiro;
+    private UUID idMarinheiro;
+
+    @Column(name = "nome")
+    private String nome;
 
     @Column(name = "categoria")
     private String categoria;
@@ -28,19 +36,59 @@ public class Marinheiro {
     @Column(name = "disponibilidade")
     private String disponibilidade;
 
-    @Column(name = "anosexperiencia")
-    private int anosExperiencia;
+    @Column(name = "cpf_cnpj", length = 11)
+	private String cpf;
 
-    @OneToOne
+	@Column(name = "datanascimento")
+	private LocalDate dataNascimento;
+
+	@Column(name = "genero")
+	private String genero;
+
+	@Column(name = "telefone")
+	private String telefone;
+
+	@Column(name = "email")
+	private String email;
+
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "marinheiro")
 	private List<Agendamento> agendamento;
+    
 
-
-    public Long getId_marinheiro() {
-        return id_marinheiro;
+    
+    public String getCpf() {
+        return cpf;
+    }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+    public String getGenero() {
+        return genero;
+    }
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    public String getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
     public List<Agendamento> getAgendamento() {
         return agendamento;
@@ -52,10 +100,7 @@ public class Marinheiro {
 
     }
 
-    public void setId_marinheiro(Long id_marinheiro) {
-        this.id_marinheiro = id_marinheiro;
-    }
-
+  
     public String getCategoria() {
         return categoria;
     }
@@ -80,20 +125,25 @@ public class Marinheiro {
         this.disponibilidade = disponibilidade;
     }
 
-    public int getAnosExperiencia() {
-        return anosExperiencia;
-    }
-
-    public void setAnosExperiencia(int anosExperiencia) {
-        this.anosExperiencia = anosExperiencia;
-    }
-
+  
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+     public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public UUID getIdMarinheiro() {
+        return idMarinheiro;
+    }
+    public void setIdMarinheiro(UUID idMarinheiro) {
+        this.idMarinheiro = idMarinheiro;
     }
 
 }

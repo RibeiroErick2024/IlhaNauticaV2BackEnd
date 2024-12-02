@@ -2,6 +2,7 @@ package com.example.testsa.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,46 +13,64 @@ import com.example.testsa.dto.res.AgendamentosDTORes;
 import com.example.testsa.entities.Agendamento;
 import com.example.testsa.repositories.AgendamentoRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class AgendamentoService {
 
     @Autowired
     private AgendamentoRepository agendamentoRepository;
 
-    // Criar Agendamento
+    @Transactional
     public Agendamento createAgendamento(Agendamento agendamento) {
         return agendamentoRepository.save(agendamento);
     }
 
-    
-
-
-    //Busca todos os agendamentos
-    public List<Agendamento> getAllAgendamentos() {
-        return agendamentoRepository.findAll();
-    }
-
-
-    
-    public List<AgendamentosDTORes> getAllAgendamentosDTO() {
-        return getAllAgendamentos().stream()
-                .map(AgendamentoConverter::agendamentoConverterDTO) 
+    @Transactional
+    public List<AgendamentosDTORes> buscarTodosAgendamentos() {
+        List<Agendamento> todos = agendamentoRepository.findAll();
+        return todos.stream()
+                .map(AgendamentoConverter::agendamentoConverterDTO)
                 .collect(Collectors.toList());
     }
-    
 
+    @Transactional
+    public List<AgendamentosDTORes> buscarAgendamentosPorUsuario(UUID idUsuario) {
+        List<Agendamento> todos = agendamentoRepository.findByUsuarioId(idUsuario);
+        List<AgendamentosDTORes> todosDTO = todos.stream()
+                .map(AgendamentoConverter::agendamentoConverterDTO)
+                .collect(Collectors.toList());
 
-    //Busca agendamento por id
-    public Optional<Agendamento> buscarAgendamentoPorId(Long id) {
+        return todosDTO;
+    }
+
+    @Transactional
+    public List<AgendamentosDTORes> buscarAgendamentosPorEmbarcacao(UUID idEmbarcacao) {
+        List<Agendamento> todos = agendamentoRepository.findByEmbarcacaoIdEmbarcacao(idEmbarcacao);
+        List<AgendamentosDTORes> todosDTO = todos.stream()
+                .map(AgendamentoConverter::agendamentoConverterDTO)
+                .collect(Collectors.toList());
+
+        return todosDTO;
+    }
+
+    @Transactional
+    public List<AgendamentosDTORes> buscarAgendamentosPorMarinheiro(UUID idMarinheiro) {
+        List<Agendamento> todos = agendamentoRepository.findByMarinheiroIdMarinheiro(idMarinheiro);
+        List<AgendamentosDTORes> todosDTO = todos.stream()
+                .map(AgendamentoConverter::agendamentoConverterDTO)
+                .collect(Collectors.toList());
+
+        return todosDTO;
+    }
+
+    @Transactional
+    public Optional<Agendamento> buscarAgendamentoPorId(UUID id) {
         return agendamentoRepository.findById(id);
     }
-    
-    
 
-   
-
-    // Atualizar Agendamento
-    public Agendamento updateAgendamento(Long id, Agendamento agendamentoDetails) {
+    @Transactional
+    public Agendamento updateAgendamento(UUID id, Agendamento agendamentoDetails) {
         Agendamento agendamento = agendamentoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com id " + id));
 
@@ -65,10 +84,19 @@ public class AgendamentoService {
         return agendamentoRepository.save(agendamento);
     }
 
-    // Deletar Agendamento
-    public void deleteAgendamento(Long id) {
+    @Transactional
+    public void deleteAgendamento(UUID id) {
         agendamentoRepository.deleteById(id);
     }
 
-    
+    @Transactional
+    public void deleteAgendamentoPorUsuario(UUID idUsuario) {
+        agendamentoRepository.deleteByUsuarioId(idUsuario);
+    }
+
+    @Transactional
+    public void deleteAgendamentoPorEmbarcacao(UUID idEmbarcacao) {
+        agendamentoRepository.deleteByEmbarcacaoIdEmbarcacao(idEmbarcacao);
+    }
+
 }

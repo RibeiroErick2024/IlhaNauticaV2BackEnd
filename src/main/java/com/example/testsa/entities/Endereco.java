@@ -1,6 +1,8 @@
 package com.example.testsa.entities;
 
+import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,22 +11,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-@Entity
+@Entity(name = "endereco")
 public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_endereco")
-    private Long idEndereco;
+    private UUID idEndereco;
 
     @Column(name = "cidade")
     private String cidade;
 
     @Column(name = "latitude")
-    private float latitude;
+    private Float latitude;
 
     @Column(name = "longitude")
-    private float longitude;
+    private Float longitude;
 
     @Column(name = "rua", length = 50)
     private String rua;
@@ -40,16 +42,16 @@ public class Endereco {
 
     @Column(name = "estado", length = 2)
     private String estado;
-   
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_usuario")
     private Usuario usuario;
 
-    public Endereco() {
-    }
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "fk_id_embarcacao")
+    private Embarcacao embarcacao;
 
-    public Long getIdEndereco() {
-        return idEndereco;
+    public Endereco() {
     }
 
     public Usuario getUsuario() {
@@ -58,10 +60,6 @@ public class Endereco {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public void setIdEndereco(Long idEndereco) {
-        this.idEndereco = idEndereco;
     }
 
     public String getCidade() {
@@ -128,6 +126,20 @@ public class Endereco {
         this.estado = estado;
     }
 
-    
+    public UUID getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(UUID id_endereco) {
+        this.idEndereco = id_endereco;
+    }
+
+    public Embarcacao getEmbarcacao() {
+        return embarcacao;
+    }
+
+    public void setEmbarcacao(Embarcacao embarcacao) {
+        this.embarcacao = embarcacao;
+    }
 
 }

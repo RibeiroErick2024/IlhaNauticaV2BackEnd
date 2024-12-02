@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import com.example.testsa.entities.Usuario;
@@ -18,65 +19,100 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<Usuario> getAllUsuario() {
+
+    public List<Usuario> buscarTodosUsuario() {
         return usuarioRepository.findAll();
     }
 
-    
     @Transactional
-    public Usuario createUsuario(Usuario usuario) {
+    public Usuario criarUsuario(Usuario usuario) {
 
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario getUsuarioById (UUID id){
-        
+    @Transactional
+    public Usuario buscarUsuarioPorId(UUID id) {
+
         Optional<Usuario> optUsuario = usuarioRepository.findById(id);
         if (optUsuario.isPresent()) {
             Usuario usuarioEncontrado = optUsuario.get();
             return usuarioEncontrado;
         }
-
-        return null;
+        throw new IllegalArgumentException("Usuário não encontrado com esse" + id);
     }
-    
+
     @Transactional
-    public Usuario updateUsuario(UUID id, Usuario usuario) {
-        Optional<Usuario> optionalUserToUpdateData = usuarioRepository.findById(id);
-        
-        if(optionalUserToUpdateData.isPresent()){
-            Usuario userToUpdateData = optionalUserToUpdateData.get();
-            userToUpdateData.setCpf(usuario.getCpf());
-            userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
-            userToUpdateData.setEmail(usuario.getEmail());
-            userToUpdateData.setGenero(usuario.getGenero());
-            userToUpdateData.setSenha(usuario.getSenha());
-            userToUpdateData.setCategoriaUsuario(usuario.getCategoriaUsuario());
-            userToUpdateData.setTelefone(usuario.getTelefone());
-        }
-    
+    public Usuario editarUsuario(UUID id, Usuario usuario) {
 
-        return usuarioRepository.saveAndFlush(usuario);
+        Usuario userToUpdateData = buscarUsuarioPorId(id);
+
+        userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
+        userToUpdateData.setCpf(usuario.getCpf());
+        userToUpdateData.setEmail(usuario.getEmail());
+        userToUpdateData.setGenero(usuario.getGenero());
+        userToUpdateData.setSenha(usuario.getSenha());
+        userToUpdateData.setCategoriaUsuario(usuario.getCategoriaUsuario());
+        userToUpdateData.setTelefone(usuario.getTelefone());
+        Usuario usuarioAtualizado = usuarioRepository.saveAndFlush(userToUpdateData);
+        return usuarioAtualizado;
+
+    }
+
+    @Transactional
+    public Usuario completarUsuario(UUID id, Usuario usuario) {
+        Usuario userToUpdateData = buscarUsuarioPorId(id);
+        userToUpdateData.setCpf(usuario.getCpf());
+        userToUpdateData.setDataNascimento(usuario.getDataNascimento());
+        userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
+        userToUpdateData.setGenero(usuario.getGenero());
+        userToUpdateData.setCategoriaUsuario("GERAL");
+        userToUpdateData.setTelefone(usuario.getTelefone());
+        Usuario usuarioAtualizado = usuarioRepository.saveAndFlush(userToUpdateData);
+        return usuarioAtualizado;
+    }
+
+    @Transactional
+    public Usuario cadastroLocador(UUID id, Usuario usuario) {
+
+        Usuario userToUpdateData = buscarUsuarioPorId(id);
+        userToUpdateData.setCpf(usuario.getCpf());
+        userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
+        userToUpdateData.setGenero(usuario.getGenero());
+        userToUpdateData.setCategoriaUsuario("GERAL");
+        userToUpdateData.setTelefone(usuario.getTelefone());
+        return usuarioRepository.saveAndFlush(userToUpdateData);
+    }
+    @Transactional
+    public void deletarUsuario(UUID id) {
+        
+        usuarioRepository.findById(id)
+                .orElseThrow(() -> new BadCredentialsException("Usuario não encontrado com id " + id));
+
+        // agendamentoRepository.deleteByUsuarioId(id);
+
+        usuarioRepository.deleteById(id);
+
     }
     
-    
-    public Usuario loginUsuario(String email, String senha) {
-        
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
 
-        
+    public Usuario loginUsuario(String email, String senha) {
+
+
+        Optional<Usuario> usuarioOpt = Optional.ofNullable(usuarioRepository.findByEmail(email).orElseThrow());
+
         if (usuarioOpt.isEmpty()) {
             throw new IllegalArgumentException("Usuário não encontrado!");
         }
-        
+
         Usuario usuario = usuarioOpt.get();
 
-        
-        if (!usuario.getSenha().equals(senha)) { 
+        if (!usuario.getSenha().equals(senha)) {
             throw new IllegalArgumentException("Senha inválida!");
         }
 
-        return usuario; 
+        return usuario;
 
-}
+
+    }
+
 }

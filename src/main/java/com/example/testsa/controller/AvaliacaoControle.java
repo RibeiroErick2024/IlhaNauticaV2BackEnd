@@ -1,34 +1,34 @@
-package com.example.testsa.controller;
+// package com.example.testsa.controller;
 
-import java.util.List;
+// import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.http.ResponseEntity;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.RestController;
 
-import com.example.testsa.converter.UsuarioConverter;
-import com.example.testsa.dto.res.AvaliacaoDTORes;
-import com.example.testsa.dto.res.UsuarioDTORes;
-import com.example.testsa.service.AvaliacaoService;
-import com.example.testsa.service.UsuarioService;
+// import com.example.testsa.converter.UsuarioConverter;
+// import com.example.testsa.dto.res.AvaliacaoDTORes;
+// import com.example.testsa.dto.res.UsuarioDTORes;
+// import com.example.testsa.service.AvaliacaoService;
+// import com.example.testsa.service.UsuarioService;
 
-@RestController
-@RequestMapping("/avaliacao")
-public class AvaliacaoControle {
+// @RestController
+// @RequestMapping("/avaliacao")
+// public class AvaliacaoControle {
     
-    @Autowired
-    AvaliacaoService avaliacaoService;
+//     @Autowired
+//     AvaliacaoService avaliacaoService;
 
-    //  @GetMapping("/")
-    // public ResponseEntity<?> getallAvaliacoes() {
+//     //  @GetMapping("/")
+//     // public ResponseEntity<?> getallAvaliacoes() {
         
-    //     List<AvaliacaoDTORes> avaliacao = avaliacaoService.getAllAvaliacoes();
+//     //     List<AvaliacaoDTORes> avaliacao = avaliacaoService.getAllAvaliacoes();
 
-    //     return ResponseEntity.status(200).body(avaliacao);
+//     //     return ResponseEntity.status(200).body(avaliacao);
     
        
-    // }
+//     // }
 
-}
+// }
