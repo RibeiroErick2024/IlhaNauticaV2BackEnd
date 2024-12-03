@@ -9,8 +9,8 @@ CREATE TABLE Role (
 CREATE TABLE Usuario (
     id_usuario UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     nomeCompleto VARCHAR(100) NOT NULL,
-    cpf_cnpj VARCHAR(14) NOT NULL UNIQUE,
-    dataNascimento DATE NOT NULL,
+    cpf_cnpj VARCHAR(14)  UNIQUE,
+    dataNascimento DATE,
     genero VARCHAR(20),
     telefone VARCHAR(15),
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -149,7 +149,7 @@ CREATE TABLE AprovacaoDocumento (
 CREATE TABLE ImagemEmbarcacao (
     id_imagem SERIAL PRIMARY KEY,
     nome VARCHAR(255),
-    imagem BYTEA NOT NULL,
+    imagem Bigint NOT NULL,
     fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE,
     formato VARCHAR(50)
 );
