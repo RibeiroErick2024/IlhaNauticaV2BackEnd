@@ -1,23 +1,11 @@
-# FROM ubuntu: lastest AS build
-# RUN apt-get update
-# RUN apt-get install openjdk-17-jdk -y
-# COPY . .
-
-# RUN apt-get install maven -y
-# RUN mvn clean install
-
-# FROM openjdk:17-jdk-slim
-
-# EXPOSE 8080
-
-# COPY --from=build target/testsa-0.0.1-SNAPSHOT.jar
-
-# ENTRYPOINT ["java", : "-jar", :"SNAPSHOT.jar" ]
-
-
 # Etapa 1: Construção
 FROM ubuntu:latest AS build
 WORKDIR /app
+
+# Instala o OpenJDK 17 e Maven no contêiner Ubuntu
+RUN apt-get update && apt-get install -y \
+    openjdk-17-jdk \
+    maven
 
 # Copia os arquivos do projeto para o contêiner
 COPY . .

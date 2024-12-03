@@ -1,8 +1,11 @@
-
-
 # Etapa 1: Construção
-FROM maven:3.9.5-openjdk-17 AS build
+FROM ubuntu:latest AS build
 WORKDIR /app
+
+# Instala o OpenJDK 17 e Maven no contêiner Ubuntu
+RUN apt-get update && apt-get install -y \
+    openjdk-17-jdk \
+    maven
 
 # Copia os arquivos do projeto para o contêiner
 COPY . .
