@@ -16,7 +16,7 @@
 
 
 # Etapa 1: Construção
-FROM maven:3.9.5-openjdk-17 AS build
+FROM ubuntu:latest AS build
 WORKDIR /app
 
 # Copia os arquivos do projeto para o contêiner
