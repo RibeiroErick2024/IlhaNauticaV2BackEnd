@@ -1,5 +1,9 @@
 package com.example.testsa.converter;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.testsa.dto.req.EmbarcacaoDTOReq;
@@ -10,6 +14,9 @@ import com.example.testsa.dto.res.Embarcacao.EmbarcacaoSimplesDTORes;
 import com.example.testsa.entities.Embarcacao;
 
 public class EmbarcacaoConverter {
+
+    private static final String IMAGEM_PADRAO_PATH = "src/main/resources/static/parati.jpg";
+
     public static EmbarcacaoDTORes embarcacaoConverterDTO(Embarcacao embarcacao) {
         EmbarcacaoDTORes dto = new EmbarcacaoDTORes();
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
@@ -34,13 +41,35 @@ public class EmbarcacaoConverter {
         // dto.setEndereco(
         //         embarcacao.getEndereco() != null ? EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()) : null);
 
-        if (embarcacao.getImagem() != null) {
+          // Verificar se as imagens são nulas ou vazias
+        if (embarcacao.getImagem() != null && !embarcacao.getImagem().isEmpty()) {
             List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
                     .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDtoSemImagem(imagem)).toList();
-
             dto.setImagem(listaImagens);
-        }
+        } else {
+            // Caso a lista de imagens seja null ou vazia, insira uma imagem padrão
+            List<ImagemEmbarcacaoDTORes> listaImagensPadrao = new ArrayList<>();
+            
+            // Criar uma imagem padrão a partir de um arquivo
+            ImagemEmbarcacaoDTORes imagemPadrao = new ImagemEmbarcacaoDTORes();
+            try {
+                // Carregar o arquivo de imagem em um byte array
+                byte[] imagemBytes = Files.readAllBytes(Paths.get(IMAGEM_PADRAO_PATH));
+                
+                // Definir a imagem e o formato
+                imagemPadrao.setImagem(imagemBytes);
+                imagemPadrao.setFormato("jpg");  // Supondo que a imagem seja no formato JPEG
+                imagemPadrao.setNome("Imagem Padrão");
 
+                listaImagensPadrao.add(imagemPadrao);
+            } catch (IOException e) {
+                // Em caso de erro ao carregar a imagem, você pode lançar uma exceção ou definir uma imagem vazia
+                e.printStackTrace();
+                // Aqui você pode adicionar um tratamento para caso o arquivo não seja encontrado
+            }
+
+            dto.setImagem(listaImagensPadrao);
+        }
         return dto;
     }
 
