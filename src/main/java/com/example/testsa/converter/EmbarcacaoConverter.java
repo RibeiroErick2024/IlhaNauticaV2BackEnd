@@ -10,7 +10,7 @@ import com.example.testsa.dto.res.Embarcacao.EmbarcacaoSimplesDTORes;
 import com.example.testsa.entities.Embarcacao;
 
 public class EmbarcacaoConverter {
-     public static EmbarcacaoDTORes embarcacaoConverterDTO(Embarcacao embarcacao) {
+    public static EmbarcacaoDTORes embarcacaoConverterDTO(Embarcacao embarcacao) {
         EmbarcacaoDTORes dto = new EmbarcacaoDTORes();
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setNome(embarcacao.getNome());
@@ -30,17 +30,21 @@ public class EmbarcacaoConverter {
         dto.setPreco(embarcacao.getPreco());
         dto.setRegras(embarcacao.getRegras());
         dto.setDescricao(embarcacao.getDescricao());
-     
-      dto.setEndereco(embarcacao.getEndereco() != null? EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()) : null);
-            
-        List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
-        .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDtoSemImagem(imagem)).toList();
+        dto.setEnderecoEmbarque(embarcacao.getEnderecoEmbarque());
+        // dto.setEndereco(
+        //         embarcacao.getEndereco() != null ? EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()) : null);
 
-        dto.setImagem(listaImagens);
+        if (embarcacao.getImagem() != null) {
+            List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
+                    .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDtoSemImagem(imagem)).toList();
+
+            dto.setImagem(listaImagens);
+        }
 
         return dto;
     }
-     public static EmbarcacaoCardDTO embarcacaoConverterCardDTO(Embarcacao embarcacao) {
+
+    public static EmbarcacaoCardDTO embarcacaoConverterCardDTO(Embarcacao embarcacao) {
         EmbarcacaoCardDTO dto = new EmbarcacaoCardDTO();
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setAnoFabricacao(embarcacao.getAnoFabricacao());
@@ -53,17 +57,19 @@ public class EmbarcacaoConverter {
         dto.setPet(embarcacao.getPet());
         dto.setQuantidadeBanheiro(embarcacao.getQuantidadeBanheiro());
         dto.setQuantidadeCabines(embarcacao.getQuantidadeCabines());
-        if (embarcacao.getEndereco() != null) {
-            dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
-            
-        }
+        dto.setEnderecoEmbarque(embarcacao.getEnderecoEmbarque());
+        // if (embarcacao.getEndereco() != null) {
+        //     dto.setEndereco(EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()));
+
+        // }
         List<ImagemEmbarcacaoDTORes> listaImagens = embarcacao.getImagem()
-        .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDto(imagem)).toList();
+                .stream().map(imagem -> ImagemEmbarcacaoConverter.entidadeParaDto(imagem)).toList();
 
         dto.setImagem(listaImagens);
 
         return dto;
     }
+
     public static EmbarcacaoSimplesDTORes embarcacaoConverterDTOSimples(Embarcacao embarcacao) {
         EmbarcacaoSimplesDTORes dto = new EmbarcacaoSimplesDTORes();
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
@@ -71,7 +77,8 @@ public class EmbarcacaoConverter {
 
         return dto;
     }
-     public static Embarcacao dtoConverterEntidade(EmbarcacaoDTOReq dto) {
+
+    public static Embarcacao dtoConverterEntidade(EmbarcacaoDTOReq dto) {
         Embarcacao entidade = new Embarcacao();
         entidade.setIdEmbarcacao(dto.getIdEmbarcacao());
         entidade.setNome(dto.getNome());
@@ -85,7 +92,7 @@ public class EmbarcacaoConverter {
         entidade.setCategoria(dto.getCategoria());
         entidade.setQuantidadeBanheiro(dto.getQuantidadeBanheiro());
         entidade.setQuantidadeCabines(dto.getQuantidadeCabines());
-     
+
         return entidade;
     }
 }

@@ -6,10 +6,12 @@ import java.util.UUID;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -82,8 +84,9 @@ public class Embarcacao {
 
     @OneToMany(mappedBy = "embarcacao")
     private List<Avaliacao> avaliacao;
-
-    @OneToMany(mappedBy = "embarcacao", cascade = CascadeType.REMOVE)
+    
+    @Lob
+    @OneToMany(mappedBy = "embarcacao", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<ImagemEmbarcacao> imagem;
 
     public UUID getIdEmbarcacao() {
