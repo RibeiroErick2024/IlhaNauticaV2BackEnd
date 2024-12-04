@@ -34,7 +34,7 @@ public class MarinheiroConverter {
         marinheiro.setGenero(entity.getGenero());
         marinheiro.setTelefone(entity.getTelefone());
         marinheiro.setEmail(entity.getEmail());
-        marinheiro.setUsuario(UsuarioConverter.usuarioConverterSimples(entity.getUsuario()));
+        marinheiro.setUsuario(entity.getUsuario() != null? UsuarioConverter.usuarioConverterSimples(entity.getUsuario()) : null);
 
         return marinheiro;
     }

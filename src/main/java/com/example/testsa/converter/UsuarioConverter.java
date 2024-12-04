@@ -28,8 +28,8 @@ public interface UsuarioConverter {
         all.setCpf(entity.getCpf());
         all.setDataNascimento(entity.getDataNascimento());
         all.setTelefone(entity.getTelefone());
-        all.setDataNascimento(entity.getDataNascimento());
         all.setGenero(entity.getGenero());
+        all.setCategoriaUsuario("Locador");
 
         List<MarinheiroDTORes> listaMarinheiros = entity.getMarinheiro()
         .stream().map(a -> MarinheiroConverter.entidadeParaMarinheiroDTO(a)).toList();
@@ -51,6 +51,7 @@ public interface UsuarioConverter {
         all.setDataNascimento(entity.getDataNascimento());
         all.setTelefone(entity.getTelefone());
         all.setGenero(entity.getGenero());
+        all.setCategoriaUsuario("Geral");
         all.setEmail(entity.getEmail());
         all.setSenha(entity.getSenha());
        
@@ -64,7 +65,7 @@ public interface UsuarioConverter {
         novoUsuario.setSenha(senha);
         Role role = new Role();
         role.setNome("USER");
-        role.setId(1);
+        role.setId(2);
         novoUsuario.setRole(role);
 
         return novoUsuario;  

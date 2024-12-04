@@ -28,9 +28,9 @@ public class AuthenticationService {
 
     public Usuario signup(CadastroUsuarioDTO input) {
 
-        if (usuarioRepository.findByEmail(input.getEmail()) != null) {
-            throw new BadCredentialsException("Email já cadastrado");
-        }
+        // if (usuarioRepository.findByEmail(input.getEmail()) != null) {
+        //     throw new BadCredentialsException("Email já cadastrado");
+        // }
     
         Usuario user = UsuarioConverter.cadastroDTOConverterUsuario(input, passwordEncoder.encode(input.getSenha()));
 

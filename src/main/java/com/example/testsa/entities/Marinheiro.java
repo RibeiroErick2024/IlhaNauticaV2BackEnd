@@ -58,49 +58,25 @@ public class Marinheiro {
     @OneToMany(mappedBy = "marinheiro")
 	private List<Agendamento> agendamento;
     
+    // @OneToMany(mappedBy = "marinheiro")
+    // private List<Avaliacao> avaliacao;
 
-    
-    public String getCpf() {
-        return cpf;
-    }
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-    public String getGenero() {
-        return genero;
-    }
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public List<Agendamento> getAgendamento() {
-        return agendamento;
-    }
-    public void setAgendamento(List<Agendamento> agendamento) {
-        this.agendamento = agendamento;
-    }
-    public Marinheiro(){
-
+    public UUID getIdMarinheiro() {
+        return idMarinheiro;
     }
 
-  
+    public void setIdMarinheiro(UUID idMarinheiro) {
+        this.idMarinheiro = idMarinheiro;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getCategoria() {
         return categoria;
     }
@@ -125,7 +101,46 @@ public class Marinheiro {
         this.disponibilidade = disponibilidade;
     }
 
-  
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -133,17 +148,22 @@ public class Marinheiro {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-     public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public UUID getIdMarinheiro() {
-        return idMarinheiro;
-    }
-    public void setIdMarinheiro(UUID idMarinheiro) {
-        this.idMarinheiro = idMarinheiro;
+
+    public List<Agendamento> getAgendamento() {
+        return agendamento;
     }
 
+    public void setAgendamento(List<Agendamento> agendamento) {
+        this.agendamento = agendamento;
+    }
+
+    // public List<Avaliacao> getAvaliacao() {
+    //     return avaliacao;
+    // }
+
+    // public void setAvaliacao(List<Avaliacao> avaliacao) {
+    //     this.avaliacao = avaliacao;
+    // }   
+
+   
 }

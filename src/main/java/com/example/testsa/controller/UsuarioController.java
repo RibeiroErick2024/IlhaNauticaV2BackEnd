@@ -67,7 +67,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioDTO);
     }
 
-    @PostMapping("/completarcadastro/{id}")
+    @PutMapping("/completarcadastro/{id}")
     public ResponseEntity<UsuarioGeralDTORes> cadastrarUsuario(@RequestBody Usuario completarUsuario, @PathVariable  UUID id) {
         Usuario u = usuarioService.completarUsuario(id, completarUsuario);
         UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);

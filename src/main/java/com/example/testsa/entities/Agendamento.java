@@ -1,6 +1,5 @@
 package com.example.testsa.entities;
 
-
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -15,9 +14,9 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Agendamento {
-   
+
     @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_agendamento")
     private UUID idAgendamento;
 
@@ -42,6 +41,16 @@ public class Agendamento {
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 
+    // @OneToMany(mappedBy = "agendamento")
+    // private List<Avaliacao> avaliacao;
+
+    public UUID getIdAgendamento() {
+        return idAgendamento;
+    }
+
+    public void setIdAgendamento(UUID idAgendamento) {
+        this.idAgendamento = idAgendamento;
+    }
 
     public LocalDate getDataInicio() {
         return dataInicio;
@@ -91,24 +100,6 @@ public class Agendamento {
         this.embarcacao = embarcacao;
     }
 
-    public UUID getIdAgendamento() {
-        return idAgendamento;
-    }
-
-    public void setIdAgendamento(UUID idAgendamento) {
-        this.idAgendamento = idAgendamento;
-    }
-
-    // public Iterable<Marinheiro> getMarinheiros() {
-    //     throw new UnsupportedOperationException("Não suportado.");
-    // }
-
   
-   
-
-
-
     
-
-
 }

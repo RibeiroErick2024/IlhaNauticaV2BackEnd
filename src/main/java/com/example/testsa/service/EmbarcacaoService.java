@@ -5,15 +5,20 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.testsa.entities.Embarcacao;
+import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.EmbarcacaoRepository;
-import jakarta.transaction.Transactional;
+import com.example.testsa.repositories.UsuarioRepository;
 
+import jakarta.transaction.Transactional;
 
 @Service
 public class EmbarcacaoService {
 
     @Autowired
     EmbarcacaoRepository embarcacaoRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @Transactional
     public List<Embarcacao> getAllEmbarcacaos() {
@@ -22,6 +27,12 @@ public class EmbarcacaoService {
 
     @Transactional
     public Embarcacao creatEmbarcacao(Embarcacao embarcacao) {
+
+        Usuario usuario = usuarioRepository.findById(embarcacao.getUsuario().getId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+
+        embarcacao.setUsuario(usuario);
+
         return embarcacaoRepository.save(embarcacao);
     }
 
