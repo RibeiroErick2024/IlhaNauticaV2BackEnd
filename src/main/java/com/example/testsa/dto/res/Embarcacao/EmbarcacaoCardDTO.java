@@ -7,15 +7,15 @@ import com.example.testsa.dto.res.EnderecoDTORes;
 import com.example.testsa.dto.res.ImagemEmbarcacaoDTORes;
 
 public class EmbarcacaoCardDTO {
-    
+
     private UUID idEmbarcacao;
-    
+
     private String nome;
 
     private int anoFabricacao;
 
     private String fabricante;
-    
+
     private int potencia;
 
     private Float tamanho;
@@ -25,17 +25,18 @@ public class EmbarcacaoCardDTO {
     private String categoria;
 
     private int quantidadeCabines;
-    
+
     private int quantidadeBanheiro;
-      
+
     private Boolean pet;
 
     private float preco;
+   
+    private String enderecoEmbarque;
 
     private List<ImagemEmbarcacaoDTORes> imagem;
 
     private EnderecoDTORes endereco;
-    
 
     public String getNome() {
         return nome;
@@ -45,7 +46,6 @@ public class EmbarcacaoCardDTO {
         this.nome = nome;
     }
 
- 
     public String getFabricante() {
         return fabricante;
     }
@@ -102,7 +102,6 @@ public class EmbarcacaoCardDTO {
         this.quantidadeBanheiro = quantidadeBanheiro;
     }
 
- 
     public Boolean getPet() {
         return pet;
     }
@@ -118,7 +117,6 @@ public class EmbarcacaoCardDTO {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-
 
     public EnderecoDTORes getEndereco() {
         return endereco;
@@ -152,6 +150,13 @@ public class EmbarcacaoCardDTO {
         this.imagem = imagem;
     }
 
+    public String getEnderecoEmbarque() {
+        return enderecoEmbarque;
+    }
 
+    public void setEnderecoEmbarque(String enderecoEmbarque) {
+        this.enderecoEmbarque = enderecoEmbarque;
+    }
 
+    
 }
