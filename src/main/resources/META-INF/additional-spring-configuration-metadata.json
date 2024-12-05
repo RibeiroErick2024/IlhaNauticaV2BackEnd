@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "spring.datasouarce.password",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasouarce.password'"
+  },
+  {
+    "name": "security.jwt.secret-key",
+    "type": "java.lang.String",
+    "description": "A description for 'security.jwt.secret-key'"
+  },
+  {
+    "name": "security.jwt.expiration-time",
+    "type": "java.lang.String",
+    "description": "A description for 'security.jwt.expiration-time'"
+  }
+]}
