@@ -38,6 +38,7 @@ public class EmbarcacaoConverter {
         dto.setRegras(embarcacao.getRegras());
         dto.setDescricao(embarcacao.getDescricao());
         dto.setEnderecoEmbarque(embarcacao.getEnderecoEmbarque());
+        dto.setUsuario(UsuarioConverter.usuarioConverterSimples(embarcacao.getUsuario()));
         // dto.setEndereco(
         //         embarcacao.getEndereco() != null ? EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()) : null);
 

@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import com.example.testsa.dto.res.EnderecoDTORes;
 import com.example.testsa.dto.res.ImagemEmbarcacaoDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
+import com.example.testsa.entities.Usuario;
 
 public class EmbarcacaoDTORes {
 
@@ -47,6 +49,8 @@ public class EmbarcacaoDTORes {
     private EnderecoDTORes endereco;
 
     private List<ImagemEmbarcacaoDTORes> imagem;
+
+    private UsuarioSimplesDTO usuario;
 
     public UUID getIdEmbarcacao() {
         return idEmbarcacao;
@@ -206,6 +210,14 @@ public class EmbarcacaoDTORes {
 
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    public UsuarioSimplesDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioSimplesDTO usuario) {
+        this.usuario = usuario;
     }
 
    

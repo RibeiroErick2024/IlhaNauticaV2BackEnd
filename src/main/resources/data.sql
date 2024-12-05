@@ -19,7 +19,7 @@ VALUES
 INSERT INTO Embarcacao (id_embarcacao, nome, anoFabricacao, fabricante, tamanho, potencia, preco, capacidade, categoria, enderecoEmbarque, disponibilidade, pet, quantidadeBanheiro, quantidadeCabines, inscricao_IMO, bandeira, fk_id_usuario, fk_id_endereco, regras, descricao) 
 VALUES 
 ('b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'Embarcação Azul', 2024, 'Yamaha', 300, 900, 15.0, 20, 'Jet Ski', 'Porto 1', TRUE, TRUE, 2, 5, 'IMO12345', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'c7f34a68-6873-4d79-92fe-dfa67fe2cc1e', 'Somente marinheiros com habilitação para Jet Ski podem operar', 'Embarcação rápida e ideal para aventuras aquáticas, com capacidade para 20 pessoas.'),
-('d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'Embarcação Verde', 2022, 'DeltaYatchs', 12.60, 54, 12.5, 15, 'Conforto', 'Porto 2', TRUE, FALSE, 1, 3, 'IMO67890', 'Brasil', 'b8a93d7d-6f5c-4cfa-8b23-6d95d699f2ab', 'd72bceff-6489-44d7-b370-bb7b4408cfd6', 'Apenas marinheiros com experiência em navegação de luxo', 'Embarcação confortável para passeios longos, com cabines e banheiros para mais conforto.');
+('d62f3c72-8b23-4d35-94f1-6451e1b18d19', 'Embarcação Verde', 2022, 'DeltaYatchs', 12.60, 54, 12.5, 15, 'Conforto', 'Porto 2', TRUE, FALSE, 1, 3, 'IMO67890', 'Brasil', 'a3e2e11d-4b7a-47f1-b3fc-812f3c3a9b8b', 'd72bceff-6489-44d7-b370-bb7b4408cfd6', 'Apenas marinheiros com experiência em navegação de luxo', 'Embarcação confortável para passeios longos, com cabines e banheiros para mais conforto.');
 
 INSERT INTO ImagemEmbarcacao(id_imagem, nome, imagem, fk_id_embarcacao, formato)
 VALUES
