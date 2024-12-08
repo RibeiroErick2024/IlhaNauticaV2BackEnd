@@ -1,4 +1,4 @@
-package com.example.testsa.controller.Auth;
+package com.example.testsa.controller;
 
 import java.util.List;
 

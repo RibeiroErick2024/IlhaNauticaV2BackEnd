@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testsa.converter.UsuarioConverter;
-import com.example.testsa.dto.req.Usuario.UsuarioDTOReqs;
+import com.example.testsa.dto.req.Usuario.UsuarioDTOReq;
 import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
 import com.example.testsa.entities.Usuario;
@@ -69,14 +69,14 @@ public class UsuarioController {
     }
 
     @PatchMapping("/completarcadastro/{id}")
-    public ResponseEntity<UsuarioGeralDTORes> cadastrarUsuario(@RequestBody UsuarioDTOReqs completarUsuario, @PathVariable  UUID id) {
+    public ResponseEntity<UsuarioGeralDTORes> cadastrarUsuario(@RequestBody UsuarioDTOReq completarUsuario, @PathVariable  UUID id) {
         UsuarioGeralDTORes usuarioDTO = usuarioService.completarUsuario(id, completarUsuario);
         
         return ResponseEntity.ok(usuarioDTO);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioGeralDTORes> completarCadastro(@PathVariable UUID id, @RequestBody UsuarioDTOReqs editarUsuario) {
+    public ResponseEntity<UsuarioGeralDTORes> completarCadastro(@PathVariable UUID id, @RequestBody UsuarioDTOReq editarUsuario) {
         UsuarioGeralDTORes usuarioDTO = usuarioService.editarUsuario(id, editarUsuario);
         return ResponseEntity.ok(usuarioDTO);
     

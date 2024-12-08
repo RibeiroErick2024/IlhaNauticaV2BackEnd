@@ -9,7 +9,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import com.example.testsa.converter.UsuarioConverter;
-import com.example.testsa.dto.req.Usuario.UsuarioDTOReqs;
+import com.example.testsa.dto.req.Usuario.UsuarioDTOReq;
 import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.UsuarioRepository;
@@ -45,7 +45,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public UsuarioGeralDTORes editarUsuario(UUID id, UsuarioDTOReqs usuario) {
+    public UsuarioGeralDTORes editarUsuario(UUID id, UsuarioDTOReq usuario) {
 
         Usuario userToUpdateData = buscarUsuarioPorId(id);
 
@@ -62,7 +62,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public UsuarioGeralDTORes completarUsuario(UUID id, UsuarioDTOReqs usuario) {
+    public UsuarioGeralDTORes completarUsuario(UUID id, UsuarioDTOReq usuario) {
         Usuario userToUpdateData = buscarUsuarioPorId(id);
         userToUpdateData.setCpf(usuario.getCpf());
         userToUpdateData.setDataNascimento(usuario.getDataNascimento());
