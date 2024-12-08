@@ -57,7 +57,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of("http://localhost:5173", "https://postman.com", "http://localhost:5000", "https://ilhanauticav2backend.onrender.com"));
-        config.setAllowedMethods(List.of("OPTIONS", "GET", "POST", "PUT", "DELETE"));
+        config.setAllowedMethods(List.of("OPTIONS", "GET", "POST", "PUT", "DELETE", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization", "Content-type", "Accept", "Origin", "X-Requested-With"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -1,0 +1,84 @@
+[
+    {
+        "nomeCompleto": "Carlos Pereira",
+        "cpf": "32165498765",
+        "dataNascimento": "1978-11-30",
+        "genero": "Masculino",
+        "telefone": "11922334455",
+        "email": "carlos.pereira@email.com",
+        "senha": "Senha123!",
+        "categoria": "LOCADOR"
+    },
+    {
+        "nomeCompleto": "Ana Souza",
+        "cpf": "45612378904",
+        "dataNascimento": "1990-09-12",
+        "genero": "Feminino",
+        "telefone": "11977665544",
+        "email": "ana.souza@email.com",
+        "senha": "Senha123!",
+        "categoria": "GERAL"
+    },
+    {
+        "nomeCompleto": "Pedro Costa",
+        "cpf": "65498732100",
+        "dataNascimento": "1982-02-27",
+        "genero": "Masculino",
+        "telefone": "11933445566",
+        "email": "pedro.costa@email.com",
+        "senha": "Senha123!",
+        "categoria": "LOCADOR"
+    },
+    {
+        "nomeCompleto": "Luciana Santos",
+        "cpf": "67890321456",
+        "dataNascimento": "1994-01-08",
+        "genero": "Feminino",
+        "telefone": "11988776655",
+        "email": "luciana.santos@email.com",
+        "senha": "Senha123!",
+        "categoria": "GERAL"
+    },
+    {
+        "nomeCompleto": "Rafael Almeida",
+        "cpf": "11223344556",
+        "dataNascimento": "1995-07-19",
+        "genero": "Masculino",
+        "telefone": "11912345678",
+        "email": "rafael.almeida@email.com",
+        "senha": "Senha123!",
+        "categoria": "LOCADOR"
+    },
+    {
+        "nomeCompleto": "Fernanda Lima",
+        "cpf": "22334455667",
+        "dataNascimento": "1988-12-01",
+        "genero": "Feminino",
+        "telefone": "11955566788",
+        "email": "fernanda.lima@email.com",
+        "senha": "Senha123!",
+        "categoria": "GERAL"
+    },
+    {
+        "nomeCompleto": "Ricardo Gomes",
+        "cpf": "33445566778",
+        "dataNascimento": "1991-04-18",
+        "genero": "Masculino",
+        "telefone": "11944332211",
+        "email": "ricardo.gomes@email.com",
+        "senha": "Senha123!",
+        "categoria": "LOCADOR"
+    },
+    {
+        "nomeCompleto": "Juliana Rocha",
+        "cpf": "44556677889",
+        "dataNascimento": "1987-11-02",
+        "genero": "Feminino",
+        "telefone": "11966778899",
+        "email": "juliana.rocha@email.com",
+        "senha": "Senha123!",
+        "categoria": "GERAL"
+    }
+]
+
+

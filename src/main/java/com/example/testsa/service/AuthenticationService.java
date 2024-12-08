@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.example.testsa.converter.UsuarioConverter;
 import com.example.testsa.dto.req.LoginDTO;
 import com.example.testsa.dto.req.Usuario.CadastroUsuarioDTO;
-import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.UsuarioRepository;
 
