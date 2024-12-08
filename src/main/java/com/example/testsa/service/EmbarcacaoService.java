@@ -47,9 +47,11 @@ public class EmbarcacaoService {
 
     }
 
-    public Embarcacao buscarEmbarcacaoPorId(UUID id_embarcacao) {
-        return embarcacaoRepository.findById(id_embarcacao)
-                .orElseThrow(() -> new RuntimeException("Embarcação com ID " + id_embarcacao + " não encontrada."));
+    public Embarcacao buscarEmbarcacaoPorId(UUID id) {
+        Embarcacao embarcacao = embarcacaoRepository.findByIdWithUsuario(id);
+
+        return embarcacaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Embarcação com ID " + id + " não encontrada."));
     }
 
     @Transactional
