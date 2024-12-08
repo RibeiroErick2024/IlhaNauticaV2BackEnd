@@ -2,7 +2,6 @@ package com.example.testsa.dto.req.Usuario;
 
 import java.time.LocalDate;
 
-import com.example.testsa.entities.Marinheiro;
 
 public class UsuarioDTOReq {
     
@@ -23,7 +22,6 @@ public class UsuarioDTOReq {
 
 	private String categoriaUsuario;
 
-	private Marinheiro marinheiro;
  
     public String getNomeCompleto() {
         return nomeCompleto;
@@ -87,14 +85,6 @@ public class UsuarioDTOReq {
 
     public void setCategoriaUsuario(String categoriaUsuario) {
         this.categoriaUsuario = categoriaUsuario;
-    }
-
-    public Marinheiro getMarinheiro() {
-        return marinheiro;
-    }
-
-    public void setMarinheiro(Marinheiro marinheiro) {
-        this.marinheiro = marinheiro;
     }
 
     

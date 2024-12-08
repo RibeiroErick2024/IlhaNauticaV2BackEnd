@@ -20,6 +20,7 @@ public class EmbarcacaoConverter {
 
     public static EmbarcacaoDTORes embarcacaoConverterDTO(Embarcacao embarcacao) {
         EmbarcacaoDTORes dto = new EmbarcacaoDTORes();
+        dto.setUsuario(UsuarioConverter.usuarioConverterSimples(embarcacao.getUsuario()));
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setNome(embarcacao.getNome());
         dto.setFabricante(embarcacao.getFabricante());

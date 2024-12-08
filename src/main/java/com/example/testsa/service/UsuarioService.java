@@ -51,6 +51,7 @@ public class UsuarioService {
 
         userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
         userToUpdateData.setCpf(usuario.getCpf());
+        userToUpdateData.setDataNascimento(usuario.getDataNascimento());
         userToUpdateData.setEmail(usuario.getEmail());
         userToUpdateData.setGenero(usuario.getGenero());
         userToUpdateData.setSenha(usuario.getSenha());
@@ -67,6 +68,7 @@ public class UsuarioService {
         userToUpdateData.setCpf(usuario.getCpf());
         userToUpdateData.setDataNascimento(usuario.getDataNascimento());
         userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
+        userToUpdateData.setDataNascimento(usuario.getDataNascimento());
         userToUpdateData.setGenero(usuario.getGenero());
         userToUpdateData.setCategoriaUsuario("GERAL");
         userToUpdateData.setTelefone(usuario.getTelefone());
