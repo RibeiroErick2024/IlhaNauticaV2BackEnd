@@ -74,7 +74,7 @@ public class Embarcacao {
     @Column(name = "bandeira")
     private String bandeira;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
