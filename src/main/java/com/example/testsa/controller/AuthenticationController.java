@@ -58,14 +58,6 @@ public class AuthenticationController {
                     .body("Erro ao cadastrar usuário: " + e.getMessage());
         } 
     }
-    @PostMapping("/")
-    public ResponseEntity<String> cadastrarUsuarioTemp(@RequestBody List<Usuario> criarUsuario) {
-        try {
-            authenticationService.signupTemp(criarUsuario);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Usuário cadastrado");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Erro ao cadastrar usuário: " + e.getMessage());
-        } 
-    }
+    
+ 
 }

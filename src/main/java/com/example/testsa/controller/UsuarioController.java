@@ -59,7 +59,7 @@ public class UsuarioController {
     }
     @GetMapping("/embarcacao/{id}")
     public ResponseEntity<UsuarioSimplesDTO> buscarUsuarioEmbarcacao(@PathVariable(name = "id") UUID id) {
-        Usuario u = usuarioService.buscarUsuarioPorId(id);
+        Usuario u = usuarioService.buscarUsuarioPorIdEmbarcacao(id);
 
         if (u == null) {
             return ResponseEntity.notFound().build();
