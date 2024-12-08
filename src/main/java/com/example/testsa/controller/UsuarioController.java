@@ -18,6 +18,7 @@ import com.example.testsa.converter.UsuarioConverter;
 import com.example.testsa.dto.req.Usuario.UsuarioDTOReq;
 import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioLocadorDTORes;
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.service.UsuarioService;
 
@@ -54,6 +55,17 @@ public class UsuarioController {
         }
 
         UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
+        return ResponseEntity.ok(usuarioDTO);
+    }
+    @GetMapping("/embarcacao/{id}")
+    public ResponseEntity<UsuarioSimplesDTO> buscarUsuarioEmbarcacao(@PathVariable(name = "id") UUID id) {
+        Usuario u = usuarioService.buscarUsuarioPorId(id);
+
+        if (u == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        UsuarioSimplesDTO usuarioDTO = UsuarioConverter.usuarioConverterSimples(u);
         return ResponseEntity.ok(usuarioDTO);
     }
     @GetMapping("/locador/{id}")
