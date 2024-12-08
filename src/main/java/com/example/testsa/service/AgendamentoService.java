@@ -1,6 +1,7 @@
 package com.example.testsa.service;
 
 import com.example.testsa.converter.AgendamentoConverter;
+import com.example.testsa.dto.req.AgendamentoDTOReq;
 import com.example.testsa.dto.res.AgendamentosDTORes;
 import com.example.testsa.entities.Agendamento;
 import com.example.testsa.entities.Embarcacao;
@@ -30,7 +31,9 @@ public class AgendamentoService {
     private EmbarcacaoRepository embarcacaoRepository;
 
     @Transactional
-    public Agendamento createAgendamento(Agendamento agendamento) {
+    public AgendamentosDTORes createAgendamento(AgendamentoDTOReq dto) {
+        
+        Agendamento agendamento = AgendamentoConverter.agendamentoConverterEntidade(dto);
 
         if (agendamento.getUsuario() == null || agendamento.getUsuario().getId() == null) {
             throw new IllegalArgumentException("Por favor, forneça um Usuário ID para o agendamento.");
@@ -49,7 +52,8 @@ public class AgendamentoService {
         agendamento.setUsuario(usuario);
         agendamento.setEmbarcacao(embarcacao);
 
-        return agendamentoRepository.save(agendamento);
+        Agendamento agendamentoCriado =  agendamentoRepository.save(agendamento);
+        return  AgendamentoConverter.agendamentoConverterDTO(agendamentoCriado);
     }
 
     @Transactional
@@ -90,19 +94,19 @@ public class AgendamentoService {
     }
 
     @Transactional
-    public Agendamento updateAgendamento(UUID id, Agendamento agendamentoDetails) {
+    public AgendamentosDTORes atualizarAgendamento(UUID id, AgendamentoDTOReq dto) {
+     
         Agendamento agendamento = agendamentoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com id " + id));
 
-        // Atualizar os campos
-        agendamento.setDataInicio(agendamentoDetails.getDataInicio());
-        agendamento.setStatus(agendamentoDetails.getStatus());
-        agendamento.setDataFinal(agendamentoDetails.getDataFinal());
-        agendamento.setUsuario(agendamentoDetails.getUsuario());
-        agendamento.setMarinheiro(agendamentoDetails.getMarinheiro());
-        agendamento.setEmbarcacao(agendamentoDetails.getEmbarcacao());
+    
+        agendamento.setDataInicio(dto.getDataInicio());
+        agendamento.setStatus(dto.getStatus());
+        agendamento.setDataFinal(dto.getDataFinal());
 
-        return agendamentoRepository.save(agendamento);
+
+        agendamentoRepository.save(agendamento);
+        return AgendamentoConverter.agendamentoConverterDTO(agendamento);
     }
 
     @Transactional
@@ -119,4 +123,32 @@ public class AgendamentoService {
     public void deleteAgendamentoPorEmbarcacao(UUID idEmbarcacao) {
         agendamentoRepository.deleteByEmbarcacaoIdEmbarcacao(idEmbarcacao);
     }
+    // @Transactional
+// public Agendamento criarAgendamento(Agendamento agendamento) {
+//     // Verificar se existe algum agendamento no mesmo período
+//     List<Agendamento> agendamentosExistentes = agendamentoRepository.findAll();
+
+//     for (Agendamento existente : agendamentosExistentes) {
+//         // Verificar se as datas se sobrepõem
+//         if (existeSobreposicao(agendamento, existente)) {
+//             throw new RuntimeException("Já existe um agendamento para o mesmo período.");
+//         }
+//     }
+
+//     // Caso não haja sobreposição, salva o novo agendamento
+//     return agendamentoRepository.save(agendamento);
+// }
+
+// private boolean existeSobreposicao(Agendamento novoAgendamento, Agendamento agendamentoExistente) {
+//     // Verifica se as datas de início e fim do novo agendamento coincidem com o agendamento existente
+//     boolean sobrepoeDataInicio = novoAgendamento.getDataInicio().isBefore(agendamentoExistente.getDataFinal()) &&
+//             !novoAgendamento.getDataFinal().isBefore(agendamentoExistente.getDataInicio());
+
+//     boolean sobrepoeDataFinal = novoAgendamento.getDataFinal().isAfter(agendamentoExistente.getDataInicio()) &&
+//             !novoAgendamento.getDataInicio().isAfter(agendamentoExistente.getDataFinal());
+
+//     return sobrepoeDataInicio || sobrepoeDataFinal;
+// }
 }
+
+

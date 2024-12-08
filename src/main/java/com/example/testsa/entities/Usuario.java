@@ -30,7 +30,7 @@ public class Usuario implements UserDetails {
 	@Column(name = "nomecompleto", length = 50, nullable = false)
 	private String nomeCompleto;
 
-	@Column(name = "cpf_cnpj", length = 11)
+	@Column(name = "cpf_cnpj", length = 11, unique = true)
 	private String cpf;
 
 	@Column(name = "datanascimento")

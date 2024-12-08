@@ -1,6 +1,6 @@
 package com.example.testsa.dto.res;
 
-import com.example.testsa.dto.req.Usuario.UsuarioDTO;
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 
 public class DocumentosDTORes {
 
@@ -9,7 +9,7 @@ public class DocumentosDTORes {
     private byte[] documento;
     private String nome;
     private String formato;
-    private UsuarioDTO usuario;
+    private UsuarioSimplesDTO usuario;
 
   
     public Long getIdDocumento() {
@@ -36,11 +36,11 @@ public class DocumentosDTORes {
         this.nome = nome;
     }
 
-    public UsuarioDTO getUsuario() {
+    public UsuarioSimplesDTO getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
+    public void setUsuario(UsuarioSimplesDTO usuario) {
         this.usuario = usuario;
     }
 

@@ -31,7 +31,7 @@ public class DocumentoController {
     @Autowired
     private AprovacaoDocumentoService aprovacaoDocumentoService;
 
-    @GetMapping("/") // AJUSTAR
+    @GetMapping("/") 
     public ResponseEntity<List<?>> buscarTodasImagens() {
         List<Documentos> listaDocumentos = documentoService.buscarTodasDocumetos();
         List<DocumentosDTORes> lista = listaDocumentos.stream().map(d -> DocumentoConverter.entidadeParaDto(d))

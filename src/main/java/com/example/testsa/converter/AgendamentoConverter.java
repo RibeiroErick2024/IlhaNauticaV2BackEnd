@@ -20,7 +20,7 @@ public class AgendamentoConverter {
         return dto;
     }
 
-    public Agendamento agendamentoConverterEntdade(AgendamentoDTOReq dto) {
+    public static Agendamento agendamentoConverterEntidade(AgendamentoDTOReq dto) {
         Agendamento agendamento = new Agendamento();
         agendamento.setIdAgendamento(dto.getIdAgendamento());
         agendamento.setDataInicio(dto.getDataInicio());

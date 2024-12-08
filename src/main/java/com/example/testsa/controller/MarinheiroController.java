@@ -48,14 +48,14 @@ public class MarinheiroController {
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/")
     public ResponseEntity<MarinheiroComUsuarioDTO> cadastrarMarinheiro(@RequestBody Marinheiro entity) {
         Marinheiro marinheiro = marinheiroService.cadastrar(entity);
         MarinheiroComUsuarioDTO dto = MarinheiroConverter.entidadeParaMarinheiroComUsuarioDTO(marinheiro);
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping("/editar/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<MarinheiroComUsuarioDTO> editarMarinheiro(@PathVariable UUID id,
             @RequestBody Marinheiro entity) {
         Marinheiro marinheiro = marinheiroService.atualizarMarinheiro(id, entity);
@@ -63,7 +63,7 @@ public class MarinheiroController {
         return ResponseEntity.ok(dto);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletarMarinheiro(@PathVariable UUID id) {
         marinheiroService.deletarMarinheiro(id);
         return ResponseEntity.ok("Marinheiro deletado.");

@@ -24,7 +24,7 @@ public class AprovacaoDocumentoController {
 
     @Autowired
     AprovacaoDocumentoService aprovacaoDocumentoService;
-    @GetMapping("/todas")
+    @GetMapping("/")
     public ResponseEntity<List<AprovacaoDocumentoDTO>> buscarTodas() {
         List<AprovacaoDocumento> ap = aprovacaoDocumentoService.buscarTodas();
 
@@ -51,7 +51,7 @@ public class AprovacaoDocumentoController {
         return ResponseEntity.ok(listap);
     }
 
-    @GetMapping("usuario/{idUsuario}")
+    @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<AprovacaoDocumentoDTO>> buscarPorIdUsuario(@PathVariable UUID idUsuario) {
         List<AprovacaoDocumento> ap = aprovacaoDocumentoService.buscarPorUsuario(idUsuario);
 

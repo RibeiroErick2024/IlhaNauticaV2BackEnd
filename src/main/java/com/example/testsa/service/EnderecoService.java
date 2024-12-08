@@ -14,6 +14,7 @@ import com.example.testsa.repositories.EmbarcacaoRepository;
 import com.example.testsa.repositories.EnderecoRepository;
 import com.example.testsa.repositories.UsuarioRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -47,7 +48,7 @@ public class EnderecoService {
         }
 
         Usuario usuario = usuarioRepository.findById(endereco.getUsuario().getId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+                .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado."));
 
         endereco.setUsuario(usuario);
 

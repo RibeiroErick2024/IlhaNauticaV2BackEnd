@@ -29,7 +29,7 @@ public interface UsuarioConverter {
         all.setDataNascimento(entity.getDataNascimento());
         all.setTelefone(entity.getTelefone());
         all.setGenero(entity.getGenero());
-        all.setCategoriaUsuario("Locador");
+        all.setCategoriaUsuario(entity.getCategoriaUsuario());
 
         List<MarinheiroDTORes> listaMarinheiros = entity.getMarinheiro()
         .stream().map(a -> MarinheiroConverter.entidadeParaMarinheiroDTO(a)).toList();
@@ -51,7 +51,7 @@ public interface UsuarioConverter {
         all.setDataNascimento(entity.getDataNascimento());
         all.setTelefone(entity.getTelefone());
         all.setGenero(entity.getGenero());
-        all.setCategoriaUsuario("Geral");
+        all.setCategoriaUsuario(entity.getCategoriaUsuario());
         all.setEmail(entity.getEmail());
         all.setSenha(entity.getSenha());
        

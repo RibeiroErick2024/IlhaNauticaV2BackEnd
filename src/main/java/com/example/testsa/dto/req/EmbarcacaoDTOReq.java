@@ -1,10 +1,9 @@
 package com.example.testsa.dto.req;
 
-import java.util.UUID;
+import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
 
 public class EmbarcacaoDTOReq {
     
-    private UUID idEmbarcacao;
 
     private String nome;
 
@@ -19,6 +18,8 @@ public class EmbarcacaoDTOReq {
     private int capacidade;
 
     private String categoria;
+   
+    private Boolean pet;
 
     private String regras;
 
@@ -38,14 +39,8 @@ public class EmbarcacaoDTOReq {
 
     private float preco;
 
+    private UsuarioSimplesDTO usuario;
 
-    public UUID getIdEmbarcacao() {
-        return idEmbarcacao;
-    }
-
-    public void setIdEmbarcacao(UUID id_embarcacao) {
-        this.idEmbarcacao = id_embarcacao;
-    }
 
     public String getNome() {
         return nome;
@@ -173,6 +168,22 @@ public class EmbarcacaoDTOReq {
 
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    public UsuarioSimplesDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioSimplesDTO usuario) {
+        this.usuario = usuario;
+    }
+
+    public Boolean getPet() {
+        return pet;
+    }
+
+    public void setPet(Boolean pet) {
+        this.pet = pet;
     }
 
     

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.example.testsa.entities.Marinheiro;
 
-public class UsuarioDTO {
+public class UsuarioDTOReqs {
     
 
 	private String nomeCompleto;

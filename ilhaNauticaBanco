@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE Role (
     id SERIAL PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL UNIQUE,
+    nome VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE Usuario (
@@ -30,7 +30,7 @@ CREATE TABLE Endereco (
     numero INT,
     complemento VARCHAR(50),
     estado VARCHAR(2),
-    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
     fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao)  
 
 );
@@ -39,13 +39,13 @@ CREATE TABLE Marinheiro (
     id_marinheiro UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     nome VARCHAR(100) NOT NULL,
     categoria VARCHAR(45) NOT NULL,
-    registromaritimo VARCHAR(50) NOT NULL UNIQUE,
-    disponibilidade BOOLEAN NOT NULL,
+    registromaritimo VARCHAR(50) UNIQUE,
+    disponibilidade BOOLEAN,
     cpf_cnpj VARCHAR(11) NOT NULL UNIQUE,
-    datanascimento DATE NOT NULL,
-    genero VARCHAR(20) NOT NULL,
-    telefone VARCHAR(15) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    datanascimento DATE,
+    genero VARCHAR(20),
+    telefone VARCHAR(15),
+    email VARCHAR(100) NOT NULL,
     fk_id_usuario UUID,
     CONSTRAINT fk_usuario FOREIGN KEY (fk_id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
 );
@@ -53,24 +53,24 @@ CREATE TABLE Embarcacao (
     id_embarcacao UUID PRIMARY KEY, 
     nome VARCHAR(255) NOT NULL,
     anofabricacao INT NOT NULL,
-    fabricante VARCHAR(255) NOT NULL, 
+    fabricante VARCHAR(255), 
     preco FLOAT NOT NULL, 
     potencia INT NOT NULL, 
     tamanho FLOAT, 
-    capacidade INT NOT NULL, 
+    capacidade INT, 
     categoria VARCHAR(255) NOT NULL, 
-    regras VARCHAR(400),
-    descricao VARCHAR(400), 
-    enderecoembarque VARCHAR(255) NOT NULL, 
-    disponibilidade BOOLEAN NOT NULL, 
+    regras VARCHAR(1000),
+    descricao VARCHAR(1000), 
+    enderecoembarque VARCHAR(255), 
+    disponibilidade BOOLEAN, 
     pet BOOLEAN, 
-    quantidadebanheiro INT NOT NULL, 
-    quantidadecabines INT NOT NULL, 
-    inscricao_IMO VARCHAR(255) NOT NULL, 
-    bandeira VARCHAR(255) NOT NULL,
+    quantidadebanheiro INT , 
+    quantidadecabines INT , 
+    inscricao_IMO VARCHAR(20), 
+    bandeira VARCHAR(50),
     fk_id_usuario UUID,
     fk_id_endereco UUID, 
-    CONSTRAINT fk_usuario FOREIGN KEY (fk_id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE
+    CONSTRAINT fk_usuario FOREIGN KEY (fk_id_usuario) REFERENCES Usuario(id_usuario) ON DELETE cascade,
     CONSTRAINT fk_endereco FOREIGN KEY (fk_id_endereco) REFERENCES Endereco(id_endereco) ON DELETE SET NULL
 );
 
@@ -83,17 +83,18 @@ CREATE TABLE Pagamento (
     dataPagamento DATE
 );
 
--- Create the Agendamento table
-CREATE TABLE Agendamento (
-    id_agendamento UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    dataInicio DATE,
-    status VARCHAR(50),
-    dataFinal DATE,
-    fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
-    fk_id_marinheiro UUID REFERENCES Marinheiro(id_marinheiro),
-	fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
 
-	
+CREATE TABLE agendamento (
+    id_agendamento UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    datainicio DATE NOT NULL,
+    status VARCHAR(255),
+    datafinal DATE,
+    fk_id_usuario UUID,
+    fk_id_marinheiro UUID,
+    fk_id_embarcacao UUID,
+    CONSTRAINT fk_usuario FOREIGN KEY (fk_id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
+    CONSTRAINT fk_marinheiro FOREIGN KEY (fk_id_marinheiro) REFERENCES marinheiro(id_marinheiro) ON DELETE CASCADE,
+    CONSTRAINT fk_embarcacao FOREIGN KEY (fk_id_embarcacao) REFERENCES embarcacao(id_embarcacao) ON DELETE CASCADE
 );
 
 -- Create the Avaliacao table
@@ -106,7 +107,7 @@ CREATE TABLE Avaliacao (
     fk_id_usuario UUID REFERENCES Usuario(id_usuario) ON DELETE CASCADE,
     fk_id_agendamento UUID REFERENCES Agendamento(id_agendamento),
     fk_id_marinheiro UUID REFERENCES Marinheiro(id_marinheiro),
-	fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE RESTRICT
+	fk_id_embarcacao UUID REFERENCES Embarcacao(id_embarcacao) ON DELETE CASCADE
 );
 
 -- Create the Documentos table

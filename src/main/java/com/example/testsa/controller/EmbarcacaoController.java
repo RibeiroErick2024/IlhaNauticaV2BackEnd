@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.testsa.converter.EmbarcacaoConverter;
+import com.example.testsa.dto.req.EmbarcacaoDTOReq;
 import com.example.testsa.dto.res.Embarcacao.EmbarcacaoCardDTO;
 import com.example.testsa.dto.res.Embarcacao.EmbarcacaoDTORes;
 import com.example.testsa.entities.Embarcacao;
@@ -21,11 +22,10 @@ public class EmbarcacaoController {
     @Autowired
     private EmbarcacaoService embarcacaoService;
 
-    // Endpoint para listar todas as embarcações
     @GetMapping("/")
     public ResponseEntity<List<EmbarcacaoCardDTO>> buscarTodasEmbarcacoes() {
         System.out.println("Embarcacao controller");
-        List<Embarcacao> embarcacoes = embarcacaoService.getAllEmbarcacaos();
+        List<Embarcacao> embarcacoes = embarcacaoService.buscarTodasEmbarcacoes();
 
         List<EmbarcacaoCardDTO> dto = embarcacoes
         .stream()
@@ -34,10 +34,9 @@ public class EmbarcacaoController {
         return ResponseEntity.ok(dto);
     }
 
-    // Endpoint para buscar uma embarcação por ID
     @GetMapping("/{id}")
-    public ResponseEntity<EmbarcacaoDTORes> getEmbarcacaoById(@PathVariable UUID id) {
-        Embarcacao embarcacao = embarcacaoService.getEmbarcacaoById(id);
+    public ResponseEntity<EmbarcacaoDTORes> buscarEmbarcacaoById(@PathVariable UUID id) {
+        Embarcacao embarcacao = embarcacaoService.buscarEmbarcacaoPorId(id);
         EmbarcacaoDTORes dto = EmbarcacaoConverter.embarcacaoConverterDTO(embarcacao);
         if (embarcacao != null) {
             return ResponseEntity.ok(dto);
@@ -46,32 +45,27 @@ public class EmbarcacaoController {
         }
     }
 
-    // Endpoint para criar uma nova embarcação
-    @PostMapping
-    public ResponseEntity<EmbarcacaoDTORes> createEmbarcacao(@RequestBody Embarcacao embarcacao) {
-        Embarcacao createdEmbarcacao = embarcacaoService.creatEmbarcacao(embarcacao);
-        EmbarcacaoDTORes dto = EmbarcacaoConverter.embarcacaoConverterDTO(createdEmbarcacao);
-
-        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+    @PostMapping("/")
+    public ResponseEntity<EmbarcacaoDTORes> createEmbarcacao(@RequestBody EmbarcacaoDTOReq embarcacao) {
+        EmbarcacaoDTORes embarcacaoCriada = embarcacaoService.criarEmbarcacao(embarcacao);
+      
+        return new ResponseEntity<>(embarcacaoCriada, HttpStatus.CREATED);
     }
 
-    // Endpoint para atualizar uma embarcação existente
     @PutMapping("/{id}")
     public ResponseEntity<EmbarcacaoDTORes> updateEmbarcacao(
             @PathVariable UUID id,
-            @RequestBody Embarcacao embarcacao) {
+            @RequestBody EmbarcacaoDTOReq embarcacao) {
         try {
-            Embarcacao updatedEmbarcacao = embarcacaoService.updateEmbarcacao(id, embarcacao);
-            EmbarcacaoDTORes dto = EmbarcacaoConverter.embarcacaoConverterDTO(updatedEmbarcacao);
+            EmbarcacaoDTORes embarcacaoAtualizada = embarcacaoService.atualizarEmbarcacao(id, embarcacao);
 
 
-            return new ResponseEntity<>(dto, HttpStatus.OK);
+            return new ResponseEntity<>(embarcacaoAtualizada, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    // Endpoint para deletar uma embarcação
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEmbarcacao(@PathVariable UUID id) {
         try {

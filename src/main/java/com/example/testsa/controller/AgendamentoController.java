@@ -1,6 +1,7 @@
 package com.example.testsa.controller;
 
 import com.example.testsa.converter.AgendamentoConverter;
+import com.example.testsa.dto.req.AgendamentoDTOReq;
 import com.example.testsa.dto.res.AgendamentosDTORes;
 import com.example.testsa.entities.Agendamento;
 import com.example.testsa.service.AgendamentoService;
@@ -21,14 +22,7 @@ public class AgendamentoController {
         this.agendamentoService = agendamentoService;
     }
 
-    @PostMapping("/criar")
-    public ResponseEntity<AgendamentosDTORes> criarAgendamento(@RequestBody Agendamento agendamento) {
-        Agendamento createdAgendamento = agendamentoService.createAgendamento(agendamento);
-        AgendamentosDTORes agendamentoDTO = AgendamentoConverter.agendamentoConverterDTO(createdAgendamento);
-        return ResponseEntity.status(201).body(agendamentoDTO);
-    }
-
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<AgendamentosDTORes>> buscarTodosAgendamentos() {
         List<AgendamentosDTORes> agendamentosDTO = agendamentoService.buscarTodosAgendamentos();
         return ResponseEntity.ok(agendamentosDTO);
@@ -45,10 +39,15 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamentoDTO);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AgendamentosDTORes> updateAgendamento(@PathVariable UUID id, @RequestBody Agendamento agendamento) {
-        Agendamento updatedAgendamento = agendamentoService.updateAgendamento(id, agendamento);
-        AgendamentosDTORes agendamentoDTO = AgendamentoConverter.agendamentoConverterDTO(updatedAgendamento);
+    @PostMapping("/")
+    public ResponseEntity<AgendamentosDTORes> criarAgendamento(@RequestBody AgendamentoDTOReq agendamento) {
+        AgendamentosDTORes agendamentoCriado = agendamentoService.createAgendamento(agendamento);
+        return ResponseEntity.status(201).body(agendamentoCriado);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<AgendamentosDTORes> atualizarAgendamento(@PathVariable UUID id, @RequestBody AgendamentoDTOReq agendamento) {
+        AgendamentosDTORes agendamentoDTO = agendamentoService.atualizarAgendamento(id, agendamento);;
         return ResponseEntity.ok(agendamentoDTO);
     }
 

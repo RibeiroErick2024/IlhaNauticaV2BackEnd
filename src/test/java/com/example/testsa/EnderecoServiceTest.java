@@ -112,7 +112,6 @@ public class EnderecoServiceTest {
         verify(enderecoRepository, times(1)).deleteById(id); 
     }
 
-    //adicionar um falha
     @Test
     public void testarFalhaAdicionarEnderecoUsuario() {
         

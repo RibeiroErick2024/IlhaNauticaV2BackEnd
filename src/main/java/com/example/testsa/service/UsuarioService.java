@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
+import com.example.testsa.converter.UsuarioConverter;
+import com.example.testsa.dto.req.Usuario.UsuarioDTOReqs;
+import com.example.testsa.dto.res.Usuario.UsuarioGeralDTORes;
 import com.example.testsa.entities.Usuario;
 import com.example.testsa.repositories.UsuarioRepository;
 
@@ -42,7 +45,7 @@ public class UsuarioService {
     }
 
     @Transactional
-    public Usuario editarUsuario(UUID id, Usuario usuario) {
+    public UsuarioGeralDTORes editarUsuario(UUID id, UsuarioDTOReqs usuario) {
 
         Usuario userToUpdateData = buscarUsuarioPorId(id);
 
@@ -54,12 +57,12 @@ public class UsuarioService {
         userToUpdateData.setCategoriaUsuario(usuario.getCategoriaUsuario());
         userToUpdateData.setTelefone(usuario.getTelefone());
         Usuario usuarioAtualizado = usuarioRepository.saveAndFlush(userToUpdateData);
-        return usuarioAtualizado;
+        return UsuarioConverter.usuarioConverterGeral(usuarioAtualizado);
 
     }
 
     @Transactional
-    public Usuario completarUsuario(UUID id, Usuario usuario) {
+    public UsuarioGeralDTORes completarUsuario(UUID id, UsuarioDTOReqs usuario) {
         Usuario userToUpdateData = buscarUsuarioPorId(id);
         userToUpdateData.setCpf(usuario.getCpf());
         userToUpdateData.setDataNascimento(usuario.getDataNascimento());
@@ -68,18 +71,18 @@ public class UsuarioService {
         userToUpdateData.setCategoriaUsuario("GERAL");
         userToUpdateData.setTelefone(usuario.getTelefone());
         Usuario usuarioAtualizado = usuarioRepository.saveAndFlush(userToUpdateData);
-        return usuarioAtualizado;
+        return  UsuarioConverter.usuarioConverterGeral(usuarioAtualizado);
     }
 
     @Transactional
     public Usuario cadastroLocador(UUID id, Usuario usuario) {
 
         Usuario userToUpdateData = buscarUsuarioPorId(id);
-        userToUpdateData.setCpf(usuario.getCpf());
-        userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
-        userToUpdateData.setGenero(usuario.getGenero());
-        userToUpdateData.setCategoriaUsuario("GERAL");
-        userToUpdateData.setTelefone(usuario.getTelefone());
+        // userToUpdateData.setCpf(usuario.getCpf());
+        // userToUpdateData.setNomeCompleto(usuario.getNomeCompleto());
+        // userToUpdateData.setGenero(usuario.getGenero());
+        userToUpdateData.setCategoriaUsuario("LOCADOR");
+        // userToUpdateData.setTelefone(usuario.getTelefone());
         return usuarioRepository.saveAndFlush(userToUpdateData);
     }
     @Transactional
@@ -87,8 +90,6 @@ public class UsuarioService {
         
         usuarioRepository.findById(id)
                 .orElseThrow(() -> new BadCredentialsException("Usuario não encontrado com id " + id));
-
-        // agendamentoRepository.deleteByUsuarioId(id);
 
         usuarioRepository.deleteById(id);
 

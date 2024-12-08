@@ -34,6 +34,9 @@ VALUES
 ('103', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-4.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg'),
 ('104', 'Yamaha VX-C', FILE_READ('src/main/resources/static/jetski/yamaha-jetski-5.jpg'),'b23f42e2-7e3d-4c68-bdc6-09027dff0fbb', 'image/jpeg');
 
+INSERT INTO ImagemEmbarcacao(id_imagem, nome, imagem, formato)
+VALUES
+('1', 'Parati', FILE_READ('./src/main/resources/static/parati.jpg'), 'image/jpeg');
 -- Inserir dados na tabela Marinheiro
 INSERT INTO Marinheiro (id_marinheiro, nome, categoria, registroMaritimo, disponibilidade, cpf_cnpj, datanascimento, genero, telefone, email, fk_id_usuario) 
 VALUES

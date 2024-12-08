@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "agendamento")
@@ -29,15 +30,15 @@ public class Agendamento {
     @Column(name = "datafinal")
     private LocalDate dataFinal;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_marinheiro", referencedColumnName = "id_marinheiro")
     private Marinheiro marinheiro;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_id_embarcacao", referencedColumnName = "id_embarcacao")
     private Embarcacao embarcacao;
 

@@ -70,14 +70,14 @@ public class EnderecoController {
         return ResponseEntity.ok(dto);
     }
 
-    @PutMapping("/editar/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> editarEndereco(@PathVariable UUID id, @RequestBody Endereco entity) {
         Endereco endereco = enderecoService.atualizarEndereco(id, entity);
         EnderecoDTORes dto = EnderecoConverter.entidadeParaDto(endereco);
         return ResponseEntity.ok(dto);
     }
 
-    @DeleteMapping("/deletar/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletarendereco(@PathVariable UUID id) {
         enderecoService.deletarendereco(id);
         return ResponseEntity.ok("Endereco deletado.");

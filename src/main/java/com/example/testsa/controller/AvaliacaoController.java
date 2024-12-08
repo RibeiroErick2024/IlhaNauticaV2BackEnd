@@ -32,7 +32,7 @@ public class AvaliacaoController {
         return ResponseEntity.ok(dto);
     }
 
-    @PostMapping("/criar")
+    @PostMapping("/")
     public ResponseEntity<AvaliacaoDTORes> salvarAvaliacao(@RequestBody Avaliacao avaliacao) {
         AvaliacaoDTORes resultado = avaliacaoService.salvarAvaliacao(avaliacao);
         return ResponseEntity.status(201).body(resultado);

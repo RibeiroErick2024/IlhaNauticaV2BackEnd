@@ -12,10 +12,11 @@ import com.example.testsa.dto.res.Embarcacao.EmbarcacaoCardDTO;
 import com.example.testsa.dto.res.Embarcacao.EmbarcacaoDTORes;
 import com.example.testsa.dto.res.Embarcacao.EmbarcacaoSimplesDTORes;
 import com.example.testsa.entities.Embarcacao;
+import com.example.testsa.entities.Usuario;
 
 public class EmbarcacaoConverter {
 
-    private static final String IMAGEM_PADRAO_PATH = "src/main/resources/static/parati.jpg";
+    private static final String IMAGEM_PADRAO_PATH = "./src/main/resources/static/parati.jpg";
 
     public static EmbarcacaoDTORes embarcacaoConverterDTO(Embarcacao embarcacao) {
         EmbarcacaoDTORes dto = new EmbarcacaoDTORes();
@@ -37,7 +38,6 @@ public class EmbarcacaoConverter {
         dto.setPreco(embarcacao.getPreco());
         dto.setRegras(embarcacao.getRegras());
         dto.setDescricao(embarcacao.getDescricao());
-        dto.setEnderecoEmbarque(embarcacao.getEnderecoEmbarque());
         dto.setUsuario(UsuarioConverter.usuarioConverterSimples(embarcacao.getUsuario()));
         // dto.setEndereco(
         //         embarcacao.getEndereco() != null ? EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()) : null);
@@ -57,9 +57,9 @@ public class EmbarcacaoConverter {
                 // Carregar o arquivo de imagem em um byte array
                 byte[] imagemBytes = Files.readAllBytes(Paths.get(IMAGEM_PADRAO_PATH));
                 
-                // Definir a imagem e o formato
+                imagemPadrao.setId_imagem(1L);
                 imagemPadrao.setImagem(imagemBytes);
-                imagemPadrao.setFormato("jpg");  // Supondo que a imagem seja no formato JPEG
+                imagemPadrao.setFormato("jpeg");  // Supondo que a imagem seja no formato JPEG
                 imagemPadrao.setNome("Imagem Padrão");
 
                 listaImagensPadrao.add(imagemPadrao);
@@ -110,19 +110,27 @@ public class EmbarcacaoConverter {
 
     public static Embarcacao dtoConverterEntidade(EmbarcacaoDTOReq dto) {
         Embarcacao entidade = new Embarcacao();
-        entidade.setIdEmbarcacao(dto.getIdEmbarcacao());
-        entidade.setNome(dto.getNome());
-        entidade.setIdEmbarcacao(dto.getIdEmbarcacao());
-        entidade.setAnoFabricacao(dto.getAnoFabricacao());
+    
         entidade.setNome(dto.getNome());
         entidade.setFabricante(dto.getFabricante());
-        entidade.setTamanho(dto.getTamanho());
         entidade.setPotencia(dto.getPotencia());
+        entidade.setAnoFabricacao(dto.getAnoFabricacao());
+        entidade.setTamanho(dto.getTamanho());
         entidade.setCapacidade(dto.getCapacidade());
         entidade.setCategoria(dto.getCategoria());
+        entidade.setEnderecoEmbarque(dto.getEnderecoEmbarque());
+        entidade.setDisponibilidade(dto.getDisponibilidade());
         entidade.setQuantidadeBanheiro(dto.getQuantidadeBanheiro());
         entidade.setQuantidadeCabines(dto.getQuantidadeCabines());
+        entidade.setInscricao(dto.getInscricao());
+        entidade.setBandeira(dto.getBandeira());
+        entidade.setPreco(dto.getPreco());
+        entidade.setRegras(dto.getRegras());
+        entidade.setDescricao(dto.getDescricao());
 
+        Usuario usuario = new Usuario();
+        usuario.setId(dto.getUsuario().getId());
+        entidade.setUsuario(usuario);
         return entidade;
     }
 }

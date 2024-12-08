@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/login", "/auth/cadastro", "/imagem/{id}", "/imagem/**", "/embarcacao/{id}", "/embarcacao/**", "usuario/completarcadastro/{id}", "usuario/editar/{id}", "/endereco/**", "/endereco/editar/{id}",  "/endereco/usuario", "/agendamento/**", "/agendamento/{id}", "/usuario/{id}", "/usuario/", "/marinheiro/{id}", "/avaliacao/**", "/agendamento/**")
+                .requestMatchers("/auth/login", "/auth/cadastro", "/imagem/{id}", "/imagem/**", "/embarcacao/{id}", "/embarcacao/**", "usuario/completarcadastro/{id}", "usuario/editar/{id}", "/endereco/**", "/endereco/editar/{id}",  "/endereco/usuario", "/agendamento/**", "/agendamento/{id}", "/usuario/{id}", "/usuario/", "/marinheiro/{id}", "/avaliacao/**", "/agendamento/**", "/auth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -56,7 +56,7 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173", "https://postman.com", "http://localhost:5000"));
+        config.setAllowedOrigins(List.of("http://localhost:5173", "https://postman.com", "http://localhost:5000", "https://ilhanauticav2backend.onrender.com"));
         config.setAllowedMethods(List.of("OPTIONS", "GET", "POST", "PUT", "DELETE"));
         config.setAllowedHeaders(List.of("Authorization", "Content-type", "Accept", "Origin", "X-Requested-With"));
 

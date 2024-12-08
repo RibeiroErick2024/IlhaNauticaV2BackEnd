@@ -6,7 +6,6 @@ import java.util.UUID;
 import com.example.testsa.dto.res.EnderecoDTORes;
 import com.example.testsa.dto.res.ImagemEmbarcacaoDTORes;
 import com.example.testsa.dto.res.Usuario.UsuarioSimplesDTO;
-import com.example.testsa.entities.Usuario;
 
 public class EmbarcacaoDTORes {
 
