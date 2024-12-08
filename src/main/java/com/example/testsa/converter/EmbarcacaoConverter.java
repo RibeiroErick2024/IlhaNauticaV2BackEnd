@@ -20,6 +20,7 @@ public class EmbarcacaoConverter {
 
     public static EmbarcacaoDTORes embarcacaoConverterDTO(Embarcacao embarcacao) {
         EmbarcacaoDTORes dto = new EmbarcacaoDTORes();
+        System.out.println("Embarcacao Completa");
         dto.setUsuario(UsuarioConverter.usuarioConverterSimples(embarcacao.getUsuario()));
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setNome(embarcacao.getNome());
@@ -40,6 +41,7 @@ public class EmbarcacaoConverter {
         dto.setRegras(embarcacao.getRegras());
         dto.setDescricao(embarcacao.getDescricao());
         dto.setUsuario(UsuarioConverter.usuarioConverterSimples(embarcacao.getUsuario()));
+        System.out.println(dto.getUsuario().getId());
         // dto.setEndereco(
         //         embarcacao.getEndereco() != null ? EnderecoConverter.entidadeParaDto(embarcacao.getEndereco()) : null);
 
@@ -77,6 +79,8 @@ public class EmbarcacaoConverter {
 
     public static EmbarcacaoCardDTO embarcacaoConverterCardDTO(Embarcacao embarcacao) {
         EmbarcacaoCardDTO dto = new EmbarcacaoCardDTO();
+        System.out.println("Embarcacao Card");
+
         dto.setIdEmbarcacao(embarcacao.getIdEmbarcacao());
         dto.setAnoFabricacao(embarcacao.getAnoFabricacao());
         dto.setNome(embarcacao.getNome());
@@ -111,7 +115,8 @@ public class EmbarcacaoConverter {
 
     public static Embarcacao dtoConverterEntidade(EmbarcacaoDTOReq dto) {
         Embarcacao entidade = new Embarcacao();
-    
+        System.out.println("Embarcacao Entidade");
+
         entidade.setNome(dto.getNome());
         entidade.setFabricante(dto.getFabricante());
         entidade.setPotencia(dto.getPotencia());
