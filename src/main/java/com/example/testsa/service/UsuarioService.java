@@ -114,6 +114,7 @@ public class UsuarioService {
         Optional<Usuario> usuarioOpt = Optional.ofNullable(usuarioRepository.findByEmail(email).orElseThrow());
 
         if (usuarioOpt.isEmpty()) {
+            System.out.println("OI");
             throw new IllegalArgumentException("Usuário não encontrado!");
         }
 

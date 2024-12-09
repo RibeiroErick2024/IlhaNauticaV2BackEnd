@@ -46,7 +46,7 @@ public class UsuarioController {
         return ResponseEntity.ok(dtoRes);
     }
 
-    @GetMapping("a/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UsuarioGeralDTORes> buscarUsuarioGeral(@PathVariable(name = "id") UUID id) {
         Usuario u = usuarioService.buscarUsuarioPorId(id);
 
@@ -57,7 +57,7 @@ public class UsuarioController {
         UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
         return ResponseEntity.ok(usuarioDTO);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/embarcacao/{id}")
     public ResponseEntity<UsuarioSimplesDTO> buscarUsuarioEmbarcacao(@PathVariable(name = "id") UUID id) {
         Usuario u = usuarioService.buscarUsuarioPorIdEmbarcacao(id);
 

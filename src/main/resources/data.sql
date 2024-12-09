@@ -36,7 +36,7 @@ VALUES
 
 INSERT INTO ImagemEmbarcacao(id_imagem, nome, imagem, formato)
 VALUES
-('1', 'Parati', FILE_READ('./src/main/resources/static/parati.jpg'), 'image/jpeg');
+('10000', 'Parati', FILE_READ('./src/main/resources/static/parati.jpg'), 'image/jpeg');
 -- Inserir dados na tabela Marinheiro
 INSERT INTO Marinheiro (id_marinheiro, nome, categoria, registroMaritimo, disponibilidade, cpf_cnpj, datanascimento, genero, telefone, email, fk_id_usuario) 
 VALUES

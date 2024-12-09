@@ -44,6 +44,19 @@ public class EmbarcacaoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<List<EmbarcacaoCardDTO>> getEmbarcacoesByUsuario(@PathVariable UUID idUsuario) {
+      
+        List<Embarcacao> embarcacoes = embarcacaoService.buscarEmbarcacaoPorUsuarioId(idUsuario);
+        if (embarcacoes.isEmpty()) {
+            return ResponseEntity.noContent().build(); 
+        }
+        List<EmbarcacaoCardDTO> dto = embarcacoes
+        .stream()
+        .map(e -> EmbarcacaoConverter.embarcacaoConverterCardDTO(e))
+        .toList();
+        return ResponseEntity.ok(dto);
+    }
 
     @PostMapping("/")
     public ResponseEntity<EmbarcacaoDTORes> createEmbarcacao(@RequestBody EmbarcacaoDTOReq embarcacao) {

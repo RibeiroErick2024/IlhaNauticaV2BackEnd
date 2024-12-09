@@ -54,6 +54,10 @@ public class EmbarcacaoService {
                 .orElseThrow(() -> new RuntimeException("Embarcação com ID " + id + " não encontrada."));
     }
 
+    public List<Embarcacao> buscarEmbarcacaoPorUsuarioId(UUID idUsuario) {
+        return embarcacaoRepository.findAllByUsuarioId(idUsuario);
+    }
+
     @Transactional
     public EmbarcacaoDTORes atualizarEmbarcacao(UUID id_embarcacao, EmbarcacaoDTOReq embarcacao) {
         Embarcacao entidade = embarcacaoRepository.findById(id_embarcacao)
