@@ -46,7 +46,7 @@ public class UsuarioController {
         return ResponseEntity.ok(dtoRes);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("a/{id}")
     public ResponseEntity<UsuarioGeralDTORes> buscarUsuarioGeral(@PathVariable(name = "id") UUID id) {
         Usuario u = usuarioService.buscarUsuarioPorId(id);
 
