@@ -65,6 +65,7 @@ public class EmbarcacaoConverter {
         dto.setCapacidade(embarcacao.getCapacidade());
         dto.setCategoria(embarcacao.getCategoria());
         dto.setPet(embarcacao.getPet());
+        dto.setPreco(embarcacao.getPreco());
         dto.setQuantidadeBanheiro(embarcacao.getQuantidadeBanheiro());
         dto.setQuantidadeCabines(embarcacao.getQuantidadeCabines());
         dto.setEnderecoEmbarque(embarcacao.getEnderecoEmbarque());
