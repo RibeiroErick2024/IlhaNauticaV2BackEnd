@@ -10,7 +10,7 @@ O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de alugu
 - **Cadastro e Gerenciamento de Usuários**: Criação, edição e exclusão de perfis.  
 - **Reserva de Embarcações**: Agendamento rápido e intuitivo.  
 - **Gerenciamento de Embarcações**: Adição e remoção de embarcações .  
-- **Testes Automatizados**: Garantia de qualidade com cobertura de testes para as principais funcionalidades.  
+- **Testes Unitários**: Cobertura de testes para as principais funcionalidades.  
 
 ---
 
