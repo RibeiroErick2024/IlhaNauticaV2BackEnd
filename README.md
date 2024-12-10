@@ -21,7 +21,8 @@ O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de alugu
 - **Spring Data JPA**: Mapeamento objeto-relacional simplificado.  
 - **Spring Boot**: Configuração e inicialização rápida do projeto.  
 - **Spring Security**: Implementação de autenticação e autorização.  
-- **JUnit e Mockito**: Frameworks para testes unitários e de integração.  
+- **JUnit e Mockito**: Frameworks para testes unitários e de integração.
+- **H2 DB**: Banco em memoria.
 
 ---
 
@@ -83,21 +84,6 @@ Para garantir a qualidade do código, o projeto inclui testes automatizados para
    - **JUnit 5**: Para testes unitários.  
    - **Mockito**: Para mocks e simulação de dependências.  
 
-
----
-
-## Endpoints Disponíveis
-
-### Usuários  
-- `GET /usuarios`: Retorna a lista de usuários.  
-- `POST /usuarios`: Cria um novo usuário.  
-- `PUT /usuarios/{id}`: Atualiza as informações de um usuário.  
-- `DELETE /usuarios/{id}`: Remove um usuário.  
-
-### Reservas  
-- `GET /reservas`: Lista todas as reservas.  
-- `POST /reservas`: Cria uma nova reserva.  
-- `DELETE /reservas/{id}`: Cancela uma reserva existente.  
 
 ---
 
