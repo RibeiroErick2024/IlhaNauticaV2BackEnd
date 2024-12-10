@@ -47,16 +47,6 @@ public class UsuarioService {
         }
         throw new IllegalArgumentException("Usuário não encontrado com esse" + id);
     }
-    @Transactional
-    public Usuario buscarUsuarioPorIdEmbarcacao(UUID id) {
-
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmbarcacaoIdEmbarcacao(id);
-        if (optUsuario.isPresent()) {
-            Usuario usuarioEncontrado = optUsuario.get();
-            return usuarioEncontrado;
-        }
-        throw new IllegalArgumentException("Embarcação não encontrada com esse" + id);
-    }
 
     @Transactional
     public UsuarioGeralDTORes editarUsuario(UUID id, UsuarioDTOReq usuario) {
