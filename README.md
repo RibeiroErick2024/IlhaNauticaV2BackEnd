@@ -2,7 +2,12 @@
 É um projeto acadêmico desenvolvido com foco em facilitar o aluguel de embarcações e proporcionar experiências, intuitiva para todos os usuários. Simplificando a experiência tanto para locadores quanto para donos de embarcações.
 
 Este repositório contém o código-fonte do backend, desenvolvido com **Java Spring** e integrado ao banco de dados **PostgreSQL**.
-
+---
+## 👨‍💻 DESENVOLVEDORES  
+- Alexsandro Silva
+- Andrey Lopes
+- Erick Ribeiro
+- Gisele Mara
 ---
 
 ## Funcionalidades Principais 🎯
@@ -102,14 +107,6 @@ Contribuições são bem-vindas! Para colaborar:
    git push origin minha-feature
    ```  
 4. Abra um Pull Request detalhando as mudanças.  
-
----
-
-## DESENVOLVEDORES
-- Alexsandro Silva
-- Andrey Lopes
-- Erick Ribeiro
-- Gisele Mara
 
 ---
 
