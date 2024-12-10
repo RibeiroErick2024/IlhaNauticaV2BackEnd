@@ -44,7 +44,7 @@ O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de alugu
 2. Configure o banco de dados no arquivo `application.properties`:  
    ```properties
 **PostgreSQL**
- Configurações do banco de dados
+##
  spring.datasource.url=${DB_URL}
  spring.datasource.username=${DB_USERNAME}
  spring.datasource.password=${DB_PASSWORD}
@@ -53,6 +53,7 @@ O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de alugu
  
 
 **Banco de dados h2**
+##
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
