@@ -44,7 +44,8 @@ public class SecurityConfiguration {
                 .requestMatchers("/auth/login", "/auth/cadastro", "/imagem/{id}", "/imagem/**", "/embarcacao/{id}", "/embarcacao/**", "/usuario/completarcadastro/{id}", "/usuario/editar/{id}", "/endereco/**", "/endereco/editar/{id}",  "/endereco/usuario", "/agendamento/**", "/agendamento/{id}", "/usuario/{id}", "/usuario/**", "/marinheiro/{id}", "/avaliacao/**", "/agendamento/**", "/usuario/embarcacao/{id}","/v3/api-docs",
                 "/v3/api-docs/*",
                 "/swagger-ui/*",
-                "/swagger-ui.html")
+                "/swagger-ui.html", "/swagger-ui-custom.html")
+                
                 .permitAll()
                 .anyRequest()
                 .authenticated()
