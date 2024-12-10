@@ -106,10 +106,10 @@ Contribuições são bem-vindas! Para colaborar:
 ---
 
 ## DESENVOLVEDORES
-Alexsandro Silva
-Andrey Lopes
-Erick Ribeiro
-Gisele Mara
+- Alexsandro Silva
+- Andrey Lopes
+- Erick Ribeiro
+- Gisele Mara
 
 ---
 
