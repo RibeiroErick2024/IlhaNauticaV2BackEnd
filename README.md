@@ -1,7 +1,7 @@
 # IlhaNauticaBackEnd2024- Backend ⛵
+É um projeto acadêmico desenvolvido com foco em facilitar o aluguel de embarcações e proporcionar experiências, intuitiva para todos os usuários. Simplificando a experiência tanto para locadores quanto para donos de embarcações.
 
-
-O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de aluguel de embarcações, simplificando a experiência tanto para locadores quanto para donos de embarcações. Este repositório contém o código-fonte do backend, desenvolvido com **Java Spring** e integrado ao banco de dados **PostgreSQL**.
+Este repositório contém o código-fonte do backend, desenvolvido com **Java Spring** e integrado ao banco de dados **PostgreSQL**.
 
 ---
 
@@ -105,9 +105,11 @@ Contribuições são bem-vindas! Para colaborar:
 
 ---
 
-## Autor
-
-O **ILHA NAUTICA** foi desenvolvido com foco em facilitar o aluguel de embarcações e proporcionar  experiências, intuitiva para todos os usuários.
+## DESENVOLVEDORES
+Alexsandro Silva
+Andrey Lopes
+Erick Ribeiro
+Gisele Mara
 
 ---
 
