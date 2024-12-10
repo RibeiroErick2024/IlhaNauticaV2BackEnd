@@ -1,7 +1,7 @@
 # IlhaNauticaBackEnd2024- Backend ⛵
 
 
-O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de aluguel de quadras de futebol, simplificando a experiência tanto para jogadores quanto para donos de quadras. Este repositório contém o código-fonte do backend, desenvolvido com **Java Spring** e integrado ao banco de dados **PostgreSQL**.
+O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de aluguel de embarcações, simplificando a experiência tanto para locadores quanto para donos de embarcações. Este repositório contém o código-fonte do backend, desenvolvido com **Java Spring** e integrado ao banco de dados **PostgreSQL**.
 
 ---
 
