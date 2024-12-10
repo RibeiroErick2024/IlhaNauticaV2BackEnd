@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.testsa.converter.UsuarioConverter;
@@ -21,6 +22,9 @@ public class UsuarioService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     public List<Usuario> buscarTodosUsuario() {
@@ -43,16 +47,6 @@ public class UsuarioService {
         }
         throw new IllegalArgumentException("Usuário não encontrado com esse" + id);
     }
-    @Transactional
-    public Usuario buscarUsuarioPorIdEmbarcacao(UUID id) {
-
-        Optional<Usuario> optUsuario = usuarioRepository.findByEmbarcacaoIdEmbarcacao(id);
-        if (optUsuario.isPresent()) {
-            Usuario usuarioEncontrado = optUsuario.get();
-            return usuarioEncontrado;
-        }
-        throw new IllegalArgumentException("Embarcação não encontrada com esse" + id);
-    }
 
     @Transactional
     public UsuarioGeralDTORes editarUsuario(UUID id, UsuarioDTOReq usuario) {
@@ -64,7 +58,7 @@ public class UsuarioService {
         userToUpdateData.setDataNascimento(usuario.getDataNascimento());
         userToUpdateData.setEmail(usuario.getEmail());
         userToUpdateData.setGenero(usuario.getGenero());
-        userToUpdateData.setSenha(usuario.getSenha());
+        userToUpdateData.setSenha(passwordEncoder.encode(usuario.getSenha()));
         userToUpdateData.setCategoriaUsuario(usuario.getCategoriaUsuario());
         userToUpdateData.setTelefone(usuario.getTelefone());
         Usuario usuarioAtualizado = usuarioRepository.saveAndFlush(userToUpdateData);

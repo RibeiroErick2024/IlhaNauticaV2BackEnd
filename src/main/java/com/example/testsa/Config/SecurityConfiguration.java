@@ -24,11 +24,13 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    
     public SecurityConfiguration(AuthenticationProvider authenticationProvider,
             JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.authenticationProvider = authenticationProvider;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
+
 
 
     @Bean
@@ -39,7 +41,10 @@ public class SecurityConfiguration {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/login", "/auth/cadastro", "/imagem/{id}", "/imagem/**", "/embarcacao/{id}", "/embarcacao/**", "/usuario/completarcadastro/{id}", "/usuario/editar/{id}", "/endereco/**", "/endereco/editar/{id}",  "/endereco/usuario", "/agendamento/**", "/agendamento/{id}", "/usuario/{id}", "/usuario/**", "/marinheiro/{id}", "/avaliacao/**", "/agendamento/**", "/usuario/embarcacao/{id}")
+                .requestMatchers("/auth/login", "/auth/cadastro", "/imagem/{id}", "/imagem/**", "/embarcacao/{id}", "/embarcacao/**", "/usuario/completarcadastro/{id}", "/usuario/editar/{id}", "/endereco/**", "/endereco/editar/{id}",  "/endereco/usuario", "/agendamento/**", "/agendamento/{id}", "/usuario/{id}", "/usuario/**", "/marinheiro/{id}", "/avaliacao/**", "/agendamento/**", "/usuario/embarcacao/{id}","/v3/api-docs",
+                "/v3/api-docs/*",
+                "/swagger-ui/*",
+                "/swagger-ui.html")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

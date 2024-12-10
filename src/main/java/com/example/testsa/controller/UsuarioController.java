@@ -57,17 +57,7 @@ public class UsuarioController {
         UsuarioGeralDTORes usuarioDTO = UsuarioConverter.usuarioConverterGeral(u);
         return ResponseEntity.ok(usuarioDTO);
     }
-    @GetMapping("/embarcacao/{id}")
-    public ResponseEntity<UsuarioSimplesDTO> buscarUsuarioEmbarcacao(@PathVariable(name = "id") UUID id) {
-        Usuario u = usuarioService.buscarUsuarioPorIdEmbarcacao(id);
-
-        if (u == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        UsuarioSimplesDTO usuarioDTO = UsuarioConverter.usuarioConverterSimples(u);
-        return ResponseEntity.ok(usuarioDTO);
-    }
+   
     @GetMapping("/locador/{id}")
     public ResponseEntity<UsuarioLocadorDTORes> buscarUsuario(@PathVariable(name = "id") UUID id) {
         Usuario u = usuarioService.buscarUsuarioPorId(id);
