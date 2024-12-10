@@ -50,6 +50,7 @@ O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de alugu
  spring.datasource.password=${DB_PASSWORD}
  spring.datasource.driver-class-name=org.postgresql.Driver
  spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+ 
 
 **Banco de dados h2**
 spring.datasource.url=jdbc:h2:mem:testdb
@@ -59,7 +60,7 @@ spring.datasource.password=password
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.jpa.defer-datasource-initialization=true
 spring.h2.console.enabled=true
-   ```
+  ```
 
 3. Compile e execute o projeto:  
    ```bash
