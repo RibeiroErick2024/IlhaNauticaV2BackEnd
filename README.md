@@ -24,7 +24,8 @@ O **ILHA NAUTICA** é uma solução inovadora que automatiza o processo de alugu
 - **JUnit e Mockito**: Frameworks para testes unitários e de integração.
 - **H2 DB**: Banco em memoria.
 
----
+## Endpoints 
+- Para ver os endpoints, inicie a aplicação e acesse: http://localhost:8080/swagger-ui/index.html#/. 
 
 ## Requisitos de Instalação 📋
 
